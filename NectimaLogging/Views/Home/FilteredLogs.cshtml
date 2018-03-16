@@ -1,0 +1,57 @@
+﻿@model IEnumerable<LogEntry>
+@{
+    ViewData["Title"] = "FilteredLogs";
+}
+
+<h2>FilteredLogs</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Date</th>
+            <th scope="col">Level</th>
+            <th scope="col">Exception</th>
+            <th scope="col">Thread</th>
+            <th scope="col">StackTrace</th>
+            <th scope="col">Message</th>
+            <th scope="col">MachineName</th>
+            <th scope="col">Logger</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var log in Model)
+        {
+            <tr>
+                <td>
+                    @log.Id
+                </td>
+                <td>
+                    @log.Date
+                </td>
+                <td>
+                    @log.Level
+                </td>
+                <td>
+                    @log.Exception
+                </td>
+                <td>
+                    @log.Thread
+                </td>
+                <td>
+                    @log.StackTrace
+                </td>
+                <td>
+                    @log.Message
+                </td>
+                <td>
+                    @log.MachineName
+                </td>
+                <td>
+                    @log.Logger
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

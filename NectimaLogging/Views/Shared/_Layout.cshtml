@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/vendor/bootstrap/dist/css/bootstrap.css" />
+
+    <script src="~/vendor/jquery/dist/jquery.js"></script>
+    <script src="~/vendor/bootstrap/dist/js/bootstrap.js"></script>
+
+
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a asp-action="Search" asp-controller="Home">Home</a>
+        <a asp-action="ResultAllLogs" asp-controller="Home">View All Logs</a>
+    </nav>
+    <div>
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+2018-03-12 14:46:50.4472 Debug Targets for Microsoft.AspNetCore.Mvc.Formatters.JsonPatchInputFormatter by level:
+2018-03-12 14:46:50.4472 Debug Trace => loggingDb
+2018-03-12 14:46:50.4472 Debug Debug => loggingDb
+2018-03-12 14:46:50.4472 Debug Info => loggingDb
+2018-03-12 14:46:50.4472 Debug Warn => loggingDb
+2018-03-12 14:46:50.4472 Debug Error => loggingDb
+2018-03-12 14:46:50.4472 Debug Fatal => loggingDb
+2018-03-12 14:46:50.4472 Debug Targets for Microsoft.AspNetCore.Mvc.Formatters.JsonInputFormatter by level:
+2018-03-12 14:46:50.4472 Debug Trace => loggingDb
+2018-03-12 14:46:50.4472 Debug Debug => loggingDb
+2018-03-12 14:46:50.4472 Debug Info => loggingDb
+2018-03-12 14:46:50.4472 Debug Warn => loggingDb
+2018-03-12 14:46:50.4624 Debug Error => loggingDb
+2018-03-12 14:46:50.4624 Debug Fatal => loggingDb
+2018-03-12 14:46:50.4834 Debug Targets for Microsoft.AspNetCore.Mvc.RazorPages.Internal.RazorProjectPageRouteModelProvider by level:
+2018-03-12 14:46:50.4834 Debug Trace => loggingDb
+2018-03-12 14:46:50.4834 Debug Debug => loggingDb
+2018-03-12 14:46:50.4834 Debug Info => loggingDb
+2018-03-12 14:46:50.4834 Debug Warn => loggingDb
+2018-03-12 14:46:50.4834 Debug Error => loggingDb
+2018-03-12 14:46:50.4834 Debug Fatal => loggingDb
+2018-03-12 14:46:50.5378 Debug Targets for Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker by level:
+2018-03-12 14:46:50.5378 Debug Trace => loggingDb
+2018-03-12 14:46:50.5378 Debug Debug => loggingDb
+2018-03-12 14:46:50.5378 Debug Info => loggingDb
+2018-03-12 14:46:50.5378 Debug Warn => loggingDb
+2018-03-12 14:46:50.5409 Debug Error => loggingDb
+2018-03-12 14:46:50.5409 Debug Fatal => loggingDb
+2018-03-12 14:46:50.5409 Debug Targets for Microsoft.AspNetCore.Mvc.Razor.Internal.RazorViewCompiler by level:
+2018-03-12 14:46:50.5409 Debug Trace => loggingDb
+2018-03-12 14:46:50.5409 Debug Debug => loggingDb
+2018-03-12 14:46:50.5561 Debug Info => loggingDb
+2018-03-12 14:46:50.5561 Debug Warn => loggingDb
+2018-03-12 14:46:50.5561 Debug Error => loggingDb
+2018-03-12 14:46:50.5561 Debug Fatal => loggingDb
+2018-03-12 14:46:50.5561 Debug Targets for Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector by level:
+2018-03-12 14:46:50.5561 Debug Trace => loggingDb
+2018-03-12 14:46:50.5561 Debug Debug => loggingDb
+2018-03-12 14:46:50.5561 Debug Info => loggingDb
+2018-03-12 14:46:50.5561 Debug Warn => loggingDb
+2018-03-12 14:46:50.5561 Debug Error => loggingDb
+2018-03-12 14:46:50.5561 Debug Fatal => loggingDb
+2018-03-12 14:46:50.5561 Debug Targets for Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider by level:
+2018-03-12 14:46:50.5561 Debug Trace => loggingDb
+2018-03-12 14:46:50.5561 Debug Debug => loggingDb
+2018-03-12 14:46:50.5561 Debug Info => loggingDb
+2018-03-12 14:46:50.5561 Debug Warn => loggingDb
+2018-03-12 14:46:50.5561 Debug Error => loggingDb
+2018-03-12 14:46:50.5561 Debug Fatal => loggingDb
+2018-03-12 14:46:50.5732 Debug Targets for Microsoft.AspNetCore.Mvc.RazorPages.Internal.PageActionInvoker by level:
+2018-03-12 14:46:50.5732 Debug Trace => loggingDb
+2018-03-12 14:46:50.5732 Debug Debug => loggingDb
+2018-03-12 14:46:50.5732 Debug Info => loggingDb
+2018-03-12 14:46:50.5732 Debug Warn => loggingDb
+2018-03-12 14:46:50.5732 Debug Error => loggingDb
+2018-03-12 14:46:50.5732 Debug Fatal => loggingDb
+2018-03-12 14:46:50.5732 Debug Targets for Microsoft.AspNetCore.Mvc.Internal.ActionSelector by level:
+2018-03-12 14:46:50.5732 Debug Trace => loggingDb
+2018-03-12 14:46:50.5732 Debug Debug => loggingDb
+2018-03-12 14:46:50.5732 Debug Info => loggingDb
+2018-03-12 14:46:50.5732 Debug Warn => loggingDb
+2018-03-12 14:46:50.5732 Debug Error => loggingDb
+2018-03-12 14:46:50.5732 Debug Fatal => loggingDb
+2018-03-12 14:46:50.5732 Debug Targets for Microsoft.AspNetCore.Mvc.Internal.MvcRouteHandler by level:
+2018-03-12 14:46:50.5732 Debug Trace => loggingDb
+2018-03-12 14:46:50.5732 Debug Debug => loggingDb
+2018-03-12 14:46:50.5732 Debug Info => loggingDb
+2018-03-12 14:46:50.5732 Debug Warn => loggingDb
+2018-03-12 14:46:50.5732 Debug Error => loggingDb
+2018-03-12 14:46:50.5732 Debug Fatal => loggingDb
+2018-03-12 14:46:50.5917 Debug Targets for Microsoft.AspNetCore.Builder.RouterMiddleware by level:
+2018-03-12 14:46:50.5917 Debug Trace => loggingDb
+2018-03-12 14:46:50.5917 Debug Debug => loggingDb
+2018-03-12 14:46:50.5917 Debug Info => loggingDb
+2018-03-12 14:46:50.5917 Debug Warn => loggingDb
+2018-03-12 14:46:50.5917 Debug Error => loggingDb
+2018-03-12 14:46:50.5917 Debug Fatal => loggingDb
+2018-03-12 14:46:50.5917 Debug Targets for Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware by level:
+2018-03-12 14:46:50.5917 Debug Trace => loggingDb
+2018-03-12 14:46:50.5917 Debug Debug => loggingDb
+2018-03-12 14:46:50.5917 Debug Info => loggingDb
+2018-03-12 14:46:50.5917 Debug Warn => loggingDb
+2018-03-12 14:46:50.5917 Debug Error => loggingDb
+2018-03-12 14:46:50.5917 Debug Fatal => loggingDb
+2018-03-12 14:46:50.5917 Debug Targets for Microsoft.AspNetCore.Server.IISIntegration.IISMiddleware by level:
+2018-03-12 14:46:50.6029 Debug Trace => loggingDb
+2018-03-12 14:46:50.6029 Debug Debug => loggingDb
+2018-03-12 14:46:50.6029 Debug Info => loggingDb
+2018-03-12 14:46:50.6029 Debug Warn => loggingDb
+2018-03-12 14:46:50.6029 Debug Error => loggingDb
+2018-03-12 14:46:50.6029 Debug Fatal => loggingDb
+2018-03-12 14:46:50.6029 Debug Targets for Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersMiddleware by level:
+2018-03-12 14:46:50.6029 Debug Trace => loggingDb
+2018-03-12 14:46:50.6029 Debug Debug => loggingDb
+2018-03-12 14:46:50.6029 Debug Info => loggingDb
+2018-03-12 14:46:50.6029 Debug Warn => loggingDb
+2018-03-12 14:46:50.6029 Debug Error => loggingDb
+2018-03-12 14:46:50.6029 Debug Fatal => loggingDb
+2018-03-12 14:46:50.6288 Debug Targets for Microsoft.AspNetCore.Hosting.Internal.WebHost by level:
+2018-03-12 14:46:50.6288 Debug Trace => loggingDb
+2018-03-12 14:46:50.6288 Debug Debug => loggingDb
+2018-03-12 14:46:50.6288 Debug Info => loggingDb
+2018-03-12 14:46:50.6288 Debug Warn => loggingDb
+2018-03-12 14:46:50.6288 Debug Error => loggingDb
+2018-03-12 14:46:50.6343 Debug Fatal => loggingDb
+2018-03-12 14:46:50.6503 Debug Targets for Microsoft.AspNetCore.Hosting.Internal.HostedServiceExecutor by level:
+2018-03-12 14:46:50.6503 Debug Trace => loggingDb
+2018-03-12 14:46:50.6503 Debug Debug => loggingDb
+2018-03-12 14:46:50.6503 Debug Info => loggingDb
+2018-03-12 14:46:50.6795 Debug Warn => loggingDb
+2018-03-12 14:46:50.6849 Debug Error => loggingDb
+2018-03-12 14:46:50.6849 Debug Fatal => loggingDb
+2018-03-12 14:46:51.1347 Debug Targets for Microsoft.AspNetCore.Routing.Tree.TreeRouter by level:
+2018-03-12 14:46:51.1347 Debug Trace => loggingDb
+2018-03-12 14:46:51.1347 Debug Debug => loggingDb
+2018-03-12 14:46:51.1347 Debug Info => loggingDb
+2018-03-12 14:46:51.1347 Debug Warn => loggingDb
+2018-03-12 14:46:51.1347 Debug Error => loggingDb
+2018-03-12 14:46:51.1347 Debug Fatal => loggingDb
+2018-03-12 14:46:51.1347 Debug Targets for Microsoft.AspNetCore.Routing.RouteConstraintMatcher by level:
+2018-03-12 14:46:51.1347 Debug Trace => loggingDb
+2018-03-12 14:46:51.1347 Debug Debug => loggingDb
+2018-03-12 14:46:51.1347 Debug Info => loggingDb
+2018-03-12 14:46:51.1347 Debug Warn => loggingDb
+2018-03-12 14:46:51.1347 Debug Error => loggingDb
+2018-03-12 14:46:51.1347 Debug Fatal => loggingDb
+2018-03-12 14:46:51.1530 Debug Targets for Microsoft.AspNetCore.Routing.RouteBase by level:
+2018-03-12 14:46:51.1530 Debug Trace => loggingDb
+2018-03-12 14:46:51.1530 Debug Debug => loggingDb
+2018-03-12 14:46:51.1530 Debug Info => loggingDb
+2018-03-12 14:46:51.1530 Debug Warn => loggingDb
+2018-03-12 14:46:51.1530 Debug Error => loggingDb
+2018-03-12 14:46:51.1530 Debug Fatal => loggingDb
+2018-03-12 14:46:51.2045 Debug Targets for NectimaLogging.Controllers.HomeController by level:
+2018-03-12 14:46:51.2045 Debug Trace => loggingDb
+2018-03-12 14:46:51.2045 Debug Debug => loggingDb
+2018-03-12 14:46:51.2045 Debug Info => loggingDb
+2018-03-12 14:46:51.2045 Debug Warn => loggingDb
+2018-03-12 14:46:51.2045 Debug Error => loggingDb
+2018-03-12 14:46:51.2045 Debug Fatal => loggingDb
+2018-03-12 14:46:51.2710 Debug Targets for Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine by level:
+2018-03-12 14:46:51.2750 Debug Trace => loggingDb
+2018-03-12 14:46:51.2750 Debug Debug => loggingDb
+2018-03-12 14:46:51.2750 Debug Info => loggingDb
+2018-03-12 14:46:51.2750 Debug Warn => loggingDb
+2018-03-12 14:46:51.2750 Debug Error => loggingDb
+2018-03-12 14:46:51.2750 Debug Fatal => loggingDb
+2018-03-12 14:46:51.2750 Debug Targets for Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewResultExecutor by level:
+2018-03-12 14:46:51.2750 Debug Trace => loggingDb
+2018-03-12 14:46:51.2750 Debug Debug => loggingDb
+2018-03-12 14:46:51.2750 Debug Info => loggingDb
+2018-03-12 14:46:51.2750 Debug Warn => loggingDb
+2018-03-12 14:46:51.2750 Debug Error => loggingDb
+2018-03-12 14:46:51.2750 Debug Fatal => loggingDb
+2018-03-12 14:46:53.2547 Debug Targets for Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentInvoker by level:
+2018-03-12 14:46:53.2547 Debug Trace => loggingDb
+2018-03-12 14:46:53.2547 Debug Debug => loggingDb
+2018-03-12 14:46:53.2547 Debug Info => loggingDb
+2018-03-12 14:46:53.2547 Debug Warn => loggingDb
+2018-03-12 14:46:53.2547 Debug Error => loggingDb
+2018-03-12 14:46:53.2547 Debug Fatal => loggingDb
+2018-03-12 14:46:53.2643 Debug Targets for Microsoft.AspNetCore.Antiforgery.Internal.DefaultAntiforgery by level:
+2018-03-12 14:46:53.2643 Debug Trace => loggingDb
+2018-03-12 14:46:53.2643 Debug Debug => loggingDb
+2018-03-12 14:46:53.2643 Debug Info => loggingDb
+2018-03-12 14:46:53.2643 Debug Warn => loggingDb
+2018-03-12 14:46:53.2643 Debug Error => loggingDb
+2018-03-12 14:46:53.2643 Debug Fatal => loggingDb
