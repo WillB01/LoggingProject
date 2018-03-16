@@ -70,7 +70,7 @@
             <input asp-for="@Model.PagingInfo.IsPrevious"
                    name="isPrevious" type="hidden" value="true" checked />
             <input type="hidden" name="previous" value="@Model.PagingInfo.CurrentPage" />
-            <input type="submit" value="Previous" />
+            <input class="next-prev" type="submit" value="Previous" />
         </form>
     </div>
 
@@ -86,6 +86,7 @@
             <p class="current">@Model.PagingInfo.CurrentPage</p>
 
             }
+            
 
         </div>
     }
@@ -94,7 +95,7 @@
             <input asp-for="@Model.PagingInfo.IsNext"
                    name="isNext" type="hidden" value="true" checked />
             <input type="hidden" name="next" value="@Model.PagingInfo.CurrentPage" />
-            <input type="submit" value="Next" />
+            <input class="next-prev" type="submit" value="Next" />
         </form>
     </div>
 </div>
@@ -138,6 +139,3 @@
 
 
 
-<style>
-   
-</style>
