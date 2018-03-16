@@ -19,7 +19,7 @@ namespace NectimaLogging.Controllers
         private ILogEntryRepository _logEntryRepository;
         private IMyServices _myServices;
         private int PageSize { get; set; } = 4;
-        private int PageCounter { get; set; } = 0;
+        private int PageCounter { get; set; } = 10;
 
 
 
@@ -88,8 +88,6 @@ namespace NectimaLogging.Controllers
 
         public IActionResult ResultAllLogs(int logPage = 1)
         {
-
-            
 
             return View(new LogListViewModel
             {

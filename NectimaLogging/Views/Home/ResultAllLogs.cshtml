@@ -83,7 +83,7 @@
     </div>
     @{ var h = 10;
         var k = h + Model.PagingInfo.IsMore();}
-    @for (int i = 1; i <= Model.PagingInfo.AddMorePages; i++)
+    @for (int i = 1; i <= Model.PagingInfo.AddMorePages + 9; i++)
     {
 
         <div class="btn active">

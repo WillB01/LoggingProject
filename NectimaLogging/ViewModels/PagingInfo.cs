@@ -13,7 +13,7 @@ namespace NectimaLogging.ViewModels
         public int NextPage { get; set; } = 0;
         public bool IsNext { get; set; } = false;
         public bool IsPrevious { get; set; } = false;
-        public int AddMorePages { get; set; } = 0;
+        public int AddMorePages { get; set; } = 10;
         public int Ten { get; set; }
 
 
