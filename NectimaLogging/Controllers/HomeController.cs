@@ -88,17 +88,19 @@ namespace NectimaLogging.Controllers
 
         public IActionResult ResultAllLogs(int logPage = 1)
         {
-           
+
+            
+
             return View(new LogListViewModel
             {
 
                 Logs = _logEntryRepository.GetAllLogs
-                 .OrderBy(p => p.Id) 
-                 .Skip ((logPage - 1) * PageSize)
+                 .OrderBy(p => p.Id)
+                 .Skip((logPage - 1) * PageSize)
                  .Take(PageSize),
                 PagingInfo = new PagingInfo
                 {
-                    //NextPage = PageCounter,
+                    AddMorePages = logPage,
                     CurrentPage = logPage,
                     ItemsPerPage = PageSize,
                     TotalItems = _logEntryRepository.GetAllLogs.Count()
@@ -109,11 +111,14 @@ namespace NectimaLogging.Controllers
         }
 
         [HttpPost]
-        public IActionResult ResultAllLogs(int next, int previous,bool isNext, bool isPrevious)
+        public IActionResult ResultAllLogs(int next, int previous,bool isNext, bool isPrevious, int addP)
         {
+           
             if (isNext)
             {
+                PageCounter += addP;
                 ++next;
+
                 return View(new LogListViewModel
                 {
 
@@ -123,7 +128,8 @@ namespace NectimaLogging.Controllers
                 .Take(PageSize),
                     PagingInfo = new PagingInfo
                     {
-                        //NextPage = PageCounter,
+                        AddMorePages = next,
+                        IsNext = isNext,
                         CurrentPage = next,
                         ItemsPerPage = PageSize,
                         TotalItems = _logEntryRepository.GetAllLogs.Count()
@@ -133,6 +139,7 @@ namespace NectimaLogging.Controllers
             }
             else if (isPrevious)
             {
+                PageCounter -= addP;
                 if (previous <= 2)
                     previous = 2;
                 previous--;
@@ -145,7 +152,8 @@ namespace NectimaLogging.Controllers
                 .Take(PageSize),
                     PagingInfo = new PagingInfo
                     {
-                        //NextPage = PageCounter,
+                        AddMorePages = previous,
+                        IsPrevious = isPrevious,
                         CurrentPage = previous,
                         ItemsPerPage = PageSize,
                         TotalItems = _logEntryRepository.GetAllLogs.Count()
