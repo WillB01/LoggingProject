@@ -3,7 +3,11 @@
 @{
     ViewData["Title"] = "ResultAllLogs";
 }
-
+@{
+    var controller = ViewContext.RouteData.Values["controller"].ToString();
+    var action = ViewContext.RouteData.Values["action"].ToString();
+    var isActiveController = new Func<string, string, string, string, string>((ctrl, act, activeStyle, inactiveStyle) => controller == ctrl && action == act ? activeStyle : inactiveStyle);
+}
 <h2>ResultAllLogs</h2>
 
 
@@ -72,16 +76,15 @@
 
     @for (int i = 1; i <= 10; i++)
     {
-        <div class="btn">
+        <div class="btn active">
             <a asp-action="ResultAllLogs"
                asp-route-logPage="@i">@i</a>
 
 
             @if (Model.PagingInfo.CurrentPage == i)
             {
-                <a class="active" asp-action="ResultAllLogs"
-                   asp-route-logPage="@Model.PagingInfo.CurrentPage"></a>
-                   
+            <p class="current">@Model.PagingInfo.CurrentPage</p>
+
             }
 
         </div>
@@ -136,32 +139,5 @@
 
 
 <style>
-    .prev {
-    }
-
-    .page-container {
-        max-width: 100%;
-        overflow: hidden;
-    }
-
-    .btn a.active {
-        background-color: #ddd;
-        border-left:solid 0.2em black;
-        
-
-    }
-
-    .btn a:hover:not(.active) {
-        background: #ff6a00;
-    }
-
-    .last-button {
-        visibility: hidden;
-    }
-
-        .last-button:after {
-            content: 'next';
-            visibility: visible;
-            background-color: red;
-        }
+   
 </style>

@@ -1,3 +1,45 @@
-﻿body{
-    background:red;
+﻿.current {
+    background: #0094ff;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    padding: 0.5em;
+    position: absolute;
+    top: 0em;
+    left: 0em;
+}
+
+.page-container {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.btn {
+    padding: 0.5em;
+    background: #ebebea;
+    position: relative;
+    color: #f3f3f3;
+}
+
+
+
+    .btn:hover {
+        background: #0094ff;
+    }
+
+.last-button {
+    visibility: hidden;
+}
+
+    .last-button:after {
+        content: 'next';
+        visibility: visible;
+        background-color: #b6ff00;
+    }
+
+.ui-widget {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1000 !important;
 }
