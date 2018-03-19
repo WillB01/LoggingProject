@@ -10,7 +10,9 @@
     
 
 //}
-
+$(function () {
+    $("#datepicker").datepicker();
+});
 
 var advancedSearch = document.getElementById("advanced-btn");
 var x = document.getElementById("advanced-search");

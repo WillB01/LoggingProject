@@ -58,6 +58,7 @@ namespace NectimaLogging.Controllers
 
         }
 
+
         [HttpPost]
 
         public JsonResult Search(string prefix)
@@ -98,6 +99,48 @@ namespace NectimaLogging.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public string AdvancedSearchResult(string levelInput, string prefix, string dateInput)
+        {
+            return levelInput + " " + prefix + " " + dateInput;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public IActionResult ResultAllLogs(int logPage = 1)
         {

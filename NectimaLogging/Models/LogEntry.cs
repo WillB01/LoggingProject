@@ -38,7 +38,12 @@ namespace NectimaLogging.Models
 
     public enum Level
     {
-        Info = 1,
-        Debout = 2
+       Info,
+       Deboug,
+       Warn,
+       Error,
+       Fatal,
+       Off
+                
     }
 }

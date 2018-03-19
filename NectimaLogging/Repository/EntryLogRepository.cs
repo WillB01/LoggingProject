@@ -37,7 +37,7 @@ namespace NectimaLogging.Repository
             var theLevel = "";
             foreach (var item in searchFilter)
             {
-                if (item == "Info" || item == "Debout" || item == "Info" || item == "Warn" ||
+                if (item == "Info" || item == "Deboug" || item == "Info" || item == "Warn" ||
                     item == "Error" || item == "Fatal" || item == "Off")
                 {
                     theLevel = item;
