@@ -18,6 +18,11 @@ a, p {
     width: 90%;
 }
 
+.navbar li{
+    margin: 0 2em 0 0;
+}
+
+
 .next-prev {
     background: none;
     border: none;
