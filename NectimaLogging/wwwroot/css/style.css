@@ -137,4 +137,10 @@ i:focus{
     border: none;
     padding: 0.3em;
     height: 2em;
+    background: #f1f1f1;
+}
+
+.input-group{
+  
+    margin-top: 1em;
 }

@@ -1,4 +1,5 @@
-﻿@model NectimaLogging.Models.LogEntry
+﻿@model LogEntry
+@using NectimaLogging.ViewModels
 
 <title>jQuery UI Autocomplete - Default functionality</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -38,7 +39,7 @@
         <form asp-action="Search" role="form" class="search-bar-container"
               method="post">
             <span class="test">
-                <input id="tags" asp-for="Level" type="text" name="prefix"/>
+                <input id="tags"  type="text" name="prefix"/>
 
                 <button class="search-btn" type="submit" asp-controller="Home" asp-action="SearchResult">
                 <i class="fas fa-search"></i>

@@ -34,10 +34,25 @@
 </script>
 
 
-<form asp-action="Search" role="form"
+@*<form asp-action="Search" role="form"
       method="post">
     <input id="tags" asp-for="Level" type="text" name="Prefix" class="form-control" />
 
 
     <input type="submit" class="auto" asp-controller="Home" asp-action="SearchResult" value="Find loginformation" />
-</form>
+</form>*@
+<div class="input-group">
+    <div id="search-form">
+        <form asp-action="Search" role="form" class="search-bar-container"
+              method="post">
+            <span class="test">
+                <input id="tags" type="text" name="prefix" placeholder="search logs" />
+
+                <button class="search-btn" type="submit" asp-controller="Home" asp-action="SearchResult">
+                    <i class="fas fa-search"></i>
+                </button>
+
+            </span>
+        </form>
+    </div>
+</div>

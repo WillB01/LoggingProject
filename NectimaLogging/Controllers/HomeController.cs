@@ -69,11 +69,16 @@ namespace NectimaLogging.Controllers
         [HttpPost]
         public IActionResult SearchResult(string prefix)
         {
+           
+            prefix = _myServices.CheckIfLastCharIsDigit(prefix);
+            prefix = _myServices.AddWhiteSpace(prefix);
+            
 
             if (prefix == null)
             {
                 return RedirectToAction("Search");
             }
+         
             prefix = _myServices.FirstCharToUpper(prefix);
             if (_myServices.ContainsLetters(prefix))
             {

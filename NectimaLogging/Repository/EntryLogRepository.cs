@@ -13,11 +13,13 @@ namespace NectimaLogging.Repository
     {
         private AppDbContext _appDb;
         private LogEntry _logEntry;
+        private IMyServices _myServices;
 
-        public EntryLogRepository(AppDbContext appDb)
+        public EntryLogRepository(AppDbContext appDb, IMyServices myServices)
         {
             _appDb = appDb;
             _logEntry = new LogEntry();
+            _myServices = myServices;
         }
         public IEnumerable<LogEntry> GetAllLogs => _appDb.LogEntries;
 
@@ -35,12 +37,12 @@ namespace NectimaLogging.Repository
             var theLevel = "";
             foreach (var item in searchFilter)
             {
-                if(item == "Info" || item == "Debout" || item == "Info" || item == "Warn" ||
+                if (item == "Info" || item == "Debout" || item == "Info" || item == "Warn" ||
                     item == "Error" || item == "Fatal" || item == "Off")
                 {
                     theLevel = item;
                 }
-               
+
             }
 
             var log = GetAllLogs.Where(x => x.Level == theLevel);
@@ -50,22 +52,26 @@ namespace NectimaLogging.Repository
 
         public LogEntry GetLogbyId(int id)
         {
+
             return (GetAllLogs.FirstOrDefault(x => x.Id == id));
         }
 
         public string IsSearchSingleOrNot(string prefix)
         {
-           
-            string[] searchFilter = WordFilter(prefix);           
-            foreach (var item in searchFilter)
+            if (!_myServices.ContainsLetters(prefix))
             {
-                var test = GetLogbyId(int.Parse(item));
-                if (item == test.Id.ToString())
+                string[] searchFilter = WordFilter(prefix);
+                foreach (var item in searchFilter)
                 {
-                    return item;
+                    var test = GetLogbyId(int.Parse(item));
+                    if (item == test.Id.ToString())
+                    {
+                        return item;
+                    }
                 }
             }
-            
+
+
             return "";
 
 
