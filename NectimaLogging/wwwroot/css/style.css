@@ -13,6 +13,22 @@ a, p {
     text-align: justify;
     text-justify: inter-word;
 }
+button:focus {
+    outline: none;
+    
+}
+
+
+input:focus{
+    outline:none;
+}
+a:focus{
+    outline: none;
+}
+
+i:focus{
+    outline: none;
+}
 #body-container{
     margin: 0 auto;
     width: 90%;
@@ -93,4 +109,32 @@ a, p {
     overflow: hidden;
     overflow: scroll;
 
+}
+
+.fa-search{
+    color: #8d8d8d;
+    cursor: pointer;
+}
+
+.search-btn {
+    background: none;
+    padding: 0px;
+    border: none;
+}
+
+#search-form{
+   
+}
+
+.test{
+    background: white;
+    border: none;
+    padding: 0.7em;
+    height: 3em;
+}
+
+.search-bar-container input{
+    border: none;
+    padding: 0.3em;
+    height: 2em;
 }

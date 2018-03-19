@@ -50,7 +50,6 @@ namespace NectimaLogging.Controllers
         }
 
         [HttpGet]
-
         public IActionResult Search()
         {
 
@@ -58,6 +57,7 @@ namespace NectimaLogging.Controllers
         }
 
         [HttpPost]
+        
         public JsonResult Search(string prefix)
         {
             prefix = _myServices.FirstCharToUpper(prefix);
@@ -70,6 +70,10 @@ namespace NectimaLogging.Controllers
         public IActionResult SearchResult(string prefix)
         {
 
+            if (prefix == null)
+            {
+                return RedirectToAction("Search");
+            }
             prefix = _myServices.FirstCharToUpper(prefix);
             if (_myServices.ContainsLetters(prefix))
             {
@@ -161,30 +165,7 @@ namespace NectimaLogging.Controllers
             }
             return View();
 
-
         }
-
-        //public IActionResult ResultAllLogs(int productPage = 1)
-        //{
-        //    PageCounter++;
-        //    return View(new LogListViewModel
-        //    {
-
-        //        Logs = _logEntryRepository.GetAllLogs
-        //         .OrderBy(p => p.Id)
-        //         .Skip((productPage - 1) * PageSize)
-        //         .Take(PageSize),
-        //        PagingInfo = new PagingInfo
-        //        {
-        //            //NextPage = PageCounter,
-        //            CurrentPage = productPage,
-        //            ItemsPerPage = PageSize,
-        //            TotalItems = _logEntryRepository.GetAllLogs.Count()
-        //        }
-        //    });
-
-
-        //}
 
         [HttpPost]
         public void IncrementCount(int productPage, string prefix)
@@ -204,15 +185,5 @@ namespace NectimaLogging.Controllers
                 }
             };
         }
-
-        
-        public int GetDate(int someParameter)
-        {
-           
-            
-            return someParameter;
-        }
-
-
     }
 }

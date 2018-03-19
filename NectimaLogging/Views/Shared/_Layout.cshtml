@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="~/vendor/bootstrap/dist/css/bootstrap.css" />
     <script src="~/vendor/jquery/dist/jquery.js"></script>
     <script src="~/vendor/bootstrap/dist/js/bootstrap.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
 
     <link href="~/css/style.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
@@ -15,15 +17,20 @@
     <nav class="navbar navbar-dark bg-dark">
         <ul class="nav nav-justified">
             <li><a asp-action="Search" asp-controller="Home">Search</a></li>
-            <li><a asp-action="ResultAllLogs" asp-controller="Home">Logs</a></li> 
-        </ul>     
+            <li><a asp-action="ResultAllLogs" asp-controller="Home">Logs</a></li>
+            <li><vc:logs></vc:logs></li>
+        </ul>
+
     </nav>
+
+    
+
     <div>
         <div id="body-container">
             @RenderBody()
         </div>
     </div>
-    
+
     <script src="~/js/script.js"></script>
 </body>
 </html>

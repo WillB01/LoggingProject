@@ -16,17 +16,10 @@ namespace NectimaLogging.ViewComponents
             _logEntryRepository = logEntryRepository;
         }
 
-        public IViewComponentResult Invoke(string Prefix)
+        public IViewComponentResult Invoke()
         {
-
-            var log = (from c in _logEntryRepository.GetAllLogs
-                        where c.Level.StartsWith(Prefix)
-                        select new { value = c.Level });
-
-
-
-            return View("Default", _logEntryRepository
-                .GetAllLogs.FirstOrDefault(x => x.Level == Prefix));
+            
+            return  View("Default");
 
         }
     }
