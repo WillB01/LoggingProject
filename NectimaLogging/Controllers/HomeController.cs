@@ -111,7 +111,7 @@ namespace NectimaLogging.Controllers
         [HttpPost]
         public IActionResult ResultAllLogs(int next, int previous,bool isNext, bool isPrevious, int addP)
         {
-           
+            var b = new PagingInfo();
             if (isNext)
             {
                 PageCounter += addP;

@@ -8,11 +8,11 @@
     var action = ViewContext.RouteData.Values["action"].ToString();
     var isActiveController = new Func<string, string, string, string, string>((ctrl, act, activeStyle, inactiveStyle) => controller == ctrl && action == act ? activeStyle : inactiveStyle);
 }
-<h2>ResultAllLogs</h2>
 
 
-<div id="page-content">
-    <table class="table table-sm table-responsive table-striped">
+
+<div id="log-container">
+    <table class="table table-sm table-striped">
         <thead>
             <tr>
                 <th scope="col">id</th>
@@ -63,90 +63,89 @@
         </tbody>
     </table>
 </div>
-<p>@Model.PagingInfo.CurrentPage</p>
-<div id="navigation-btn-container">
-    <div class="prev btn">
-        <form method="post" asp-action="ResultAllLogs" role="form">
-            <input asp-for="@Model.PagingInfo.IsPrevious"
-                   name="isPrevious" type="hidden" value="true" checked />
-            <input type="hidden" name="previous" value="@Model.PagingInfo.CurrentPage" />
-            <input type="hidden" name="addP" value="@Model.PagingInfo.AddMorePages" />
-            <input class="next-prev" type="submit" value="<<" />
-        </form>
+<p>@Model.PagingInfo.CurrentPage / @Model.PagingInfo.TotalPages</p>
 
-    </div>
-    <div class="btn">
-        <form method="post" asp-action="ResultAllLogs" role="form">
-            <input asp-for="@Model.PagingInfo.IsNext"
-                   name="isNext" type="hidden" value="true" checked />
-            <input type="hidden" name="next" value="@Model.PagingInfo.CurrentPage" />
-            <input type="hidden" name="addP" value="@Model.PagingInfo.AddMorePages" />
-            <input class="next-prev" type="submit" value=">>" />
-        </form>
-    </div>
-</div>
-<div class="page-container btn-group-center pull-right m-1">
 
-    @if (Model.PagingInfo.AddMorePages == 1 || Model.PagingInfo.CurrentPage <= 10)
-    {
+<div class="btn-container">
+    <div id="navigation-btn-container">
+        <div class="prev btn">
+            <form method="post" asp-action="ResultAllLogs" role="form">
+                <input asp-for="@Model.PagingInfo.IsPrevious"
+                       name="isPrevious" type="hidden" value="true" checked />
+                <input type="hidden" name="previous" value="@Model.PagingInfo.CurrentPage" />
+                <input type="hidden" name="addP" value="@Model.PagingInfo.AddMorePages" />
+                <input class="next-prev" type="submit" value="<<" />
+            </form>
 
-        @for (int ii = Model.PagingInfo.CurrentPage - 5; ii < 11; ii++)
+        </div>
+        @if (Model.PagingInfo.AddMorePages == 1 || Model.PagingInfo.CurrentPage <= 9)
         {
-            if(ii <= 0)
+
+            @for (int ii = Model.PagingInfo.CurrentPage - 9; ii < 11; ii++)
             {
-                ii = 1;
+                if (ii <= 0)
+                {
+                    ii = 1;
+
+                }
+                <div class="btn active">
+                    <a asp-action="ResultAllLogs"
+                       asp-route-logPage="@ii">@ii</a>
+                    @if (Model.PagingInfo.CurrentPage == ii)
+                    {
+                        <p class="current">@Model.PagingInfo.CurrentPage</p>
+
+                    }
+
+                </div>
+            }
+        }
+
+        @if (Model.PagingInfo.CurrentPage > (Model.PagingInfo.CurrentPage - 1) && Model.PagingInfo.CurrentPage >= 10)
+        {
+            @for (int iii = Model.PagingInfo.CurrentPage - 5; iii < Model.PagingInfo.AddMorePages + 5; iii++)
+            {
+                <div class="btn active">
+                    <a asp-action="ResultAllLogs"
+                       asp-route-logPage="@iii">@iii</a>
+
+                    @if (Model.PagingInfo.CurrentPage == iii)
+                    {
+                        <p class="current">@Model.PagingInfo.CurrentPage</p>
+
+                    }
+                </div>
+            }
+
+        }
+        <div class="btn">
+            <form method="post" asp-action="ResultAllLogs" role="form">
+                <input asp-for="@Model.PagingInfo.IsNext"
+                       name="isNext" type="hidden" value="true" checked />
+                <input type="hidden" name="next" value="@Model.PagingInfo.CurrentPage" />
+                <input type="hidden" name="addP" value="@Model.PagingInfo.AddMorePages" />
+                <input class="next-prev" type="submit" value=">>" />
+            </form>
+        </div>
+    </div>
+    @*@if (Model.PagingInfo.CurrentPage % 10 == 0)
+        {
+
+            @for (int i = Model.PagingInfo.CurrentPage - 5; i < Model.PagingInfo.AddMorePages + 5; i++)
+            {
+                <div class="btn active">
+                    <a asp-action="ResultAllLogs"
+                       asp-route-logPage="@i">@i</a>
+                    @if (Model.PagingInfo.CurrentPage == i)
+                    {
+                        <p class="current">@Model.PagingInfo.CurrentPage</p>
+
+                    }
+                </div>
 
             }
-            <div class="btn active">
-                <a asp-action="ResultAllLogs"
-                   asp-route-logPage="@ii">@ii</a>
-                @if (Model.PagingInfo.CurrentPage == ii)
-                {
-                    <p class="current">@Model.PagingInfo.CurrentPage</p>
 
-                }
-                
-            </div>
-
-
-
-        }
-    }
-    @*@if (Model.PagingInfo.CurrentPage % 10 == 0)
-    {
-
-        @for (int i = Model.PagingInfo.CurrentPage - 5; i < Model.PagingInfo.AddMorePages + 5; i++)
-        {
-            <div class="btn active">
-                <a asp-action="ResultAllLogs"
-                   asp-route-logPage="@i">@i</a>
-                @if (Model.PagingInfo.CurrentPage == i)
-                {
-                    <p class="current">@Model.PagingInfo.CurrentPage</p>
-
-                }
-            </div>
-
-        }
-
-    }*@
-    @if (Model.PagingInfo.CurrentPage > (Model.PagingInfo.CurrentPage - 1) && Model.PagingInfo.CurrentPage >= 11)
-    {
-        @for (int iii = Model.PagingInfo.CurrentPage - 5; iii < Model.PagingInfo.AddMorePages + 5; iii++)
-        {
-            <div class="btn active">
-                <a asp-action="ResultAllLogs"
-                   asp-route-logPage="@iii">@iii</a>
-
-                @if (Model.PagingInfo.CurrentPage == iii)
-                {
-                    <p class="current">@Model.PagingInfo.CurrentPage</p>
-
-                }
-            </div>
-        }
-
-    }
+        }*@
     @*@for (int i = 1; i <= Model.PagingInfo.AddMorePages; i++)
         {
             if (Model.PagingInfo.AddMorePages < 10 && i > 1)
