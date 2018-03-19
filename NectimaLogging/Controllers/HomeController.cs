@@ -34,7 +34,7 @@ namespace NectimaLogging.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-                  
+
             return View();
         }
 
@@ -44,41 +44,45 @@ namespace NectimaLogging.Controllers
             if (ModelState.IsValid)
             {
                 return View(_logEntryRepository.GetLogbyId(id));
-               
+
             }
-            return View("Index");   
+            return View("Index");
         }
 
         [HttpGet]
         public IActionResult Search()
         {
-
+         
+           
             return View();
+
         }
 
         [HttpPost]
-        
+
         public JsonResult Search(string prefix)
         {
             prefix = _myServices.FirstCharToUpper(prefix);
-          
+
             return Json(_logEntryRepository.AutoSearchRepositories(prefix, 20));
-            
+
         }
 
         [HttpPost]
         public IActionResult SearchResult(string prefix)
         {
-           
+
             prefix = _myServices.CheckIfLastCharIsDigit(prefix);
+
+
             prefix = _myServices.AddWhiteSpace(prefix);
-            
+
 
             if (prefix == null)
             {
                 return RedirectToAction("Search");
             }
-         
+
             prefix = _myServices.FirstCharToUpper(prefix);
             if (_myServices.ContainsLetters(prefix))
             {
@@ -118,7 +122,7 @@ namespace NectimaLogging.Controllers
         }
 
         [HttpPost]
-        public IActionResult ResultAllLogs(int next, int previous,bool isNext, bool isPrevious, int addP)
+        public IActionResult ResultAllLogs(int next, int previous, bool isNext, bool isPrevious, int addP)
         {
             var b = new PagingInfo();
             if (isNext)

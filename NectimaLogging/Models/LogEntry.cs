@@ -35,4 +35,10 @@ namespace NectimaLogging.Models
         //IEnumerable<object> AmoutOfLogs(int amount, IEnumerable<object> logs);
        
     }
+
+    public enum Level
+    {
+        Info = 1,
+        Debout = 2
+    }
 }

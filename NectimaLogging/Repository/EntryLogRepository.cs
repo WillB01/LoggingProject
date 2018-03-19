@@ -58,7 +58,7 @@ namespace NectimaLogging.Repository
 
         public string IsSearchSingleOrNot(string prefix)
         {
-            if (!_myServices.ContainsLetters(prefix))
+            if (_myServices.ContainsLetters(prefix))
             {
                 string[] searchFilter = WordFilter(prefix);
                 foreach (var item in searchFilter)

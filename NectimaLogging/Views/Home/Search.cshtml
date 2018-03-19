@@ -11,7 +11,7 @@
 
 
     $(document).ready(function () {
-  
+
         $("#tags").autocomplete({
             source: function (request, response) {
                 $.ajax({
@@ -35,12 +35,12 @@
 
 
 @*<form asp-action="Search" role="form"
-      method="post">
-    <input id="tags" asp-for="Level" type="text" name="Prefix" class="form-control" />
+          method="post">
+        <input id="tags" asp-for="Level" type="text" name="Prefix" class="form-control" />
 
 
-    <input type="submit" class="auto" asp-controller="Home" asp-action="SearchResult" value="Find loginformation" />
-</form>*@
+        <input type="submit" class="auto" asp-controller="Home" asp-action="SearchResult" value="Find loginformation" />
+    </form>*@
 <div class="input-group">
     <div id="search-form">
         <form asp-action="Search" role="form" class="search-bar-container"
@@ -53,6 +53,17 @@
                 </button>
 
             </span>
+
         </form>
     </div>
 </div>
+
+<button id="advanced-btn">Advanced Search</button>
+<form asp-action="AdvancedSearch" role="form">
+    <div id="advanced-search">
+        <select asp-for="Level" asp-items="Html.GetEnumSelectList<Level>()">
+            <option selected="selected" value="">Please select</option>
+        </select>
+    </div>
+</form>
+
