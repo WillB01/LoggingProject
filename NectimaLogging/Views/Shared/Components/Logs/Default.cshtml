@@ -34,12 +34,12 @@
     })
 </script>
 
-<div class="input-group">
+
     <div id="search-form">
         <form asp-action="Search" role="form" class="search-bar-container"
               method="post">
             <span class="test">
-                <input id="tags"  type="text" name="prefix"/>
+                <input id="tags"  type="text" name="prefix" placeholder="search"/>
 
                 <button class="search-btn" type="submit" asp-controller="Home" asp-action="SearchResult">
                 <i class="fas fa-search"></i>
@@ -48,5 +48,5 @@
             </span>
         </form>
     </div>
-</div>
+
 

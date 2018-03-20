@@ -93,6 +93,13 @@ namespace NectimaLogging.Repository
             return b;
         }
 
+        public IEnumerable<LogEntry> GetLogsByThread(string thread)
+        {
+         
+            return GetAllLogs.Where(t => t.Thread == thread);
+
+        }
+
 
 
 
@@ -177,7 +184,7 @@ namespace NectimaLogging.Repository
             var logs = (from c in GetAllLogs
                         where (c.Level.StartsWith(input) || c.Id.ToString().StartsWith(input))
 
-                        select new AutoSearchRepository { value = $"{c.Id} {c.Level} {c.Exception} {c.Date}" });
+                        select new AutoSearchRepository { value = $"{c.Level}" });
 
 
 

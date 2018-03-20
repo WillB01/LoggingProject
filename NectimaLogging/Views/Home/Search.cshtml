@@ -41,7 +41,8 @@
 
         <input type="submit" class="auto" asp-controller="Home" asp-action="SearchResult" value="Find loginformation" />
     </form>*@
-<div class="input-group">
+
+@*<div class="input-group">
     <div id="search-form">
         <form asp-action="Search" role="form" class="search-bar-container"
               method="post">
@@ -56,7 +57,7 @@
 
         </form>
     </div>
-</div>
+</div>*@
 
 <button id="advanced-btn">Advanced Search</button>
 
@@ -71,12 +72,15 @@
                         </select>
                     </li>
                     <li>
-                        <input id="tags" type="text" name="id" placeholder="search id" />
+                        <input id="tags" type="text" name="id" placeholder="id" />
                     </li>
                     <li>
-                        <input type="text" name="dateInput" id="datepicker" placeholder="search date">
+                        <input type="text" name="thread" id="thread" placeholder="thread">
                     </li>
-                    
+                    <li>
+                        <input type="text" name="dateInput" id="datepicker" placeholder="date">
+                    </li>
+
                     <li>
                         <input type="submit" asp-controller="Home" asp-action="AdvancedSearchResult" />
                     </li>

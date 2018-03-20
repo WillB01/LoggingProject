@@ -32,7 +32,7 @@ namespace NectimaLogging.Models
         LogEntry GetLogbyId(int id);
         IEnumerable<LogEntry> GetLogByDate(string inputDate);
         IEnumerable<LogEntry> GetLogByLevelAndDate(string inputDate, Level level);
-       
+        IEnumerable<LogEntry> GetLogsByThread(string thread);
         string IsSearchSingleOrNot(string prefix);
         bool IsBiggerThenMaxId(int id);
         IEnumerable<AutoSearchRepository> AutoSearchRepositories(string input, int dropdownAmountofItems);

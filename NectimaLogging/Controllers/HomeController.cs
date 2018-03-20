@@ -59,15 +59,15 @@ namespace NectimaLogging.Controllers
         }
 
 
-        [HttpPost]
+        //[HttpPost]
 
-        public JsonResult Search(string prefix)
-        {
-            prefix = _myServices.FirstCharToUpper(prefix);
+        //public JsonResult Search(string prefix)
+        //{
+        //    prefix = _myServices.FirstCharToUpper(prefix);
 
-            return Json(_logEntryRepository.AutoSearchRepositories(prefix, 20));
+        //    return Json(_logEntryRepository.AutoSearchRepositories(prefix, 20));
 
-        }
+        //}
 
         [HttpPost]
         public IActionResult SearchResult(string prefix)
@@ -78,7 +78,8 @@ namespace NectimaLogging.Controllers
 
             //prefix = _myServices.AddWhiteSpace(prefix);
 
-
+            int pId;
+            pId = _myServices.ParseInputToInt(prefix);
             if (prefix == null)
             {
                 return RedirectToAction("Search");
@@ -89,12 +90,15 @@ namespace NectimaLogging.Controllers
             {
                 return RedirectToAction("Search");
             }
-
-            if (_myServices.IsNumber(prefix))
+            if((pId <= int.MaxValue && pId != 0 && !_logEntryRepository.IsBiggerThenMaxId(pId)))
             {
-                return View(_logEntryRepository.GetLogbyId(
-                int.Parse(prefix)));
+                if (_myServices.IsNumber(prefix))
+                {
+                    return View(_logEntryRepository.GetLogbyId(
+                    int.Parse(prefix)));
+                }
             }
+            
             if (_myServices.IsLetters(prefix))
             {
                 prefix = _myServices.FirstCharToUpper(prefix);
@@ -123,14 +127,15 @@ namespace NectimaLogging.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdvancedSearchResult(Level levelInput, string id, string dateInput)
+        public IActionResult AdvancedSearchResult(Level levelInput, string id, string dateInput, string thread)
         {
             var test = _logEntryRepository.GetLogByDate(dateInput);
             int pId;
             pId = _myServices.ParseInputToInt(id);
+            
             if (id == null)
             {
-                return View("FilteredLogs", _logEntryRepository.GetLogByLevelAndDate(dateInput, levelInput));
+                return View("FilteredLogs", _logEntryRepository.GetLogByLevelAndDate(dateInput, levelInput)); //Adding thread search
             }
 
             if ((pId <= int.MaxValue && pId != 0 && !_logEntryRepository.IsBiggerThenMaxId(pId)))
@@ -207,6 +212,7 @@ namespace NectimaLogging.Controllers
         public IActionResult ResultAllLogs(int logPage = 1)
         {
 
+
             return View(new LogListViewModel
             {
 
@@ -222,6 +228,7 @@ namespace NectimaLogging.Controllers
                     TotalItems = _logEntryRepository.GetAllLogs.Count()
                 }
             });
+
 
 
         }

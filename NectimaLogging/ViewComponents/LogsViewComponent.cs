@@ -18,8 +18,8 @@ namespace NectimaLogging.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            
-            return  View("Default");
+            var b = new LogEntry();
+            return  View("Default",b);
 
         }
     }
