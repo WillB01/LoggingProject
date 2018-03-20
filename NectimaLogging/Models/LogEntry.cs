@@ -30,17 +30,21 @@ namespace NectimaLogging.Models
         string[] WordFilter(string s);
         IEnumerable<LogEntry> GetLogByLevel(string level);
         LogEntry GetLogbyId(int id);
-        LogEntry GetLogByDate(string inputDate);
-        string IsSearchSingleOrNot(string prefix);
-        IEnumerable<AutoSearchRepository> AutoSearchRepositories(string input, int dropdownAmountofItems);
-        //IEnumerable<object> AmoutOfLogs(int amount, IEnumerable<object> logs);
+        IEnumerable<LogEntry> GetLogByDate(string inputDate);
+        IEnumerable<LogEntry> GetLogByLevelAndDate(string inputDate, Level level);
        
+        string IsSearchSingleOrNot(string prefix);
+        bool IsBiggerThenMaxId(int id);
+        IEnumerable<AutoSearchRepository> AutoSearchRepositories(string input, int dropdownAmountofItems);
+        
+        //IEnumerable<object> AmoutOfLogs(int amount, IEnumerable<object> logs);
+
     }
 
     public enum Level
     {
        Info,
-       Deboug,
+       Debug,
        Warn,
        Error,
        Fatal,

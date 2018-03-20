@@ -61,6 +61,17 @@ namespace NectimaLogging.Services
            
         }
 
+        public int ParseInputToInt(string num)
+        {
+            int number;
+            bool result = int.TryParse(num, out number);
+            if (result)
+            {
+                return number;
+            }
+            return 0;
+        }
+
 
 
 
@@ -113,5 +124,6 @@ namespace NectimaLogging.Services
         bool IsNumberAndLetters(string input);
         string RemoveWhiteSpace(string input);
         bool RemoveUnWantedChars(string input);
+        int ParseInputToInt(string num);
     }
 }

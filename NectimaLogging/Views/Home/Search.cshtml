@@ -59,18 +59,30 @@
 </div>
 
 <button id="advanced-btn">Advanced Search</button>
-<form asp-action="AdvancedSearch" role="form">
-    <div id="advanced-search">
-        
-        <select asp-for="Level" name="levelInput" asp-items="Html.GetEnumSelectList<Level>()">
-            <option selected="selected" value="">Please select</option>
-        </select>
 
-        <input id="tags" type="text" name="prefix" placeholder="search id" />
-        <p>Date: <input type="text" name="dateInput" id="datepicker"></p>
+<div id="advanced-search-container">
+        <form asp-action="AdvancedSearch" role="form">
+            <div id="advanced-search">
+                <ul>
 
-        <input type="submit" asp-controller="Home" asp-action="AdvancedSearchResult" />
+                    <li>
+                        <select asp-for="Level" name="levelInput" asp-items="Html.GetEnumSelectList<Level>()">
+                            <option selected="selected" value="">Please select</option>
+                        </select>
+                    </li>
+                    <li>
+                        <input id="tags" type="text" name="id" placeholder="search id" />
+                    </li>
+                    <li>
+                        <input type="text" name="dateInput" id="datepicker" placeholder="search date">
+                    </li>
+                    
+                    <li>
+                        <input type="submit" asp-controller="Home" asp-action="AdvancedSearchResult" />
+                    </li>
+                </ul>
 
-    </div>
-</form>
+            </div>
+        </form>
+</div>
 

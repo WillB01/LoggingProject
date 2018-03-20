@@ -13,6 +13,9 @@ a, p {
     text-align: justify;
     text-justify: inter-word;
 }
+li{
+    list-style: none;
+}
 button{
     background: none;
     border: none;
@@ -151,5 +154,11 @@ i:focus{
 }
 
 #advanced-btn{
-    margin-top: 2em;
+    margin: 2em;
+    background: #ededed;
+    padding: 0.5em;
+}
+
+#advanced-btn:hover{
+   background: #0094ff;
 }
