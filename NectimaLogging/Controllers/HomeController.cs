@@ -73,10 +73,10 @@ namespace NectimaLogging.Controllers
         public IActionResult SearchResult(string prefix)
         {
 
-            prefix = _myServices.CheckIfLastCharIsDigit(prefix);
+            //prefix = _myServices.CheckIfLastCharIsDigit(prefix);
 
 
-            prefix = _myServices.AddWhiteSpace(prefix);
+            //prefix = _myServices.AddWhiteSpace(prefix);
 
 
             if (prefix == null)
@@ -84,15 +84,34 @@ namespace NectimaLogging.Controllers
                 return RedirectToAction("Search");
             }
 
-            prefix = _myServices.FirstCharToUpper(prefix);
-            if (_myServices.ContainsLetters(prefix))
+            prefix = _myServices.RemoveWhiteSpace(prefix);
+            prefix = _myServices.RemoveUnWantedChars(prefix);
+
+            if (_myServices.IsNumber(prefix))
             {
-                return View("FilteredLogs", _logEntryRepository.GetLogByLevel(prefix));
-
+                return View(_logEntryRepository.GetLogbyId(
+                int.Parse(prefix)));
             }
+            if (_myServices.IsLetters(prefix))
+            {
+                prefix = _myServices.FirstCharToUpper(prefix);
+                return View("FilteredLogs", _logEntryRepository.GetLogByLevel(prefix));
+            }
+            if (_myServices.IsNumberAndLetters(prefix))
+            {
+                return RedirectToAction("Search");
+            }
+            return RedirectToAction("Search");
 
-            return View(_logEntryRepository.GetLogbyId(
-                int.Parse(_logEntryRepository.IsSearchSingleOrNot(prefix))));
+            //prefix = _myServices.FirstCharToUpper(prefix);
+            //if (_myServices.ContainsLetters(prefix))
+            //{
+            //    return View("FilteredLogs", _logEntryRepository.GetLogByLevel(prefix));
+
+            //}
+
+            //return View(_logEntryRepository.GetLogbyId(
+            //    int.Parse(_logEntryRepository.IsSearchSingleOrNot(prefix))));
         }
 
         public IActionResult FilteredLogs()

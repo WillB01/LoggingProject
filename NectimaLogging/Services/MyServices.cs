@@ -19,6 +19,49 @@ namespace NectimaLogging.Services
             return input.First().ToString().ToUpper() + input.Substring(1);
         }
 
+        public bool IsNumber(string input)
+        {
+            if(input.Any(Char.IsDigit) && !input.Any(Char.IsLetter) )
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsLetters(string input)
+        {
+            if(Regex.IsMatch(input, @"^[a-zA-Z]+$"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsNumberAndLetters(string input)
+        {
+            if(Regex.IsMatch(input, @"^[a-zA-Z0-9]+$"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public string RemoveWhiteSpace(string input)
+        {
+            var result = Regex.Replace(input, @"\s+", "");
+            return result;
+        }
+        public string RemoveUnWantedChars(string input)
+        {
+            var result = Regex.Replace(input, @"[^\w'""&:;-]+", " ");
+            return result;
+        }
+
+
+
+
+
+
         public bool ContainsLetters(string input)
         {
             if (input.Any(Char.IsLetter) && input.Any(Char.IsDigit) || input.Any(Char.IsDigit))
@@ -60,5 +103,11 @@ namespace NectimaLogging.Services
         string SearchInput { get; set; }
         string AddWhiteSpace(string input);
         string CheckIfLastCharIsDigit(string input);
+
+        bool IsNumber(string input);
+        bool IsLetters(string input);
+        bool IsNumberAndLetters(string input);
+        string RemoveWhiteSpace(string input);
+        string RemoveUnWantedChars(string input);
     }
 }
