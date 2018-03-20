@@ -11,7 +11,7 @@
 
 //}
 $(function () {
-    $("#datepicker").datepicker();
+    $("#datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
 });
 
 var advancedSearch = document.getElementById("advanced-btn");

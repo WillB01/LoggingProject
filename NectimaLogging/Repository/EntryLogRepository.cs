@@ -22,9 +22,15 @@ namespace NectimaLogging.Repository
             _myServices = myServices;
         }
         public IEnumerable<LogEntry> GetAllLogs => _appDb.LogEntries;
-
-
-
+        
+        public LogEntry GetLogByDate(string inputDate)
+        {
+            return GetAllLogs.First(x => x.Date
+           .Split(" ")
+           .First()
+           .Substring(0) == inputDate);
+        }
+       
         public string[] WordFilter(string s)
         {
             return Regex.Split(s, @"\W+");

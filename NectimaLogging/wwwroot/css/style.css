@@ -13,6 +13,11 @@ a, p {
     text-align: justify;
     text-justify: inter-word;
 }
+button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
 button:focus {
     outline: none;
     
@@ -145,4 +150,6 @@ i:focus{
     margin-top: 1em;
 }
 
-
+#advanced-btn{
+    margin-top: 2em;
+}

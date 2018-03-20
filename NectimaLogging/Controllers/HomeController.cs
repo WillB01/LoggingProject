@@ -52,8 +52,8 @@ namespace NectimaLogging.Controllers
         [HttpGet]
         public IActionResult Search()
         {
-         
-           
+
+
             return View();
 
         }
@@ -85,7 +85,10 @@ namespace NectimaLogging.Controllers
             }
 
             prefix = _myServices.RemoveWhiteSpace(prefix);
-            prefix = _myServices.RemoveUnWantedChars(prefix);
+            if (_myServices.RemoveUnWantedChars(prefix))
+            {
+                return RedirectToAction("Search");
+            }
 
             if (_myServices.IsNumber(prefix))
             {
@@ -122,7 +125,25 @@ namespace NectimaLogging.Controllers
         [HttpPost]
         public string AdvancedSearchResult(string levelInput, string prefix, string dateInput)
         {
-            return levelInput + " " + prefix + " " + dateInput;
+
+            //var b = _logEntryRepository.GetAllLogs.First(x => x.Date
+            //.Split(" ")
+            //.First()
+            //.Substring(0) == dateInput);
+
+            //var hej = "what sdsdsdddd".Split(" ").First()
+
+
+            //.Substring(0) == "what";
+            ////foreach (var item in b.Date)
+            ////{
+            ////    return item.ToString();   
+            ////}
+            var test = _logEntryRepository.GetLogByDate(dateInput).ToString();
+            return test;
+
+
+            //return levelInput + " " + prefix + " " + dateInput + " " + ;
         }
 
 
