@@ -35,7 +35,7 @@ namespace NectimaLogging.Repository
         public IEnumerable<LogEntry> GetAllLogs => _appDb.LogEntries;
 
  
-        public IEnumerable<LogEntry> AdvancedSearchFilter(Level levelInput, string dateInput, string thread) /// Filters thru adv search. not id.
+        public IEnumerable<LogEntry> AdvancedSearchFilter(Level levelInput, string dateInput, string thread, int id) /// Filters thru adv search. not id.
         {
 
             if(levelInput == 0 && dateInput == null && thread == null)

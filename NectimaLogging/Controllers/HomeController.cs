@@ -80,15 +80,15 @@ namespace NectimaLogging.Controllers
 
             int pId;
             pId = _myServices.ParseInputToInt(prefix);
-            if (prefix == null || pId <= 0)
+            if (prefix == null)
             {
-                return RedirectToAction("Search");
+                return RedirectToAction("Index", "Error");
             }
 
             prefix = _myServices.RemoveWhiteSpace(prefix);
             if (_myServices.RemoveUnWantedChars(prefix))
             {
-                return RedirectToAction("Search");
+                return RedirectToAction("Index", "Error");
             }
             if ((pId <= int.MaxValue && pId != 0 && !_logEntryRepository.IsBiggerThenMaxId(pId)))
             {
@@ -106,9 +106,9 @@ namespace NectimaLogging.Controllers
             }
             if (_myServices.IsNumberAndLetters(prefix))
             {
-                return RedirectToAction("Search");
+                return RedirectToAction("Index", "Error");
             }
-            return RedirectToAction("Search");
+            return RedirectToAction("Index", "Error");
 
             //prefix = _myServices.FirstCharToUpper(prefix);
             //if (_myServices.ContainsLetters(prefix))
@@ -127,123 +127,45 @@ namespace NectimaLogging.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdvancedSearchResult(Level levelInput, string id, string dateInput, string thread)
+        public IActionResult AdvancedSearchResult(Level levelInput, string id, string dateInput, string thread) //ID AND DATE TOGETHER NEEDS TODO
         {
+
             if(levelInput == Level.Empty && id == null && dateInput == null && thread == null)
             {
                 return RedirectToAction(nameof(ResultAllLogs),_logEntryRepository.GetAllLogs);
             }
            
-            //var test = _logEntryRepository.GetLogByDate(dateInput);
             int pId;
             pId = _myServices.ParseInputToInt(id);
+            
 
-            if (pId <= 0 || _logEntryRepository.IsBiggerThenMaxId(pId) )
+            if (_logEntryRepository.IsBiggerThenMaxId(pId) )
             {
-                return View("Search");
+                return RedirectToAction("Index", "Error"); 
             }
             if ((pId <= int.MaxValue && pId != 0 && !_logEntryRepository.IsBiggerThenMaxId(pId)))
             {
 
                 if (_myServices.IsNumber(id))
                 {
+                    if(dateInput == null)
                     return View("SearchResult", _logEntryRepository.GetLogbyId(pId));
+
+                    else
+                    {
+                        return View("FilteredLogs", _logEntryRepository.GetLogByDate(dateInput)
+                            .Where(x => x.Id == pId));
+                    }
                 }
             }
+            else if(pId == 0 && id != null)
+            {
+                return RedirectToAction("Index", "Error");
+            }
             
-            return View("FilteredLogs", _logEntryRepository.AdvancedSearchFilter( levelInput,  dateInput,  thread));
+            return View("FilteredLogs", _logEntryRepository.AdvancedSearchFilter( levelInput,  dateInput,  thread, pId));
 
-
-
-
-
-
-
-
-
-            //if (levelInput == 0 && id == null && dateInput == null && thread == null)
-            //{
-            //    return RedirectToAction(nameof(ResultAllLogs));
-            //}
-            //if(id == null && dateInput == null && thread == null)
-            //{
-            //    return View("FilteredLogs", _logEntryRepository.GetLogsByLevelByEnum(levelInput));
-            //}
-            //if(dateInput == null && thread == null)
-            //{
-            //    if ((pId <= int.MaxValue && pId != 0 && !_logEntryRepository.IsBiggerThenMaxId(pId)))
-            //    {
-
-            //        if (_myServices.IsNumber(id))
-            //        {
-            //            return View("SearchResult", _logEntryRepository.GetLogbyId(pId));
-            //        }
-            //    }
-            //    else
-            //    {
-            //        return View("Search");
-            //    }
-            //}
-            //if()
-
-
-                
-
-
-            //if (id == null || thread == null)
-            //{
-            //    if (thread == null)
-            //    {
-            //        return View("FilteredLogs", _logEntryRepository.GetLogByLevelAndDate(dateInput, levelInput)); //Adding thread search
-
-            //    }
-            //    else if (thread != null && _myServices.IsNumber(thread))
-            //    {
-            //        return View("FilteredLogs", _logEntryRepository.GetLogsByThread(thread));
-            //    }
-            //}
-
-            //if ((pId <= int.MaxValue && pId != 0 && !_logEntryRepository.IsBiggerThenMaxId(pId)))
-            //{
-
-            //    if (_myServices.IsNumber(id))
-            //    {
-            //        return View("SearchResult", _logEntryRepository.GetLogbyId(pId));
-            //    }
-                
-            //}
-
-
-
-
-
-
-
-
-            ////var b = _logEntryRepository.GetAllLogs.First(x => x.Date
-            ////.Split(" ")
-            ////.First()
-            ////.Substring(0) == dateInput);
-
-            ////var hej = "what sdsdsdddd".Split(" ").First()
-
-
-            ////.Substring(0) == "what";
-            //////foreach (var item in b.Date)
-            //////{
-            //////    return item.ToString();   
-            //////}
-
-
-            //return View("Search");
-
-
-            //return levelInput + " " + prefix + " " + dateInput + " " + ;
         }
-
-
-
-
 
         public IActionResult ResultAllLogs(int logPage = 1)
         {
@@ -264,8 +186,6 @@ namespace NectimaLogging.Controllers
                     TotalItems = _logEntryRepository.GetAllLogs.Count()
                 }
             });
-
-
 
         }
 

@@ -40,7 +40,7 @@ namespace NectimaLogging.Models
 
         //IEnumerable<object> AmoutOfLogs(int amount, IEnumerable<object> logs);
 
-        IEnumerable<LogEntry> AdvancedSearchFilter(Level levelInput, string dateInput, string thread);
+        IEnumerable<LogEntry> AdvancedSearchFilter(Level levelInput, string dateInput, string thread, int id);
 
     }
 

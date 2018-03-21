@@ -66,7 +66,8 @@ namespace NectimaLogging.Services
             int number;
             bool result = int.TryParse(num, out number);
             if (result)
-            {
+            {   if (number <= 0)
+                    return 0;
                 return number;
             }
             return 0;
