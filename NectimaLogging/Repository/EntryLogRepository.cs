@@ -43,11 +43,16 @@ namespace NectimaLogging.Repository
             }
             if(dateInput != null && levelInput == 0 && thread == null)
             {
-                MyLevel = GetLogByDate(dateInput);
+                return GetLogByDate(dateInput);
             }
             if(dateInput == null && levelInput != 0 && thread == null)
             {
-                MyLevel = GetLogsByLevelByEnum(levelInput);
+                return GetLogsByLevelByEnum(levelInput);
+            }
+            if (dateInput == null && levelInput == 0 && thread != null)
+            {
+
+                return GetLogsByThread(thread);
             }
             if(dateInput != null || levelInput != 0 || thread != null)
             {
@@ -59,29 +64,25 @@ namespace NectimaLogging.Repository
                     
                     return searchLevelThenThread;
                 }
+                if(dateInput != null && levelInput != 0 && thread == null)
+                { var searchDateLevel = GetLogByDate(dateInput)
+                      .Where(x => x.Level == GetLevelBySting(levelInput));
+                    return searchDateLevel;
+                }
+                else if(dateInput != null && levelInput == 0 && thread != null)
+                {
+                    var searchDateThread = GetLogByDate(dateInput)
+                        .Where(x => x.Thread == thread);
+                    return searchDateThread;
+                }
                 else
                 {
-                    var test = GetLogByDate(dateInput)
+                    var searchDateLevelThread = GetLogByDate(dateInput)
                         .Where(x => x.Level == GetLevelBySting(levelInput))
                         .Where(i => i.Thread == thread);
-                    return test;
+                    return searchDateLevelThread;
                 }
                 
-
-                MyLevel = GetLogByDate(dateInput);
-
-                MyLevel = GetLogsByLevelByEnum(levelInput);
-                if(thread == null)
-                {
-                    MyLevel = GetLogByDate(dateInput);
-                    MyLevel = GetLogsByLevelByEnum(levelInput);
-                    return MyLevel;
-                }
-                else if(thread != null)
-                {
-                    MyLevel = GetLogsByThread(thread);
-                    return MyLevel;
-                }
                 
             }
             else if(dateInput == null && levelInput == 0)
