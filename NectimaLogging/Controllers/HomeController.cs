@@ -129,7 +129,7 @@ namespace NectimaLogging.Controllers
         [HttpPost]
         public IActionResult AdvancedSearchResult(Level levelInput, string id, string dateInput, string thread) //ID AND DATE TOGETHER NEEDS TODO
         {
-
+            
             if(levelInput == Level.Empty && id == null && dateInput == null && thread == null)
             {
                 return RedirectToAction(nameof(ResultAllLogs),_logEntryRepository.GetAllLogs);
@@ -137,7 +137,11 @@ namespace NectimaLogging.Controllers
            
             int pId;
             pId = _myServices.ParseInputToInt(id);
-            
+
+            //if (_logEntryRepository.TestingCheckId(pId))
+            //{
+            //    return RedirectToAction("Index", "Error");
+            //}
 
             if (_logEntryRepository.IsBiggerThenMaxId(pId) )
             {
@@ -163,7 +167,7 @@ namespace NectimaLogging.Controllers
                 return RedirectToAction("Index", "Error");
             }
             
-            return View("FilteredLogs", _logEntryRepository.AdvancedSearchFilter( levelInput,  dateInput,  thread, pId));
+            return View("FilteredLogs", _logEntryRepository.AdvancedSearchFilter( levelInput,  dateInput,  thread));
 
         }
 

@@ -35,63 +35,78 @@ namespace NectimaLogging.Repository
         public IEnumerable<LogEntry> GetAllLogs => _appDb.LogEntries;
 
  
-        public IEnumerable<LogEntry> AdvancedSearchFilter(Level levelInput, string dateInput, string thread, int id) /// Filters thru adv search. not id.
+        public IEnumerable<LogEntry> AdvancedSearchFilter(Level levelInput, string dateInput, string thread) /// Filters thru adv search. not id.
         {
+            var test = GetAllLogs.Where(x => 
+            (!string.IsNullOrWhiteSpace(thread) && x.Thread.Equals(thread)) 
+            && 
+            (!string.IsNullOrWhiteSpace(dateInput) && x.Date.Split(" ")
+            .First()
+            .Substring(0).Equals(dateInput)));
+            return test;
+            //return GetAllLogs.Where(l => 
+            //(!string.IsNullOrWhiteSpace(dateInput) || l.Date == dateInput) 
+            //&&
+            //(!string.IsNullOrWhiteSpace(thread) || l.Thread.Contains(thread)) 
+            //&&
+            //(levelInput == 0 || l.Level == GetLevelBySting(levelInput)));
 
-            if(levelInput == 0 && dateInput == null && thread == null)
-            {
-                return MyLevel;
-            }
-            if(dateInput != null && levelInput == 0 && thread == null) // return logs by date
-            {
-                return GetLogByDate(dateInput);
-            }
-            if(dateInput == null && levelInput != 0 && thread == null) // return logs by level
-            {
-                return GetLogsByLevelByEnum(levelInput);
-            }
-            if (dateInput == null && levelInput == 0 && thread != null) // return logs by thread
-            {
+           
 
-                return GetLogsByThread(thread);
-            }
-            if(dateInput != null || levelInput != 0 || thread != null)
-            {
-                if (dateInput == null && levelInput != 0 && thread != null) //return logs by level and then Thread.
-                {
+            //if (levelInput == 0 && dateInput == null && thread == null)
+            //{
+            //    return MyLevel;
+            //}
+            //if(dateInput != null && levelInput == 0 && thread == null) // return logs by date
+            //{
+            //    return GetLogByDate(dateInput);
+            //}
+            //if(dateInput == null && levelInput != 0 && thread == null) // return logs by level
+            //{
+            //    return GetLogsByLevelByEnum(levelInput);
+            //}
+            //if (dateInput == null && levelInput == 0 && thread != null) // return logs by thread
+            //{
+
+            //    return GetLogsByThread(thread);
+            //}
+            //if(dateInput != null || levelInput != 0 || thread != null)
+            //{
+            //    if (dateInput == null && levelInput != 0 && thread != null) //return logs by level and then Thread.
+            //    {
                     
-                    var searchLevelThenThread = GetLogsByLevelByEnum(levelInput) 
-                        .Where(x => x.Thread == thread);
+            //        var searchLevelThenThread = GetLogsByLevelByEnum(levelInput) 
+            //            .Where(x => x.Thread == thread);
                     
-                    return searchLevelThenThread;
-                }
-                if(dateInput != null && levelInput != 0 && thread == null) // return logs by Date and then Level.
-                { var searchDateLevel = GetLogByDate(dateInput)
-                      .Where(x => x.Level == GetLevelBySting(levelInput));
-                    return searchDateLevel;
-                }
-                else if(dateInput != null && levelInput == 0 && thread != null) // return logs by Date and then Thread.
-                {
-                    var searchDateThread = GetLogByDate(dateInput)
-                        .Where(x => x.Thread == thread);
-                    return searchDateThread;
-                }
-                else                                                           // return logs by Date and Level and thread.
-                {
-                    var searchDateLevelThread = GetLogByDate(dateInput)
-                        .Where(x => x.Level == GetLevelBySting(levelInput))
-                        .Where(i => i.Thread == thread);
-                    return searchDateLevelThread;
-                }
+            //        return searchLevelThenThread;
+            //    }
+            //    if(dateInput != null && levelInput != 0 && thread == null) // return logs by Date and then Level.
+            //    { var searchDateLevel = GetLogByDate(dateInput)
+            //          .Where(x => x.Level == GetLevelBySting(levelInput));
+            //        return searchDateLevel;
+            //    }
+            //    else if(dateInput != null && levelInput == 0 && thread != null) // return logs by Date and then Thread.
+            //    {
+            //        var searchDateThread = GetLogByDate(dateInput)
+            //            .Where(x => x.Thread == thread);
+            //        return searchDateThread;
+            //    }
+            //    else                                                           // return logs by Date and Level and thread.
+            //    {
+            //        var searchDateLevelThread = GetLogByDate(dateInput)
+            //            .Where(x => x.Level == GetLevelBySting(levelInput))
+            //            .Where(i => i.Thread == thread);
+            //        return searchDateLevelThread;
+            //    }
                 
                 
-            }
-            else if(dateInput == null && levelInput == 0)
-            {
-                MyLevel = GetLogsByThread(thread);
-                return MyLevel;
-            }
-            return MyLevel;
+            //}
+            //else if(dateInput == null && levelInput == 0)
+            //{
+            //    MyLevel = GetLogsByThread(thread);
+            //    return MyLevel;
+            //}
+            //return MyLevel;
             
         }
 
@@ -215,6 +230,13 @@ namespace NectimaLogging.Repository
             return b;
         }
 
+        public string DateFormat(string inputDate)
+        {
+
+
+            return inputDate.Split(" ").First().Substring(0);
+        }
+
         public IEnumerable<LogEntry> GetLogsByThread(string thread)
         {
          
@@ -266,12 +288,34 @@ namespace NectimaLogging.Repository
         }
 
 
-
+        public bool TestingCheckId(int id)
+        {
+            Func<bool> isIdToBig = () => {
+                foreach (var item in GetAllLogs)
+                    if (item.Id - 1 != id)
+                        return true;
+                return false;
+            };
+            if (isIdToBig())
+            {
+                return true;
+            }
+            return false;
+        }
         
 
         public LogEntry GetLogbyId(int id)
         {
-    
+            //Func<bool> isIdToBig = () => {
+            //    foreach (var item in GetAllLogs)
+            //        if (item.Id != id)
+            //            return true;
+            //    return false;
+            //};
+            //if (isIdToBig())
+            //{
+            //    return (GetAllLogs.FirstOrDefault(x => x.Id == id));
+            //}
             
             return (GetAllLogs.FirstOrDefault(x => x.Id == id));
         }
