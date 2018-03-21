@@ -34,6 +34,83 @@ namespace NectimaLogging.Repository
         }
         public IEnumerable<LogEntry> GetAllLogs => _appDb.LogEntries;
 
+        public IEnumerable<LogEntry> AdvancedSearchFilter(Level levelInput, string dateInput, string thread)
+        {
+
+            if(levelInput == 0 && dateInput == null && thread == null)
+            {
+                return MyLevel;
+            }
+            if(dateInput != null && levelInput == 0 && thread == null)
+            {
+                MyLevel = GetLogByDate(dateInput);
+            }
+            if(dateInput == null && levelInput != 0 && thread == null)
+            {
+                MyLevel = GetLogsByLevelByEnum(levelInput);
+            }
+            if(dateInput != null || levelInput != 0 || thread != null)
+            {
+                if (dateInput == null && levelInput != 0 && thread != null)
+                {
+                    
+                    var test = GetLogsByLevelByEnum(levelInput)
+                        .Where(x => x.Thread == thread);
+                    
+                    return test;
+                }
+                MyLevel = GetLogByDate(dateInput);
+                MyLevel = GetLogsByLevelByEnum(levelInput);
+                if(thread == null)
+                {
+                    MyLevel = GetLogByDate(dateInput);
+                    MyLevel = GetLogsByLevelByEnum(levelInput);
+                    return MyLevel;
+                }
+                else if(thread != null)
+                {
+                    MyLevel = GetLogsByThread(thread);
+                    return MyLevel;
+                }
+                
+            }
+            else if(dateInput == null && levelInput == 0)
+            {
+                MyLevel = GetLogsByThread(thread);
+                return MyLevel;
+            }
+            return MyLevel;
+            
+        }
+
+        public IEnumerable<LogEntry> GetLogsByLevelByEnum(Level level)
+        {
+            switch (level)
+            {
+                case Level.Debug:
+                    MyLevel = GetLogByLevel("Debug");
+                    break;
+                case Level.Error:
+                    MyLevel = GetLogByLevel("Error");
+                    break;
+                case Level.Fatal:
+                    MyLevel = GetLogByLevel("Fatal");
+                    break;
+                case Level.Info:
+                    MyLevel = GetLogByLevel("Info");
+                    break;
+                case Level.Off:
+                    MyLevel = GetLogByLevel("Off");
+                    break;
+                case Level.Warn:
+                    MyLevel = GetLogByLevel("Warn");
+                    break;
+                default:
+                    break;
+            }
+            return MyLevel;
+        }
+
         public IEnumerable<LogEntry> GetLogByLevelAndDate(string inputDate, Level level)
         {
             switch (level)
@@ -69,6 +146,8 @@ namespace NectimaLogging.Repository
                 .Split(" ")
                 .First()
                 .Substring(0) == inputDate);
+
+
             
            
            
@@ -99,6 +178,8 @@ namespace NectimaLogging.Repository
             return GetAllLogs.Where(t => t.Thread == thread);
 
         }
+
+        
 
 
 

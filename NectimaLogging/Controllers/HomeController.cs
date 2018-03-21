@@ -90,7 +90,7 @@ namespace NectimaLogging.Controllers
             {
                 return RedirectToAction("Search");
             }
-            if((pId <= int.MaxValue && pId != 0 && !_logEntryRepository.IsBiggerThenMaxId(pId)))
+            if ((pId <= int.MaxValue && pId != 0 && !_logEntryRepository.IsBiggerThenMaxId(pId)))
             {
                 if (_myServices.IsNumber(prefix))
                 {
@@ -98,7 +98,7 @@ namespace NectimaLogging.Controllers
                     int.Parse(prefix)));
                 }
             }
-            
+
             if (_myServices.IsLetters(prefix))
             {
                 prefix = _myServices.FirstCharToUpper(prefix);
@@ -129,81 +129,110 @@ namespace NectimaLogging.Controllers
         [HttpPost]
         public IActionResult AdvancedSearchResult(Level levelInput, string id, string dateInput, string thread)
         {
+
+           
             var test = _logEntryRepository.GetLogByDate(dateInput);
             int pId;
             pId = _myServices.ParseInputToInt(id);
-            
-            if (id == null)
-            {
-                return View("FilteredLogs", _logEntryRepository.GetLogByLevelAndDate(dateInput, levelInput)); //Adding thread search
-            }
+
 
             if ((pId <= int.MaxValue && pId != 0 && !_logEntryRepository.IsBiggerThenMaxId(pId)))
             {
-                
+
                 if (_myServices.IsNumber(id))
                 {
                     return View("SearchResult", _logEntryRepository.GetLogbyId(pId));
                 }
             }
-            
+            return View("FilteredLogs", _logEntryRepository.AdvancedSearchFilter( levelInput,  dateInput,  thread));
 
 
 
 
 
-            //var b = _logEntryRepository.GetAllLogs.First(x => x.Date
-            //.Split(" ")
-            //.First()
-            //.Substring(0) == dateInput);
-
-            //var hej = "what sdsdsdddd".Split(" ").First()
 
 
-            //.Substring(0) == "what";
-            ////foreach (var item in b.Date)
-            ////{
-            ////    return item.ToString();   
-            ////}
 
 
-            return View("Search");
+            //if (levelInput == 0 && id == null && dateInput == null && thread == null)
+            //{
+            //    return RedirectToAction(nameof(ResultAllLogs));
+            //}
+            //if(id == null && dateInput == null && thread == null)
+            //{
+            //    return View("FilteredLogs", _logEntryRepository.GetLogsByLevelByEnum(levelInput));
+            //}
+            //if(dateInput == null && thread == null)
+            //{
+            //    if ((pId <= int.MaxValue && pId != 0 && !_logEntryRepository.IsBiggerThenMaxId(pId)))
+            //    {
+
+            //        if (_myServices.IsNumber(id))
+            //        {
+            //            return View("SearchResult", _logEntryRepository.GetLogbyId(pId));
+            //        }
+            //    }
+            //    else
+            //    {
+            //        return View("Search");
+            //    }
+            //}
+            //if()
+
+
+                
+
+
+            //if (id == null || thread == null)
+            //{
+            //    if (thread == null)
+            //    {
+            //        return View("FilteredLogs", _logEntryRepository.GetLogByLevelAndDate(dateInput, levelInput)); //Adding thread search
+
+            //    }
+            //    else if (thread != null && _myServices.IsNumber(thread))
+            //    {
+            //        return View("FilteredLogs", _logEntryRepository.GetLogsByThread(thread));
+            //    }
+            //}
+
+            //if ((pId <= int.MaxValue && pId != 0 && !_logEntryRepository.IsBiggerThenMaxId(pId)))
+            //{
+
+            //    if (_myServices.IsNumber(id))
+            //    {
+            //        return View("SearchResult", _logEntryRepository.GetLogbyId(pId));
+            //    }
+                
+            //}
+
+
+
+
+
+
+
+
+            ////var b = _logEntryRepository.GetAllLogs.First(x => x.Date
+            ////.Split(" ")
+            ////.First()
+            ////.Substring(0) == dateInput);
+
+            ////var hej = "what sdsdsdddd".Split(" ").First()
+
+
+            ////.Substring(0) == "what";
+            //////foreach (var item in b.Date)
+            //////{
+            //////    return item.ToString();   
+            //////}
+
+
+            //return View("Search");
 
 
             //return levelInput + " " + prefix + " " + dateInput + " " + ;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

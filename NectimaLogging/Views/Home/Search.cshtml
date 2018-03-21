@@ -43,50 +43,52 @@
     </form>*@
 
 @*<div class="input-group">
-    <div id="search-form">
-        <form asp-action="Search" role="form" class="search-bar-container"
-              method="post">
-            <span class="test">
-                <input id="tags" type="text" name="prefix" placeholder="search logs" />
+        <div id="search-form">
+            <form asp-action="Search" role="form" class="search-bar-container"
+                  method="post">
+                <span class="test">
+                    <input id="tags" type="text" name="prefix" placeholder="search logs" />
 
-                <button class="search-btn" type="submit" asp-controller="Home" asp-action="SearchResult">
-                    <i class="fas fa-search"></i>
-                </button>
+                    <button class="search-btn" type="submit" asp-controller="Home" asp-action="SearchResult">
+                        <i class="fas fa-search"></i>
+                    </button>
 
-            </span>
+                </span>
 
-        </form>
-    </div>
-</div>*@
+            </form>
+        </div>
+    </div>*@
 
 <button id="advanced-btn">Advanced Search</button>
 
 <div id="advanced-search-container">
-        <form asp-action="AdvancedSearch" role="form">
-            <div id="advanced-search">
-                <ul>
+    <form asp-action="AdvancedSearch" role="form">
+        <div id="advanced-search">
+            <ul>
 
-                    <li>
-                        <select asp-for="Level" name="levelInput" asp-items="Html.GetEnumSelectList<Level>()">
-                            <option selected="selected" value="">Please select</option>
-                        </select>
-                    </li>
-                    <li>
-                        <input id="tags" type="text" name="id" placeholder="id" />
-                    </li>
-                    <li>
-                        <input type="text" name="thread" id="thread" placeholder="thread">
-                    </li>
-                    <li>
-                        <input type="text" name="dateInput" id="datepicker" placeholder="date">
-                    </li>
+                <li>
+                    <select asp-for="Level" name="levelInput" asp-items="Html.GetEnumSelectList<Level>()">
+                        <option selected="selected" value="">Level</option>
+                    </select>
 
-                    <li>
-                        <input type="submit" asp-controller="Home" asp-action="AdvancedSearchResult" />
-                    </li>
-                </ul>
+                </li>
+                <li>
+                    <input id="tags" type="text" name="id" placeholder="id" />
+                </li>
+                <li>
+                    <input type="text" name="thread" id="thread" placeholder="thread">
+                </li>
+                <li>
+                    <input type="text" name="dateInput" id="datepicker" placeholder="date">
+                </li>
 
-            </div>
-        </form>
+                <li>
+                    <input type="submit" asp-controller="Home" asp-action="AdvancedSearchResult" />
+                </li>
+            </ul>
+
+        </div>
+    </form>
 </div>
+
 
