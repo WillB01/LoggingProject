@@ -54,12 +54,22 @@ namespace NectimaLogging.Repository
                 if (dateInput == null && levelInput != 0 && thread != null)
                 {
                     
-                    var test = GetLogsByLevelByEnum(levelInput)
+                    var searchLevelThenThread = GetLogsByLevelByEnum(levelInput)
                         .Where(x => x.Thread == thread);
                     
+                    return searchLevelThenThread;
+                }
+                else
+                {
+                    var test = GetLogByDate(dateInput)
+                        .Where(x => x.Level == GetLevelBySting(levelInput))
+                        .Where(i => i.Thread == thread);
                     return test;
                 }
+                
+
                 MyLevel = GetLogByDate(dateInput);
+
                 MyLevel = GetLogsByLevelByEnum(levelInput);
                 if(thread == null)
                 {
@@ -82,6 +92,37 @@ namespace NectimaLogging.Repository
             return MyLevel;
             
         }
+
+        public string GetLevelBySting(Level level)
+        {
+            string theLevel = "";
+            switch (level)
+            {
+                case Level.Debug:
+                    theLevel = "Debug";
+                    break;
+                case Level.Error:
+                    theLevel = "Error";
+                    break;
+                case Level.Fatal:
+                    theLevel = "Fatal";
+                    break;
+                case Level.Info:
+                    theLevel = "Info";
+                    break;
+                case Level.Off:
+                    theLevel = "Off";
+                    break;
+                case Level.Warn:
+                    theLevel = "Warn";
+                    break;
+                default:
+                    break;
+            }
+            return theLevel;
+        }
+
+
 
         public IEnumerable<LogEntry> GetLogsByLevelByEnum(Level level)
         {
@@ -221,6 +262,10 @@ namespace NectimaLogging.Repository
 
             return log;
         }
+
+
+
+        
 
         public LogEntry GetLogbyId(int id)
         {
