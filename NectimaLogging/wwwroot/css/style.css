@@ -113,7 +113,7 @@ i:focus{
 }
 
 #log-container{
-    height: 800px;
+    height: 80vh;
     overflow: hidden;
     overflow: scroll;
 

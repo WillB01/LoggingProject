@@ -34,48 +34,49 @@ namespace NectimaLogging.Repository
         }
         public IEnumerable<LogEntry> GetAllLogs => _appDb.LogEntries;
 
-        public IEnumerable<LogEntry> AdvancedSearchFilter(Level levelInput, string dateInput, string thread)
+ 
+        public IEnumerable<LogEntry> AdvancedSearchFilter(Level levelInput, string dateInput, string thread) /// Filters thru adv search. not id.
         {
 
             if(levelInput == 0 && dateInput == null && thread == null)
             {
                 return MyLevel;
             }
-            if(dateInput != null && levelInput == 0 && thread == null)
+            if(dateInput != null && levelInput == 0 && thread == null) // return logs by date
             {
                 return GetLogByDate(dateInput);
             }
-            if(dateInput == null && levelInput != 0 && thread == null)
+            if(dateInput == null && levelInput != 0 && thread == null) // return logs by level
             {
                 return GetLogsByLevelByEnum(levelInput);
             }
-            if (dateInput == null && levelInput == 0 && thread != null)
+            if (dateInput == null && levelInput == 0 && thread != null) // return logs by thread
             {
 
                 return GetLogsByThread(thread);
             }
             if(dateInput != null || levelInput != 0 || thread != null)
             {
-                if (dateInput == null && levelInput != 0 && thread != null)
+                if (dateInput == null && levelInput != 0 && thread != null) //return logs by level and then Thread.
                 {
                     
-                    var searchLevelThenThread = GetLogsByLevelByEnum(levelInput)
+                    var searchLevelThenThread = GetLogsByLevelByEnum(levelInput) 
                         .Where(x => x.Thread == thread);
                     
                     return searchLevelThenThread;
                 }
-                if(dateInput != null && levelInput != 0 && thread == null)
+                if(dateInput != null && levelInput != 0 && thread == null) // return logs by Date and then Level.
                 { var searchDateLevel = GetLogByDate(dateInput)
                       .Where(x => x.Level == GetLevelBySting(levelInput));
                     return searchDateLevel;
                 }
-                else if(dateInput != null && levelInput == 0 && thread != null)
+                else if(dateInput != null && levelInput == 0 && thread != null) // return logs by Date and then Thread.
                 {
                     var searchDateThread = GetLogByDate(dateInput)
                         .Where(x => x.Thread == thread);
                     return searchDateThread;
                 }
-                else
+                else                                                           // return logs by Date and Level and thread.
                 {
                     var searchDateLevelThread = GetLogByDate(dateInput)
                         .Where(x => x.Level == GetLevelBySting(levelInput))

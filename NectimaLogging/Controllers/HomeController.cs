@@ -80,7 +80,7 @@ namespace NectimaLogging.Controllers
 
             int pId;
             pId = _myServices.ParseInputToInt(prefix);
-            if (prefix == null)
+            if (prefix == null || pId <= 0)
             {
                 return RedirectToAction("Search");
             }
@@ -129,13 +129,19 @@ namespace NectimaLogging.Controllers
         [HttpPost]
         public IActionResult AdvancedSearchResult(Level levelInput, string id, string dateInput, string thread)
         {
-
+            if(levelInput == Level.Empty && id == null && dateInput == null && thread == null)
+            {
+                return RedirectToAction(nameof(ResultAllLogs),_logEntryRepository.GetAllLogs);
+            }
            
-            var test = _logEntryRepository.GetLogByDate(dateInput);
+            //var test = _logEntryRepository.GetLogByDate(dateInput);
             int pId;
             pId = _myServices.ParseInputToInt(id);
 
-
+            if (pId <= 0 || _logEntryRepository.IsBiggerThenMaxId(pId) )
+            {
+                return View("Search");
+            }
             if ((pId <= int.MaxValue && pId != 0 && !_logEntryRepository.IsBiggerThenMaxId(pId)))
             {
 
@@ -144,6 +150,7 @@ namespace NectimaLogging.Controllers
                     return View("SearchResult", _logEntryRepository.GetLogbyId(pId));
                 }
             }
+            
             return View("FilteredLogs", _logEntryRepository.AdvancedSearchFilter( levelInput,  dateInput,  thread));
 
 
