@@ -35,15 +35,25 @@ namespace NectimaLogging.Repository
         public IEnumerable<LogEntry> GetAllLogs => _appDb.LogEntries;
 
  
-        public IEnumerable<LogEntry> AdvancedSearchFilter(Level levelInput, string dateInput, string thread) /// Filters thru adv search. not id.
+        public IEnumerable<LogEntry> AdvancedSearchFilter(
+            Level levelInput, string dateInput, string thread,string message) /// Filters thru adv search. not id.
         {
-            var test = GetAllLogs.Where(x => 
-            (!string.IsNullOrWhiteSpace(thread) && x.Thread.Equals(thread)) 
+           
+            var test = GetAllLogs.Where(x =>
+            (!string.IsNullOrWhiteSpace(thread) ? x.Thread.Equals(thread) : true) 
             && 
-            (!string.IsNullOrWhiteSpace(dateInput) && x.Date.Split(" ")
+            (!string.IsNullOrWhiteSpace(dateInput) ? x.Date.Split(" ")
             .First()
-            .Substring(0).Equals(dateInput)));
+            .Substring(0).Equals(dateInput) : true)
+            &&
+            (levelInput != 0 ? x.Level.Equals(GetLevelBySting(levelInput)) : true)
+            &&
+            (!string.IsNullOrWhiteSpace(message) ? x.Message.ToLower().Contains(message.ToLower()) : true));
             return test;
+
+
+
+
             //return GetAllLogs.Where(l => 
             //(!string.IsNullOrWhiteSpace(dateInput) || l.Date == dateInput) 
             //&&

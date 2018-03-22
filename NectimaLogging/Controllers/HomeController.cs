@@ -127,10 +127,13 @@ namespace NectimaLogging.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdvancedSearchResult(Level levelInput, string id, string dateInput, string thread) //ID AND DATE TOGETHER NEEDS TODO
+        public IActionResult AdvancedSearchResult
+            (Level levelInput, string id, string dateInput, string thread, string message) //ID AND DATE TOGETHER NEEDS TODO
         {
             
-            if(levelInput == Level.Empty && id == null && dateInput == null && thread == null)
+            if(levelInput == Level.Empty &&
+                string.IsNullOrWhiteSpace(id) && string.IsNullOrWhiteSpace(dateInput) &&
+                string.IsNullOrWhiteSpace(thread) && string.IsNullOrWhiteSpace(message))
             {
                 return RedirectToAction(nameof(ResultAllLogs),_logEntryRepository.GetAllLogs);
             }
@@ -167,14 +170,13 @@ namespace NectimaLogging.Controllers
                 return RedirectToAction("Index", "Error");
             }
             
-            return View("FilteredLogs", _logEntryRepository.AdvancedSearchFilter( levelInput,  dateInput,  thread));
+            return View("FilteredLogs", _logEntryRepository.AdvancedSearchFilter( levelInput,  dateInput,  thread,message));
 
         }
 
         public IActionResult ResultAllLogs(int logPage = 1)
         {
-
-
+             
             return View(new LogListViewModel
             {
 
@@ -196,61 +198,16 @@ namespace NectimaLogging.Controllers
         [HttpPost]
         public IActionResult ResultAllLogs(int next, int previous, bool isNext, bool isPrevious, int addP)
         {
-            var b = new PagingInfo();
-            if (isNext)
-            {
-                PageCounter += addP;
-                ++next;
+            var paging = new PagingLogic(next, previous, isNext, isPrevious, addP, PageSize, _logEntryRepository);
 
-                return View(new LogListViewModel
-                {
-
-                    Logs = _logEntryRepository.GetAllLogs
-                .OrderBy(p => p.Id)
-                .Skip((next - 1) * PageSize)
-                .Take(PageSize),
-                    PagingInfo = new PagingInfo
-                    {
-                        AddMorePages = next,
-                        IsNext = isNext,
-                        CurrentPage = next,
-                        ItemsPerPage = PageSize,
-                        TotalItems = _logEntryRepository.GetAllLogs.Count()
-                    }
-                });
-
-            }
-            else if (isPrevious)
-            {
-                PageCounter -= addP;
-                if (previous <= 2)
-                    previous = 2;
-                previous--;
-                return View(new LogListViewModel
-                {
-
-                    Logs = _logEntryRepository.GetAllLogs
-                .OrderBy(p => p.Id)
-                .Skip((previous - 1) * PageSize)
-                .Take(PageSize),
-                    PagingInfo = new PagingInfo
-                    {
-                        AddMorePages = previous,
-                        IsPrevious = isPrevious,
-                        CurrentPage = previous,
-                        ItemsPerPage = PageSize,
-                        TotalItems = _logEntryRepository.GetAllLogs.Count()
-                    }
-                });
-
-            }
-            return View();
+            return View(paging.LogListViewModel());
 
         }
 
         [HttpPost]
         public void IncrementCount(int productPage, string prefix)
         {
+
             var test = new LogListViewModel()
             {
                 Logs = _logEntryRepository.GetAllLogs
