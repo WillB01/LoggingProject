@@ -9,7 +9,7 @@
     grid-template-areas: "error-icon""error-information""error-questions";
     padding: 2em;
     grid-gap: 1em;
-    border-top: 0.3em solid #808080;
+    border-top: 0.1em solid #808080;
 }
 
 #error-container p, a{

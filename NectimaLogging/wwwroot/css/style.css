@@ -56,12 +56,11 @@ i:focus{
 .next-prev {
     background: none;
     border: none;
-    color: #8d8d8d;
+    color: #d8d8d8;
     cursor: pointer;
 }
 .current {
-    background: #0094ff;
-    color: #ebebea;
+    background: rgb(255, 106, 0);   
     z-index: 10;
     width: 100%;
     height: 100%;
@@ -72,6 +71,9 @@ i:focus{
     top: -0.5em;
     left: -0.0em;
 }
+    .current a {
+        color: white;
+    }
 
 .page-container {
     max-width: 100%;
@@ -83,17 +85,18 @@ i:focus{
     position: relative;
     color: #8d8d8d;
     margin: 0;
+    border: 0.1em solid white;
 }
 
 .btn a{
-    color: #8d8d8d;
+    color: #d8d8d8;
 }
 
 
-.btn:hover {
-   background: #0094ff; 
-
-}
+    .btn:hover {
+        border: 0.1em solid rgba(255, 106, 0, 0.40);
+        
+    }
 
 .btn-container{
     width: 40em;
