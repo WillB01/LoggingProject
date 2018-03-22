@@ -14,15 +14,15 @@ $(function () {
     $("#datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
 });
 
-var advancedSearch = document.getElementById("advanced-btn");
-var x = document.getElementById("advanced-search");
-x.style.display = "none";
-advancedSearch.addEventListener("click", function () {
+//var advancedSearch = document.getElementById("advanced-btn");
+//var x = document.getElementById("advanced-search");
+//x.style.display = "none";
+//advancedSearch.addEventListener("click", function () {
 
    
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-});
+//    if (x.style.display === "none") {
+//        x.style.display = "block";
+//    } else {
+//        x.style.display = "none";
+//    }
+//});

@@ -20,10 +20,6 @@ namespace NectimaLogging.Repository
         private LogListViewModel _logListViewModel;
 
         public IEnumerable<LogEntry> MyLevel { get; set; }
-        
-
-        
-
 
         public EntryLogRepository(AppDbContext appDb, IMyServices myServices)
         {
@@ -49,6 +45,7 @@ namespace NectimaLogging.Repository
             (levelInput != 0 ? x.Level.Equals(GetLevelBySting(levelInput)) : true)
             &&
             (!string.IsNullOrWhiteSpace(message) ? x.Message.ToLower().Contains(message.ToLower()) : true));
+        
             return test;
 
 
@@ -150,7 +147,6 @@ namespace NectimaLogging.Repository
         }
 
 
-
         public IEnumerable<LogEntry> GetLogsByLevelByEnum(Level level)
         {
             switch (level)
@@ -207,27 +203,11 @@ namespace NectimaLogging.Repository
             if(inputDate == null)
             {
                 return MyLevel;
-            }
-            
-            
+            } 
                 return MyLevel.Where(x => x.Date
                 .Split(" ")
                 .First()
                 .Substring(0) == inputDate);
-
-
-            
-           
-           
-            
-
-            
-
-            //if(level == Level.Debug || level == Level.Error || level == Level.Fatal || level == Level.Info
-            //    || level == Level.Off || level == Level.Warn)
-            //{
-
-            //}
         }
 
         public IEnumerable<LogEntry> GetLogByDate(string inputDate)
@@ -254,29 +234,10 @@ namespace NectimaLogging.Repository
 
         }
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public string[] WordFilter(string s)
         {
             return Regex.Split(s, @"\W+");
         }
-
 
         public IEnumerable<LogEntry> GetLogByLevel(string level)
         {
@@ -315,18 +276,7 @@ namespace NectimaLogging.Repository
         
 
         public LogEntry GetLogbyId(int id)
-        {
-            //Func<bool> isIdToBig = () => {
-            //    foreach (var item in GetAllLogs)
-            //        if (item.Id != id)
-            //            return true;
-            //    return false;
-            //};
-            //if (isIdToBig())
-            //{
-            //    return (GetAllLogs.FirstOrDefault(x => x.Id == id));
-            //}
-            
+        {        
             return (GetAllLogs.FirstOrDefault(x => x.Id == id));
         }
 
@@ -374,13 +324,5 @@ namespace NectimaLogging.Repository
             return resizedLogs.OrderByDescending(x => x.value);
 
         }
-
-
-        //public IEnumerable<object> AmoutOfLogs(int amount, IEnumerable<object>logs)
-        //{
-        //    var resizedLogs = logs.Take(amount).OrderByDescending(x);
-
-        //    return resizedLogs.OrderByDescending(x => x.);
-        //}
     }
 }

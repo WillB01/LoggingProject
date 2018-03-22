@@ -78,6 +78,11 @@ namespace NectimaLogging.Controllers
 
             //prefix = _myServices.AddWhiteSpace(prefix);
 
+            ViewData["test"] = KeywordHighlight.HighlightKeywords(_logEntryRepository.GetAllLogs.Where(x => x.Level == "Info").ToString(),prefix);
+
+            
+
+
             int pId;
             pId = _myServices.ParseInputToInt(prefix);
             if (prefix == null)
@@ -102,6 +107,7 @@ namespace NectimaLogging.Controllers
             if (_myServices.IsLetters(prefix))
             {
                 prefix = _myServices.FirstCharToUpper(prefix);
+                
                 return View("FilteredLogs", _logEntryRepository.GetLogByLevel(prefix));
             }
             if (_myServices.IsNumberAndLetters(prefix))
@@ -127,8 +133,7 @@ namespace NectimaLogging.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdvancedSearchResult
-            (Level levelInput, string id, string dateInput, string thread, string message) //ID AND DATE TOGETHER NEEDS TODO
+        public IActionResult AdvancedSearchResult(Level levelInput, string id, string dateInput, string thread, string message) //ID AND DATE TOGETHER NEEDS TODO
         {
             
             if(levelInput == Level.Empty &&
@@ -140,11 +145,6 @@ namespace NectimaLogging.Controllers
            
             int pId;
             pId = _myServices.ParseInputToInt(id);
-
-            //if (_logEntryRepository.TestingCheckId(pId))
-            //{
-            //    return RedirectToAction("Index", "Error");
-            //}
 
             if (_logEntryRepository.IsBiggerThenMaxId(pId) )
             {
@@ -201,27 +201,7 @@ namespace NectimaLogging.Controllers
             var paging = new PagingLogic(next, previous, isNext, isPrevious, addP, PageSize, _logEntryRepository);
 
             return View(paging.LogListViewModel());
-
         }
-
-        [HttpPost]
-        public void IncrementCount(int productPage, string prefix)
-        {
-
-            var test = new LogListViewModel()
-            {
-                Logs = _logEntryRepository.GetAllLogs
-                 .OrderBy(p => p.Id)
-                 .Skip((productPage + 1) * PageSize)
-                 .Take(PageSize),
-                PagingInfo = new PagingInfo
-                {
-                    NextPage = ++PageCounter,
-                    CurrentPage = 3,
-                    ItemsPerPage = PageSize,
-                    TotalItems = _logEntryRepository.GetAllLogs.Count()
-                }
-            };
-        }
+    
     }
 }

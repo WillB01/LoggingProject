@@ -1,0 +1,77 @@
+﻿
+#advanced-search-container {
+    display: grid;
+    background: #e9e9e9;
+    margin: 0 auto;
+    grid-template-columns: repeat(4, 1fr);
+    width: 95%;
+    grid-template-areas: 
+        ". id thread ."
+        ". message datepicker ." 
+        "  .level level ."
+        ". . search-btn . ";
+    padding: 2em;
+    grid-gap: 0.1em;
+    border-top: 0.3em solid #808080;
+}
+
+#datepicker {
+    grid-area: datepicker;
+}
+#message {
+    grid-area: message;
+}
+#level {
+    grid-area: level;
+    padding: 0.5em;
+    color: #848282;
+    background-color: #ffffff;
+    border: none;
+}
+
+#id {
+    grid-area: id;
+}
+#thread {
+    grid-area: thread;
+}
+#submit-search-btn {
+    grid-area: search-btn;
+    padding: 0.5em;
+    border: 0.1em solid #ff6a00;
+    cursor: pointer;
+    background: #ff6a00;
+    text-align: center;
+    margin-top: 2em;
+    padding: 1em;
+    justify-self: end;
+    transition: all 0.5s ease;
+    color: white;
+}
+
+#submit-search-btn:hover {
+        background: #fff;
+        border: 0.1em solid #ff6a00;
+        color: #ff6a00;
+        box-sizing: border-box;
+}
+#submit-search-btn:focus{
+    outline: none;
+    background: none;
+}
+
+
+    #advanced-search-container input[type="text"] {
+        box-sizing: border-box;
+        font-size: 16px;
+        background-color: white;
+        border: none;
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 0.5em 20px 0.5em 10px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+/*#advanced-search-container input:focus {
+    border: #ff6a00 0.1em solid;
+}*/

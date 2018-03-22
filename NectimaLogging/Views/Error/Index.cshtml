@@ -3,11 +3,16 @@
     ViewData["Title"] = "Index";
 }
 
-<p>Sorry could not find log</p>
-<p>Please search again</p> 
-<div id="error-questions">
-    <a asp-controller="Home" asp-action="Search">Need more options?</a>
-    <a asp-controller="Home" asp-action="ResultAllLogs">View all logs?</a>
+<div id="error-container">
+    <i class="fas fa-exclamation-triangle"></i>
+    <div id="error-information">
+        <p>Sorry, you got bad luck..</p>
+    </div>
 
+    <div id="error-questions">
+        <a asp-controller="Home" asp-action="Search">Need more options?</a>
+        <a asp-controller="Home" asp-action="ResultAllLogs">View all logs?</a>
+    </div>
 </div>
+
 

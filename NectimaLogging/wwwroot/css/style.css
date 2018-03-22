@@ -1,6 +1,9 @@
 ﻿body{
     box-sizing:border-box;
 }
+.hit{
+    background: yellow;
+}
 a:hover{
     text-decoration:none;
 }
@@ -15,6 +18,9 @@ a, p {
 }
 li{
     list-style: none;
+}
+option:focus{
+    border: none;
 }
 button{
     background: none;
@@ -63,8 +69,8 @@ i:focus{
     position: absolute;
     margin: 0;
     border-radius: 0.2em;
-    top: -0.1em;
-    left: -0.1em;
+    top: -0.5em;
+    left: -0.0em;
 }
 
 .page-container {
@@ -112,15 +118,12 @@ i:focus{
     z-index: 1000 !important;
 }
 
-#log-container{
-    height: 80vh;
-    overflow: hidden;
-    overflow: scroll;
 
-}
 
 .fa-search{
     color: #8d8d8d;
+    
+    
     cursor: pointer;
 }
 
@@ -146,7 +149,7 @@ i:focus{
     border: none;
     
     height: 1em;
-    background: #f1f1f1;
+    background: white;
 }
 
 .input-group{
@@ -154,12 +157,3 @@ i:focus{
     margin-top: 1em;
 }
 
-#advanced-btn{
-    margin: 2em;
-    background: #ededed;
-    padding: 0.5em;
-}
-
-#advanced-btn:hover{
-   background: #0094ff;
-}

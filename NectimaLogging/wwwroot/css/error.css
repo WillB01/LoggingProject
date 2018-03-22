@@ -1,0 +1,34 @@
+﻿
+#error-container {
+    font-size: 3em;
+    display: grid;
+    background: #e9e9e9;
+    margin: 0 auto;
+    grid-template-columns: repeat(1, 1fr);
+    width: 95%;
+    grid-template-areas: "error-icon""error-information""error-questions";
+    padding: 2em;
+    grid-gap: 1em;
+    border-top: 0.3em solid #808080;
+}
+
+#error-container p, a{
+    color: white;
+}
+
+    #error-container .fa-exclamation-triangle {
+        font-size: 150px;
+        grid-area: error-icon;
+        color: #ffffff;
+    }
+
+#error-questions {
+    grid-area: error-questions;
+}
+
+#error-information{
+    grid-area: error-information;
+}
+
+
+
