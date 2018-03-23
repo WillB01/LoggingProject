@@ -28,10 +28,11 @@ namespace NectimaLogging.Models
         IEnumerable<LogEntry> GetAllLogs { get; }
 
         string[] WordFilter(string s);
-        IEnumerable<LogEntry> GetLogByLevel(string level);
         LogEntry GetLogbyId(int id);
         IEnumerable<LogEntry> GetLogByDate(string inputDate);
         IEnumerable<LogEntry> GetLogByLevelAndDate(string inputDate, Level level);
+        IEnumerable<LogEntry> GetLogByLevel(string level);
+
         IEnumerable<LogEntry> GetLogsByThread(string thread);
         IEnumerable<LogEntry> GetLogsByLevelByEnum(Level level);
         string IsSearchSingleOrNot(string prefix);
@@ -41,8 +42,6 @@ namespace NectimaLogging.Models
         //IEnumerable<object> AmoutOfLogs(int amount, IEnumerable<object> logs);
 
         IEnumerable<LogEntry> AdvancedSearchFilter(Level levelInput, string dateInput, string thread, string message);
-
-
 
         bool TestingCheckId(int id);
 

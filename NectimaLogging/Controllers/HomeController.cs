@@ -19,7 +19,7 @@ namespace NectimaLogging.Controllers
         private ILogEntryRepository _logEntryRepository;
         private IMyServices _myServices;
         private int PageSize { get; set; } = 4;
-        private int PageCounter { get; set; } = 10;
+        //private int PageCounter { get; set; } = 10;
 
 
 
@@ -78,13 +78,15 @@ namespace NectimaLogging.Controllers
 
             //prefix = _myServices.AddWhiteSpace(prefix);
 
-            ViewData["test"] = KeywordHighlight.HighlightKeywords(_logEntryRepository.GetAllLogs.Where(x => x.Level == "Info").ToString(),prefix);
+            // ViewData["test"] = KeywordHighlight.HighlightKeywords(_logEntryRepository.GetAllLogs.Where(x => x.Level == "Info").ToString(),prefix);
 
-            
+
 
 
             int pId;
             pId = _myServices.ParseInputToInt(prefix);
+
+
             if (prefix == null)
             {
                 return RedirectToAction("Index", "Error");
@@ -99,15 +101,21 @@ namespace NectimaLogging.Controllers
             {
                 if (_myServices.IsNumber(prefix))
                 {
-                    return View(_logEntryRepository.GetLogbyId(
-                    int.Parse(prefix)));
+                    var getlogsById = _logEntryRepository.GetLogbyId(
+                    int.Parse(prefix));
+
+                    if (getlogsById == null)
+                    {
+                        return RedirectToAction("Index", "Error");
+                    }
+                    return View(getlogsById);
                 }
             }
 
             if (_myServices.IsLetters(prefix))
             {
                 prefix = _myServices.FirstCharToUpper(prefix);
-                
+
                 return View("FilteredLogs", _logEntryRepository.GetLogByLevel(prefix));
             }
             if (_myServices.IsNumberAndLetters(prefix))
@@ -135,29 +143,38 @@ namespace NectimaLogging.Controllers
         [HttpPost]
         public IActionResult AdvancedSearchResult(Level levelInput, string id, string dateInput, string thread, string message) //ID AND DATE TOGETHER NEEDS TODO
         {
-            
-            if(levelInput == Level.Empty &&
+
+            if (levelInput == Level.Empty &&
                 string.IsNullOrWhiteSpace(id) && string.IsNullOrWhiteSpace(dateInput) &&
                 string.IsNullOrWhiteSpace(thread) && string.IsNullOrWhiteSpace(message))
             {
-                return RedirectToAction(nameof(ResultAllLogs),_logEntryRepository.GetAllLogs);
+                return RedirectToAction(nameof(ResultAllLogs), _logEntryRepository.GetAllLogs);
             }
-           
-            int pId;
-            pId = _myServices.ParseInputToInt(id);
 
-            if (_logEntryRepository.IsBiggerThenMaxId(pId) )
+            int pId;
+
+            pId = _myServices.ParseInputToInt(id);
+            //var test = _logEntryRepository.GetAllLogs.Where(x => (x.Id.Equals(pId.ToString())) ? x.Id != pId : true ));
+
+            if (_logEntryRepository.IsBiggerThenMaxId(pId))
             {
-                return RedirectToAction("Index", "Error"); 
+                return RedirectToAction("Index", "Error");
             }
             if ((pId <= int.MaxValue && pId != 0 && !_logEntryRepository.IsBiggerThenMaxId(pId)))
             {
 
                 if (_myServices.IsNumber(id))
                 {
-                    if(dateInput == null)
-                    return View("SearchResult", _logEntryRepository.GetLogbyId(pId));
-
+                    if (dateInput == null)
+                    {
+                        var getlogsById = _logEntryRepository.GetLogbyId(pId);
+                        if (getlogsById == null)
+                        {
+                            return RedirectToAction("Index", "Error");
+                        }
+                        return View("SearchResult", getlogsById);
+                    }
+                   
                     else
                     {
                         return View("FilteredLogs", _logEntryRepository.GetLogByDate(dateInput)
@@ -165,18 +182,18 @@ namespace NectimaLogging.Controllers
                     }
                 }
             }
-            else if(pId == 0 && id != null)
+            else if (pId == 0 && id != null)
             {
                 return RedirectToAction("Index", "Error");
             }
-            
-            return View("FilteredLogs", _logEntryRepository.AdvancedSearchFilter( levelInput,  dateInput,  thread,message));
+
+            return View("FilteredLogs", _logEntryRepository.AdvancedSearchFilter(levelInput, dateInput, thread, message));
 
         }
 
         public IActionResult ResultAllLogs(int logPage = 1)
         {
-             
+
             return View(new LogListViewModel
             {
 
@@ -202,6 +219,6 @@ namespace NectimaLogging.Controllers
 
             return View(paging.LogListViewModel());
         }
-    
+
     }
 }

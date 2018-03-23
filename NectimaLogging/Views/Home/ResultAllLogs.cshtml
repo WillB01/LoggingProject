@@ -10,6 +10,7 @@
 }
 
 
+
 <div class="all-log-container">
     <div id="log-container">
         <table class="table table-sm">
@@ -24,15 +25,24 @@
                     <th scope="col">Message</th>
                     <th scope="col">MachineName</th>
                     <th scope="col">Logger</th>
-                    
+
                 </tr>
             </thead>
             <tbody>
+
                 @foreach (var log in Model.Logs)
                 {
+
                     <tr>
                         <td>
+
                             @log.Id
+                            <form id="select-log-detail" asp-controller="Details" asp-action="Index"
+                                  method="post" role="form">
+                                <button type="submit" name="id" value="@log.Id">
+                                    details
+                                </button>
+                            </form>
                         </td>
                         <td>
                             @log.Date
@@ -60,7 +70,9 @@
                         </td>
                     </tr>
                 }
+
             </tbody>
+
         </table>
     </div>
     <p>@Model.PagingInfo.CurrentPage / @Model.PagingInfo.TotalPages</p>

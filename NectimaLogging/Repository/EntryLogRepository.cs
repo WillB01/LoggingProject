@@ -47,73 +47,6 @@ namespace NectimaLogging.Repository
             (!string.IsNullOrWhiteSpace(message) ? x.Message.ToLower().Contains(message.ToLower()) : true));
         
             return test;
-
-
-
-
-            //return GetAllLogs.Where(l => 
-            //(!string.IsNullOrWhiteSpace(dateInput) || l.Date == dateInput) 
-            //&&
-            //(!string.IsNullOrWhiteSpace(thread) || l.Thread.Contains(thread)) 
-            //&&
-            //(levelInput == 0 || l.Level == GetLevelBySting(levelInput)));
-
-           
-
-            //if (levelInput == 0 && dateInput == null && thread == null)
-            //{
-            //    return MyLevel;
-            //}
-            //if(dateInput != null && levelInput == 0 && thread == null) // return logs by date
-            //{
-            //    return GetLogByDate(dateInput);
-            //}
-            //if(dateInput == null && levelInput != 0 && thread == null) // return logs by level
-            //{
-            //    return GetLogsByLevelByEnum(levelInput);
-            //}
-            //if (dateInput == null && levelInput == 0 && thread != null) // return logs by thread
-            //{
-
-            //    return GetLogsByThread(thread);
-            //}
-            //if(dateInput != null || levelInput != 0 || thread != null)
-            //{
-            //    if (dateInput == null && levelInput != 0 && thread != null) //return logs by level and then Thread.
-            //    {
-                    
-            //        var searchLevelThenThread = GetLogsByLevelByEnum(levelInput) 
-            //            .Where(x => x.Thread == thread);
-                    
-            //        return searchLevelThenThread;
-            //    }
-            //    if(dateInput != null && levelInput != 0 && thread == null) // return logs by Date and then Level.
-            //    { var searchDateLevel = GetLogByDate(dateInput)
-            //          .Where(x => x.Level == GetLevelBySting(levelInput));
-            //        return searchDateLevel;
-            //    }
-            //    else if(dateInput != null && levelInput == 0 && thread != null) // return logs by Date and then Thread.
-            //    {
-            //        var searchDateThread = GetLogByDate(dateInput)
-            //            .Where(x => x.Thread == thread);
-            //        return searchDateThread;
-            //    }
-            //    else                                                           // return logs by Date and Level and thread.
-            //    {
-            //        var searchDateLevelThread = GetLogByDate(dateInput)
-            //            .Where(x => x.Level == GetLevelBySting(levelInput))
-            //            .Where(i => i.Thread == thread);
-            //        return searchDateLevelThread;
-            //    }
-                
-                
-            //}
-            //else if(dateInput == null && levelInput == 0)
-            //{
-            //    MyLevel = GetLogsByThread(thread);
-            //    return MyLevel;
-            //}
-            //return MyLevel;
             
         }
 
@@ -222,8 +155,6 @@ namespace NectimaLogging.Repository
 
         public string DateFormat(string inputDate)
         {
-
-
             return inputDate.Split(" ").First().Substring(0);
         }
 
@@ -276,8 +207,15 @@ namespace NectimaLogging.Repository
         
 
         public LogEntry GetLogbyId(int id)
-        {        
-            return (GetAllLogs.FirstOrDefault(x => x.Id == id));
+        {
+            var test = GetAllLogs.Where(x =>
+            (x.Id != id) ? x.Id.Equals(id) : true);
+
+            var b = test.FirstOrDefault(x => (x.Id == 0) ? x.Id.Equals(id) : true);
+
+          
+            //return (GetAllLogs.FirstOrDefault(x => x.Id == id));
+            return b ;
         }
 
         public bool IsBiggerThenMaxId(int id)

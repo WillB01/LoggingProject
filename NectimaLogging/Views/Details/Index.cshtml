@@ -1,0 +1,49 @@
+﻿@model LogEntry
+@section details {
+    <link href="@Url.Content("~/css/details.css")" rel="stylesheet" type="text/css" />
+}
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <div id="detail-grid-container">
+        <div id="id-container" class="detail-items">
+           <h3>id</h3>
+            <p>@Model.Id</p>
+          
+        </div>
+        <div id="Date-container" class="detail-items">
+            <h3>Date</h3>
+            <p>@Model.Date</p>
+        </div>
+        <div id="Level-container" class="detail-items">
+            <h3>Level</h3>
+            <p>@Model.Level</p>
+
+        </div>
+        <div id="Exception-container" class="detail-items">
+            <h3>Exception</h3>
+            <p>@Model.Exception</p>
+        </div>
+        <div id="Thread-container" class="detail-items">
+            <h3>Thread</h3>
+            <p>@Model.Thread</p>
+        </div>
+        <div id="StackTrace-container" class="detail-items">
+            <h3>StackTrace</h3>
+            <p>@Model.StackTrace</p>
+        </div>
+        <div id="Message-container" class="detail-items">
+            <h3>Message</h3>
+            <p>@Model.Message</p>
+        </div>
+        <div id="MachineName-container" class="detail-items">
+            <h3>MachineName</h3>
+            <p>@Model.MachineName</p>
+        </div>
+        <div id="Logger-container" class="detail-items">
+            <h3>Logger</h3>
+            <p>@Model.Logger</p>
+        </div>     
+    </div>
+

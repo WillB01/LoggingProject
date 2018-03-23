@@ -1,0 +1,57 @@
+﻿#detail-grid-container {
+    font-size: 1.2em;
+    width: 95%;
+    display: grid;
+    grid-gap: 1em;
+    grid-template-areas: "id date" "level exception" "thread stackTrace" "message machineName" "logger logger";
+    background: #ebebea;
+}
+.detail-items{
+    background: #ffffff;
+    padding: 1em;
+}
+.detail-items h3 {
+        color: rgba(193, 193, 193, 0.93);
+        padding-bottom: 0.3em;
+        border-bottom: 0.1em solid rgba(236, 236, 236, 0.93);
+        
+}
+.line {
+    border-right: 0.1em solid rgba(236, 236, 236, 0.93);
+}
+#id-container {
+    grid-area: id;
+    /*border-top: 0.5em solid #509bba;*/
+}
+#Date-container {
+    grid-area: date;
+    /*border-top: 0.5em solid #ffd800;*/
+}
+#Level-container {
+    grid-area: level;
+    /*border-top: 0.5em solid #d19142;*/
+}
+#Exception-container {
+    grid-area: exception;
+    /*border-top: 0.5em solid #e75353;*/
+}
+#Thread-container {
+    grid-area: thread;
+    /*border-top: 0.5em solid #ad587c;*/
+}
+#StackTrace-container {
+    grid-area: stackTrace;
+    /*border-top: 0.5em solid #3e3e3e;*/
+}
+#Message-container {
+    grid-area: message;
+    /*border-top: 0.5em solid #8cb151;*/
+}
+#MachineName-container {
+    grid-area: machineName;
+    /*border-top: 0.5em solid #ba6950;*/
+}
+#Logger-container {
+    grid-area: logger;
+    /*border-top: 0.5em solid #5052ba;*/
+}

@@ -74,10 +74,7 @@ namespace NectimaLogging.Services
         }
 
 
-
-
-
-
+  
         public bool ContainsLetters(string input)
         {
             if (input.Any(Char.IsLetter) && input.Any(Char.IsDigit) || input.Any(Char.IsDigit))
@@ -108,6 +105,8 @@ namespace NectimaLogging.Services
             result.Trim(digits);
             return result;
         }
+
+       
     }
 
 

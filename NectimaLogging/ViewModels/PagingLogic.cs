@@ -41,7 +41,7 @@ namespace NectimaLogging.ViewModels
             var b = new PagingInfo();
             if (_isNext)
             {
-                _pageCounter += _addP;
+                //_pageCounter += _addP;
                 ++_next;
 
                 return (new LogListViewModel
@@ -64,7 +64,7 @@ namespace NectimaLogging.ViewModels
             }
             else if (_isPrevious)
             {
-                _pageCounter -= _addP;
+                //_pageCounter -= _addP;
                 if (_previous <= 2)
                     _previous = 2;
                 _previous--;
