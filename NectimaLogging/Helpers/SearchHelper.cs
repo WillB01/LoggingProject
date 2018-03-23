@@ -19,12 +19,22 @@ namespace NectimaLogging.Helpers
         private string _error = "error";
         private string _filteredLogs = "filteredLogs";
         private string _singleSearch = "singleSearch";
-
+       
         public SearchHelper(string input, IMyServices myServices, ILogEntryRepository logEntryRepository)
         {
             _myServices = myServices;
             _logEntryRepository = logEntryRepository;
             _input = input;
+        }
+
+        public LogEntry ReturnLog()
+        {
+            return _returnOneLog;
+        }
+
+        public IEnumerable<LogEntry> ReturnSeveralLogs()
+        {
+            return _returnSeveralLogs;
         }
 
         public string SeachHelper()
@@ -37,6 +47,7 @@ namespace NectimaLogging.Helpers
             }
 
             _input = _myServices.RemoveWhiteSpace(_input);
+
             if (_myServices.RemoveUnWantedChars(_input))
             {
                 return _error;
@@ -72,14 +83,5 @@ namespace NectimaLogging.Helpers
             return _error;
         }
 
-        public LogEntry ReturnLog()
-        {
-            return _returnOneLog;
-        }
-
-        public IEnumerable<LogEntry> ReturnSeveralLogs()
-        {
-            return _returnSeveralLogs;
-        }
     }
 }

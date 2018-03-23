@@ -86,56 +86,9 @@ namespace NectimaLogging.Controllers
             {
                 return View(searchHelper.ReturnLog());
             }
-
-
-            //_parsedId = _myServices.ParseInputToInt(prefix);
-
-            //if (prefix == null)
-            //{
-            //    return RedirectToAction("Index", "Error");
-            //}
-
-            //prefix = _myServices.RemoveWhiteSpace(prefix);
-            //if (_myServices.RemoveUnWantedChars(prefix))
-            //{
-            //    return RedirectToAction("Index", "Error");
-            //}
-            //if ((_parsedId <= int.MaxValue && _parsedId != 0 && !_logEntryRepository.IsBiggerThenMaxId(_parsedId)))
-            //{
-            //    if (_myServices.IsNumber(prefix))
-            //    {
-            //        var getlogsById = _logEntryRepository.GetLogbyId(
-            //        int.Parse(prefix));
-
-            //        if (getlogsById == null)
-            //        {
-            //            return RedirectToAction("Index", "Error");
-            //        }
-            //        return View(getlogsById);
-            //    }
-            //}
-
-            //if (_myServices.IsLetters(prefix))
-            //{
-            //    prefix = _myServices.FirstCharToUpper(prefix);
-
-            //    return View("FilteredLogs", _logEntryRepository.GetLogByLevel(prefix));
-            //}
-            //if (_myServices.IsNumberAndLetters(prefix))
-            //{
-            //    return RedirectToAction("Index", "Error");
-            //}
+     
             return RedirectToAction("Index", "Error");
 
-            //prefix = _myServices.FirstCharToUpper(prefix);
-            //if (_myServices.ContainsLetters(prefix))
-            //{
-            //    return View("FilteredLogs", _logEntryRepository.GetLogByLevel(prefix));
-
-            //}
-
-            //return View(_logEntryRepository.GetLogbyId(
-            //    int.Parse(_logEntryRepository.IsSearchSingleOrNot(prefix))));
         }
 
         public IActionResult FilteredLogs()
