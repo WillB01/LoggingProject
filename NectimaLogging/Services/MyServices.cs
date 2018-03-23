@@ -8,9 +8,8 @@ namespace NectimaLogging.Services
 {
     public class MyServices : IMyServices
     {
-
-        public string SearchInput { get; set; }
-
+        private int _number;
+        private bool _result;
         public string FirstCharToUpper(string input)
         {
             if (String.IsNullOrEmpty(input))
@@ -63,18 +62,15 @@ namespace NectimaLogging.Services
 
         public int ParseInputToInt(string num)
         {
-            int number;
-            bool result = int.TryParse(num, out number);
-            if (result)
-            {   if (number <= 0)
+            _result = int.TryParse(num, out _number);
+            if (_result)
+            {   if (_number <= 0)
                     return 0;
-                return number;
+                return _number;
             }
             return 0;
         }
 
-
-  
         public bool ContainsLetters(string input)
         {
             if (input.Any(Char.IsLetter) && input.Any(Char.IsDigit) || input.Any(Char.IsDigit))
@@ -83,30 +79,6 @@ namespace NectimaLogging.Services
             }
             return true;
         }
-
-        public string AddWhiteSpace(string input)
-        {
-            var correctedValue = Regex.Replace(
-            input,
-                 "(?<=[0-9])(?=[A-Za-z])|(?<=[A-Za-z])(?=[0-9])",
-                    " ");
-            return correctedValue;
-        }
-
-        public string CheckIfLastCharIsDigit(string input)
-        {
-            if(!input.Any(Char.IsLetter))
-            {
-                return input;
-            }
-            var digits = new[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-            
-            var result = input.TrimEnd(digits);
-            result.Trim(digits);
-            return result;
-        }
-
-       
     }
 
 
@@ -114,11 +86,7 @@ namespace NectimaLogging.Services
     public interface IMyServices
     {
         string FirstCharToUpper(string input);
-        bool ContainsLetters(string input);
-        string SearchInput { get; set; }
-        string AddWhiteSpace(string input);
-        string CheckIfLastCharIsDigit(string input);
-
+        bool ContainsLetters(string input);      
         bool IsNumber(string input);
         bool IsLetters(string input);
         bool IsNumberAndLetters(string input);

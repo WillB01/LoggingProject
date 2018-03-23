@@ -10,9 +10,11 @@
         margin-top: 0.5em;
         margin-bottom: 0.5em;
 }
+.all-log-container td {
+     color: #9b9b9b;     
+}
 
 #log-container {
-    
     height: 80vh;
     margin: 0 auto;
     width: 100%; 
@@ -40,6 +42,9 @@
 }
 #select-log-detail button {
     color: #ebebea;
+}
+#select-log-detail button:hover {
+    color: #ff6a00;
 }
 
 

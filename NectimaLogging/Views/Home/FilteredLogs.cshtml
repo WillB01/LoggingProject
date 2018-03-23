@@ -27,6 +27,12 @@
                     <tr>
                         <td>
                             @log.Id
+                            <form id="select-log-detail" asp-controller="Details" asp-action="Index"
+                                  method="post" role="form">
+                                <button type="submit" name="id" value="@log.Id">
+                                    details
+                                </button>
+                            </form>
                         </td>
                         <td>
                             @log.Date
