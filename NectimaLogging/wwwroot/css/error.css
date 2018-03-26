@@ -16,11 +16,11 @@
     color: white;
 }
 
-    #error-container .fa-exclamation-triangle {
+#error-container .fa-exclamation-triangle {
         font-size: 150px;
         grid-area: error-icon;
         color: #ffffff;
-    }
+}
 
 #error-questions {
     grid-area: error-questions;
