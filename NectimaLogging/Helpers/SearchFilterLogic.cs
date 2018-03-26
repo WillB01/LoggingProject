@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NectimaLogging.Helpers
 {
-    public class AdvSearchHelper
+    public class SearchFilterLogic
     {
         private ILogEntryRepository _logEntryRepository;
         private IMyServices _myServices;
@@ -21,7 +21,7 @@ namespace NectimaLogging.Helpers
         private string _searchBarInput;
 
 
-        public AdvSearchHelper(ILogEntryRepository logEntryRepository, IMyServices myServices, Level levelInput, string id, string dateInput, string thread, string message, string searchBarInput)
+        public SearchFilterLogic(ILogEntryRepository logEntryRepository, IMyServices myServices, Level levelInput, string id, string dateInput, string thread, string message, string searchBarInput)
         {
             _logEntryRepository = logEntryRepository;
             _myServices = myServices;

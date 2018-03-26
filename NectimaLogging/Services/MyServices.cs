@@ -54,11 +54,20 @@ namespace NectimaLogging.Services
         }
         public bool RemoveUnWantedChars(string input)
         {
-            if(!Regex.IsMatch(input, @"^[\w'""&:;-]+$"))
+            try
+            {
+                if (!Regex.IsMatch(input, @"^[\w'""&:;-]+$"))
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            catch (Exception e)
             {
                 return true;
             }
-            return false;
+           
            
         }
 
