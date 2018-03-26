@@ -59,7 +59,6 @@ namespace NectimaLogging.Helpers
                 {
                     _id = _searchBarInput;
                 }
-
                 
                 _parsedId = _myServices.ParseInputToInt(_id);
 

@@ -32,7 +32,6 @@ namespace NectimaLogging.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-
             return View();
         }
    
@@ -40,7 +39,6 @@ namespace NectimaLogging.Controllers
 
         public IActionResult Search()
         {
-
             return View();
         }
 
