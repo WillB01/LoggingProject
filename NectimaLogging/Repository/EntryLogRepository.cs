@@ -115,12 +115,14 @@ namespace NectimaLogging.Repository
 
 
 
-        public LogEntry GetLogbyId(int id)
+      
+
+        public IEnumerable<LogEntry> GetLogbyId(int id)
         {
             var test = GetAllLogs.Where(x =>
             (x.Id != id) ? x.Id.Equals(id) : true);
 
-            var b = test.FirstOrDefault(x => (x.Id == 0) ? x.Id.Equals(id) : true);
+            var b = test.Where(x => (x.Id == 0) ? x.Id.Equals(id) : true);
 
             return b ;
         }
@@ -135,6 +137,22 @@ namespace NectimaLogging.Repository
             return false;
         }
 
-       
+        public bool IsIdOkey(int id)
+        {
+
+            if (IsBiggerThenMaxId(id))
+            {
+                return false;
+            }
+            else if ((id <= int.MaxValue && id != 0 && !IsBiggerThenMaxId(id)))
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+
+
     }
 }

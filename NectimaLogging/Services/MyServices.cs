@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NectimaLogging.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -10,6 +11,7 @@ namespace NectimaLogging.Services
     {
         private int _number;
         private bool _result;
+        
         public string FirstCharToUpper(string input)
         {
             if (String.IsNullOrEmpty(input))
@@ -80,9 +82,9 @@ namespace NectimaLogging.Services
             return true;
         }
 
-       
+      
 
-       
+
     }
 
 
@@ -97,5 +99,6 @@ namespace NectimaLogging.Services
         string RemoveWhiteSpace(string input);
         bool RemoveUnWantedChars(string input);
         int ParseInputToInt(string num);
+       
     }
 }

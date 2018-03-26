@@ -11,7 +11,6 @@ namespace NectimaLogging.Helpers
     {
         private IMyServices _myServices;
         private ILogEntryRepository _logEntryRepository;
-        private LogEntry _returnOneLog;
         private IEnumerable<LogEntry> _returnSeveralLogs;
 
         private string _input;
@@ -27,11 +26,7 @@ namespace NectimaLogging.Helpers
             _input = input;
         }
 
-        public LogEntry ReturnLog()
-        {
-            return _returnOneLog;
-        }
-
+   
         public IEnumerable<LogEntry> ReturnSeveralLogs()
         {
             return _returnSeveralLogs;
@@ -63,7 +58,7 @@ namespace NectimaLogging.Helpers
                     {
                         return _error;
                     }
-                    _returnOneLog = (getlogsById);
+                    _returnSeveralLogs = (getlogsById);
                     return _id;
                 }
             }

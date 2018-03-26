@@ -29,11 +29,16 @@ namespace NectimaLogging.Models
         IEnumerable<LogEntry> GetLogByDate(string inputDate);
         IEnumerable<LogEntry> GetLogByLevel(string level);
         IEnumerable<LogEntry> AdvancedSearchFilter(Level levelInput, string dateInput, string thread, string message);
-        LogEntry GetLogbyId(int id);
 
         string[] WordFilter(string s);
         bool IsBiggerThenMaxId(int id);
-       
+
+        bool IsIdOkey(int id);
+
+
+        IEnumerable<LogEntry> GetLogbyId(int id);
+
+
     }
 
     

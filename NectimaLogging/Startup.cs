@@ -39,6 +39,7 @@ namespace NectimaLogging
             services.AddTransient<IMyServices, MyServices>();
             
 
+
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("MyContext")));
            
