@@ -1,8 +1,11 @@
 ﻿.all-log-container {
     background: #fff;
     border-top: 0.3em solid #808080;
-    text-align:center;
+    text-align: center;
     height: 1000px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: 0.3em solid  rgba(40, 48, 72, 0.12);
+    padding: 1em;
 }
 .all-log-container p {
         color: #ebebea;
@@ -12,6 +15,10 @@
 }
 .all-log-container td {
      color: #9b9b9b;     
+}
+
+tbody tr:hover {
+    background: rgba(248, 248, 248, 0.80);
 }
 
 #log-container {
@@ -40,12 +47,14 @@
 .table{
     background: white;
 }
+
 #select-log-detail button {
     color: #ebebea;
 }
 #select-log-detail button:hover {
     color: #ff6a00;
 }
+
 
 
 /* width */

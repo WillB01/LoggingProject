@@ -11,13 +11,13 @@
     <div id="advanced-search-container">
 
 
-        <input id="id" type="text" name="id" placeholder="id" />
+        <input id="id" type="text" name="id" placeholder="id" autocomplete="off"/>
 
-        <input type="text" name="thread" id="thread" placeholder="thread">
+        <input type="text" name="thread" id="thread" placeholder="thread" autocomplete="off">
 
         <input type="text" name="dateInput" id="datepicker" placeholder="YYYY/MM/DD">
 
-        <input type="text" name="message" id="message" placeholder="message key word">
+        <input type="text" name="message" id="message" placeholder="message key word" autocomplete="off">
 
         <select asp-for="Level" id="level" name="levelInput" asp-items="Html.GetEnumSelectList<Level>()">
             <option selected="selected" class="select-dropdown" value="">Level</option>
