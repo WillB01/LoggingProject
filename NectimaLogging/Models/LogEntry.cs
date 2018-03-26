@@ -26,25 +26,14 @@ namespace NectimaLogging.Models
     public interface ILogEntryRepository
     {
         IEnumerable<LogEntry> GetAllLogs { get; }
+        IEnumerable<LogEntry> GetLogByDate(string inputDate);
+        IEnumerable<LogEntry> GetLogByLevel(string level);
+        IEnumerable<LogEntry> AdvancedSearchFilter(Level levelInput, string dateInput, string thread, string message);
+        LogEntry GetLogbyId(int id);
 
         string[] WordFilter(string s);
-        LogEntry GetLogbyId(int id);
-        IEnumerable<LogEntry> GetLogByDate(string inputDate);
-        IEnumerable<LogEntry> GetLogByLevelAndDate(string inputDate, Level level);
-        IEnumerable<LogEntry> GetLogByLevel(string level);
-
-        IEnumerable<LogEntry> GetLogsByThread(string thread);
-        IEnumerable<LogEntry> GetLogsByLevelByEnum(Level level);
-        string IsSearchSingleOrNot(string prefix);
         bool IsBiggerThenMaxId(int id);
-        IEnumerable<AutoSearchRepository> AutoSearchRepositories(string input, int dropdownAmountofItems);
-
-        //IEnumerable<object> AmoutOfLogs(int amount, IEnumerable<object> logs);
-
-        IEnumerable<LogEntry> AdvancedSearchFilter(Level levelInput, string dateInput, string thread, string message);
-
-        bool TestingCheckId(int id);
-
+       
     }
 
     

@@ -6,62 +6,6 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-
-<script type="text/javascript">
-
-
-    $(document).ready(function () {
-
-        $("#tags").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    maxShowItems: 5,
-                    url: "/Home/Search",
-                    type: "POST",
-                    dataType: "json",
-                    data: { prefix: request.term },
-                    success: function (data) {
-                        response($.map(data, function (item) {
-                            console.log(item);
-                            return { label: item.value, value: item.value };
-                        }))
-
-                    }
-                })
-            }
-        });
-    })
-</script>
-
-
-@*<form asp-action="Search" role="form"
-          method="post">
-        <input id="tags" asp-for="Level" type="text" name="Prefix" class="form-control" />
-
-
-        <input type="submit" class="auto" asp-controller="Home" asp-action="SearchResult" value="Find loginformation" />
-    </form>*@
-
-@*<div class="input-group">
-        <div id="search-form">
-            <form asp-action="Search" role="form" class="search-bar-container"
-                  method="post">
-                <span class="test">
-                    <input id="tags" type="text" name="prefix" placeholder="search logs" />
-
-                    <button class="search-btn" type="submit" asp-controller="Home" asp-action="SearchResult">
-                        <i class="fas fa-search"></i>
-                    </button>
-
-                </span>
-
-            </form>
-        </div>
-    </div>*@
-
-@*<button id="advanced-btn">Advanced Search</button>*@
-
-
 <form asp-action="AdvancedSearch" role="form">
 
     <div id="advanced-search-container">

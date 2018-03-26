@@ -17,8 +17,8 @@ namespace NectimaLogging.Helpers
         private string _input;
         private int _parsedId;
         private string _error = "error";
-        private string _filteredLogs = "filteredLogs";
-        private string _singleSearch = "singleSearch";
+        private string _level = "level";
+        private string _id = "id";
        
         public SearchHelper(string input, IMyServices myServices, ILogEntryRepository logEntryRepository)
         {
@@ -64,7 +64,7 @@ namespace NectimaLogging.Helpers
                         return _error;
                     }
                     _returnOneLog = (getlogsById);
-                    return _singleSearch;
+                    return _id;
                 }
             }
 
@@ -73,7 +73,7 @@ namespace NectimaLogging.Helpers
                 _input = _myServices.FirstCharToUpper(_input);
 
                 _returnSeveralLogs = _logEntryRepository.GetLogByLevel(_input);
-                return _filteredLogs;
+                return _level;
                 
             }
             if (_myServices.IsNumberAndLetters(_input))

@@ -37,52 +37,29 @@ namespace NectimaLogging.Controllers
 
             return View();
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Logs(int id)
-        {
-            if (ModelState.IsValid)
-            {
-                return View(_logEntryRepository.GetLogbyId(id));
-
-            }
-            return View("Index");
-        }
-
+   
         [HttpGet]
         public IActionResult Search()
         {
 
-
             return View();
-
         }
-
-
-        //[HttpPost]
-
-        //public JsonResult Search(string prefix)
-        //{
-        //    prefix = _myServices.FirstCharToUpper(prefix);
-
-        //    return Json(_logEntryRepository.AutoSearchRepositories(prefix, 20));
-
-        //}
 
         [HttpPost]
         public IActionResult SearchResult(string prefix)
         {
+          
+          
             var searchHelper = new SearchHelper(prefix, _myServices, _logEntryRepository);
             if(searchHelper.SeachHelper() == "error")
             {
                 return RedirectToAction("Index", "Error");
             }
-            else if(searchHelper.SeachHelper() == "filteredLogs")
+            else if(searchHelper.SeachHelper() == "level")
             {
                 return View("FilteredLogs", searchHelper.ReturnSeveralLogs());
             }
-            else if(searchHelper.SeachHelper() == "singleSearch")
+            else if(searchHelper.SeachHelper() == "id")
             {
                 return View(searchHelper.ReturnLog());
             }
@@ -106,6 +83,7 @@ namespace NectimaLogging.Controllers
             {
                 return RedirectToAction(nameof(ResultAllLogs), _logEntryRepository.GetAllLogs);
             }
+
             _parsedId = _myServices.ParseInputToInt(id);
  
             if (_logEntryRepository.IsBiggerThenMaxId(_parsedId))
