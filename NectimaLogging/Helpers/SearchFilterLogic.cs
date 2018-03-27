@@ -56,120 +56,40 @@ namespace NectimaLogging.Helpers
 
             _parsedId = _myServices.ParseInputToInt(_id);
 
+          
+            if(_filteredLogs == null)
+                _filteredLogs = _logEntryRepository.IsBiggerThenMaxId(_parsedId) || _parsedId == 0 ||
+                _logEntryRepository.GetLogbyId(_parsedId) == null ? _filteredLogs : _filteredLogs = _logEntryRepository.GetLogbyId(_parsedId);
 
             if (_filteredLogs == null)
-            {
-                var test =
-                _logEntryRepository.IsBiggerThenMaxId(_parsedId) ||
-                _parsedId == 0 && _id != null && _dateInput == null ||
-                _logEntryRepository.GetLogbyId(_parsedId) == null ? false : true;
+                _filteredLogs = _myServices.IsNumber(_searchBarInput) || !_myServices.IsLetters(_searchBarInput) ? null : _logEntryRepository.GetLogByLevel(_myServices.FirstCharToUpper(_searchBarInput));
 
-                if (test)
-                {
-                    _filteredLogs = _logEntryRepository.GetLogbyId(_parsedId);
-                    return true;
-                }
-                    
-
-                test =              
-                    _myServices.IsNumber(_searchBarInput)
-                    ? false : _myServices.IsLetters(_searchBarInput);
-
-                if (test)
-                    _filteredLogs = _logEntryRepository.GetLogByLevel(_myServices.FirstCharToUpper(_searchBarInput));
-                else
-                {
-                    return false;
-                }
-            }
-
-
-
-            //var test = _logEntryRepository.IsBiggerThenMaxId(_parsedId) || _parsedId == 0 && _id != null && _dateInput == null || _logEntryRepository.GetLogbyId(_parsedId) == null
-            //        && _filteredLogs != null ? true : _myServices.RemoveUnWantedChars(_searchBarInput) || _myServices.IsNumberAndLetters(_searchBarInput) || _myServices.IsLetters(_myServices.FirstCharToUpper(_searchBarInput));
-
-
-
-            //test = _myServices.RemoveUnWantedChars(_searchBarInput) || _myServices.IsNumberAndLetters(_searchBarInput) ? false : _myServices.IsLetters(_myServices.FirstCharToUpper(_searchBarInput));
-
-
-
-
-
-            //if (test)
+            //if (_filteredLogs == null)
             //{
-            //    if (_myServices.RemoveUnWantedChars(_searchBarInput))
+            //    var test = 
+            //        _logEntryRepository.IsBiggerThenMaxId(_parsedId) ||
+            //        _parsedId == 0 ||
+            //        _logEntryRepository.GetLogbyId(_parsedId) == null ? false : true;
+
+            //    if (test)
             //    {
-            //        return false;
-            //    }
-
-
-
-            //    if (_myServices.IsLetters(_searchBarInput))
-            //    {
-            //        _searchBarInput = _myServices.FirstCharToUpper(_searchBarInput);
-
-            //        _filteredLogs = _logEntryRepository.GetLogByLevel(_searchBarInput);
+            //        _filteredLogs = _logEntryRepository.GetLogbyId(_parsedId);
             //        return true;
-
             //    }
-            //    if (_myServices.IsNumberAndLetters(_searchBarInput))
+
+
+            //    test =
+            //        _myServices.IsNumber(_searchBarInput)
+            //        ? false : _myServices.IsLetters(_searchBarInput);
+
+            //    if (test)
+            //        _filteredLogs = _logEntryRepository.GetLogByLevel(_myServices.FirstCharToUpper(_searchBarInput));
+            //    else
             //    {
             //        return false;
             //    }
-            //    return true;
             //}
-
-
-
-            //if (_logEntryRepository.IsBiggerThenMaxId(_parsedId) ||
-            //   _parsedId == 0 && _id != null && _dateInput == null || _logEntryRepository.GetLogbyId(_parsedId) == null)
-            //{
-            //        if (_myServices.RemoveUnWantedChars(_searchBarInput))
-            //        {
-            //            return false;
-            //        }
-
-
-
-
-
-
-            //        if (_myServices.IsLetters(_searchBarInput))
-            //            {
-            //                _searchBarInput = _myServices.FirstCharToUpper(_searchBarInput);
-
-            //                _filteredLogs = _logEntryRepository.GetLogByLevel(_searchBarInput);
-            //                return true;
-
-            //            }
-            //            if (_myServices.IsNumberAndLetters(_searchBarInput))
-            //            {
-            //                return false;
-            //            }
-            //            return false;
-            //}
-
-
-
-
-            //if (_logEntryRepository.IsIdOkey(_parsedId) && !string.IsNullOrWhiteSpace(_id))
-            //    {
-
-            //        if (_myServices.IsNumber(_id))
-            //        {
-
-            //            _filteredLogs = _logEntryRepository.GetLogbyId(_parsedId);
-            //            return true;
-            //        }
-
-            //        else
-            //        {
-            //            _filteredLogs = _logEntryRepository.GetLogByDate(_dateInput)
-            //                .Where(x => x.Id == _parsedId);
-            //            return true;
-            //        }
-            //    }         
+       
             return true;
         }
 
