@@ -47,7 +47,8 @@ namespace NectimaLogging.Controllers
             return View();
         }
 
-        [HttpPost]
+        
+        [HttpGet]
         [Route("search-results")]
         public IActionResult AdvancedSearchResult(Level levelInput, string id, string dateInput, string thread, string message, string prefix) //ID AND DATE TOGETHER NEEDS TODO
         {
@@ -62,7 +63,7 @@ namespace NectimaLogging.Controllers
                 return RedirectToAction("Search");
             }
 
-            return View("FilteredLogs", _logEntryRepository.AdvancedSearchFilter(levelInput, dateInput, thread, message));
+            return RedirectToAction("FilteredLogs", _logEntryRepository.AdvancedSearchFilter(levelInput, dateInput, thread, message));
         }
 
         [Route("all-logs")]
@@ -86,6 +87,7 @@ namespace NectimaLogging.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult ResultAllLogs(int next, int previous, bool isNext, bool isPrevious, int addP)
         {
             var paging = new PagingLogic(next, previous, isNext, isPrevious, addP, PageSize, _logEntryRepository);

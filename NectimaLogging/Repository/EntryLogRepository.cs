@@ -36,14 +36,11 @@ namespace NectimaLogging.Repository
         {
            
             var test = GetAllLogs.Where(x =>
-            (!string.IsNullOrWhiteSpace(thread) ? x.Thread.Equals(thread) : true) 
-            && 
+            (!string.IsNullOrWhiteSpace(thread) ? x.Thread.Equals(thread) : true) && 
             (!string.IsNullOrWhiteSpace(dateInput) ? x.Date.Split(" ")
             .First()
-            .Substring(0).Equals(dateInput) : true)
-            &&
-            (levelInput != 0 ? x.Level.Equals(GetLevelBySting(levelInput)) : true)
-            &&
+            .Substring(0).Equals(dateInput) : true) &&
+            (levelInput != 0 ? x.Level.Equals(GetLevelBySting(levelInput)) : true) &&
             (!string.IsNullOrWhiteSpace(message) ? x.Message.ToLower().Contains(message.ToLower()) : true));
         
             return test;
