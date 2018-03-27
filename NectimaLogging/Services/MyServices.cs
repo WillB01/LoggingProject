@@ -52,7 +52,7 @@ namespace NectimaLogging.Services
             var result = Regex.Replace(input, @"\s+", "");
             return result;
         }
-        public bool RemoveUnWantedChars(string input)
+        public bool ContainsUnWantedChars(string input)
         {
             try
             {
@@ -106,7 +106,7 @@ namespace NectimaLogging.Services
         bool IsLetters(string input);
         bool IsNumberAndLetters(string input);
         string RemoveWhiteSpace(string input);
-        bool RemoveUnWantedChars(string input);
+        bool ContainsUnWantedChars(string input);
         int ParseInputToInt(string num);
        
     }

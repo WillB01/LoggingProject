@@ -50,7 +50,7 @@ namespace NectimaLogging.Controllers
         
         [HttpGet]
         [Route("search-results")]
-        public IActionResult AdvancedSearchResult(Level levelInput, string id, string dateInput, string thread, string message, string prefix) //ID AND DATE TOGETHER NEEDS TODO
+        public IActionResult AdvancedSearchResult(Level levelInput, string id, string dateInput, string thread, string message, string prefix)
         {
 
             var search = new SearchFilterLogic(_logEntryRepository, _myServices, levelInput, id, dateInput, thread, message,prefix);

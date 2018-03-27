@@ -41,55 +41,29 @@ namespace NectimaLogging.Helpers
         public bool SearchFilter()
         {
 
-            if (_levelInput == Level.Empty &&
+            _filteredLogs = _levelInput == Level.Empty &&
                string.IsNullOrWhiteSpace(_id) && string.IsNullOrWhiteSpace(_dateInput) &&
                string.IsNullOrWhiteSpace(_thread) && string.IsNullOrWhiteSpace(_message) &&
-               string.IsNullOrWhiteSpace(_searchBarInput) && string.IsNullOrWhiteSpace(_id))
-            {
-                _filteredLogs = _logEntryRepository.GetAllLogs;
-                return true;
-            }
+               string.IsNullOrWhiteSpace(_searchBarInput) && string.IsNullOrWhiteSpace(_id) ? _logEntryRepository.GetAllLogs : null;
 
             _id = !string.IsNullOrWhiteSpace(_searchBarInput) ? _searchBarInput : _id;
 
-            _filteredLogs = string.IsNullOrWhiteSpace(_id) ? _logEntryRepository.AdvancedSearchFilter(_levelInput, _dateInput, _thread, _message) : null;
+            if (_filteredLogs == null)
+                _filteredLogs = string.IsNullOrWhiteSpace(_id) ? _logEntryRepository.AdvancedSearchFilter(_levelInput, _dateInput, _thread, _message) : null;
 
             _parsedId = _myServices.ParseInputToInt(_id);
-
           
             if(_filteredLogs == null)
                 _filteredLogs = _logEntryRepository.IsBiggerThenMaxId(_parsedId) || _parsedId == 0 ||
                 _logEntryRepository.GetLogbyId(_parsedId) == null ? _filteredLogs : _filteredLogs = _logEntryRepository.GetLogbyId(_parsedId);
 
             if (_filteredLogs == null)
-                _filteredLogs = _myServices.IsNumber(_searchBarInput) || !_myServices.IsLetters(_searchBarInput) ? null : _logEntryRepository.GetLogByLevel(_myServices.FirstCharToUpper(_searchBarInput));
+                _filteredLogs = _myServices.IsNumber(_searchBarInput) || !_myServices.IsLetters(_searchBarInput) 
+                    ? null : _logEntryRepository.GetLogByLevel(_myServices.FirstCharToUpper(_searchBarInput));
 
-            //if (_filteredLogs == null)
-            //{
-            //    var test = 
-            //        _logEntryRepository.IsBiggerThenMaxId(_parsedId) ||
-            //        _parsedId == 0 ||
-            //        _logEntryRepository.GetLogbyId(_parsedId) == null ? false : true;
+            if (_filteredLogs == null)
+                return false;
 
-            //    if (test)
-            //    {
-            //        _filteredLogs = _logEntryRepository.GetLogbyId(_parsedId);
-            //        return true;
-            //    }
-
-
-            //    test =
-            //        _myServices.IsNumber(_searchBarInput)
-            //        ? false : _myServices.IsLetters(_searchBarInput);
-
-            //    if (test)
-            //        _filteredLogs = _logEntryRepository.GetLogByLevel(_myServices.FirstCharToUpper(_searchBarInput));
-            //    else
-            //    {
-            //        return false;
-            //    }
-            //}
-       
             return true;
         }
 
