@@ -56,7 +56,7 @@ namespace NectimaLogging.Services
         {
             try
             {
-                if (!Regex.IsMatch(input, @"^[\w'""&:;-]+$"))
+                if (Regex.IsMatch(input, @"^[\w'""&:;-]+$"))
                 {
                     return true;
                 }
