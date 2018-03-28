@@ -9,6 +9,8 @@
     <script src="~/vendor/bootstrap/dist/js/bootstrap.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+
     <link href="~/css/validation.css" rel="stylesheet" />
 
     @RenderSection("details", false)
@@ -17,6 +19,7 @@
     <link href="~/css/advsearch.css" rel="stylesheet" />
     <link href="~/css/error.css" rel="stylesheet" />
     <link href="~/css/table.css" rel="stylesheet" />
+    <link href="~/css/dashboard.css" rel="stylesheet" />
 
     <title>@ViewBag.Title</title>
 </head>
@@ -25,6 +28,7 @@
         <ul class="nav nav-justified">
             <li><a asp-action="Search" asp-controller="Home">Search</a></li>
             <li><a asp-action="ResultAllLogs" asp-controller="Home">Logs</a></li>
+            <li><a asp-action="Index" asp-controller="Dashboard">Dashboard</a></li>
             <li><vc:logs></vc:logs></li>
         </ul>
 
@@ -34,6 +38,7 @@
             @RenderBody()
         </div>
     </div>
+    <script src="~/js/dashboard.js"></script>
     <script src="~/js/inputValidation.js"></script>
     <script src="~/js/script.js"></script>
 </body>

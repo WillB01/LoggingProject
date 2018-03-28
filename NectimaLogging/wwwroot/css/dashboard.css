@@ -1,0 +1,14 @@
+﻿#dashboard-grid-container {
+    font-size: 1.2em;
+    width: 95%;
+    display: grid;
+    margin-top: 2em;
+    grid-auto-columns: 1fr;
+    padding: 1em;
+    grid-template-areas: "line-chart none"; 
+   
+}
+
+#line-container {
+    grid-area: line-chart;
+}

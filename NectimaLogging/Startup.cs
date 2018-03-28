@@ -22,6 +22,7 @@ using Microsoft.Extensions.FileProviders;
 using System.IO;
 using NectimaLogging.Services;
 using ReflectionIT.Mvc.Paging;
+using NectimaLogging.Interface;
 
 namespace NectimaLogging
 {
@@ -37,7 +38,7 @@ namespace NectimaLogging
         {
             services.AddTransient<ILogEntryRepository, EntryLogRepository>();
             services.AddTransient<IMyServices, MyServices>();
-            
+            services.AddTransient<IChartService, ChartService>();
 
 
             services.AddDbContext<AppDbContext>(options =>
