@@ -102,17 +102,12 @@ namespace NectimaLogging.Repository
                 {
                     theLevel = item;
                 }
-
             }
 
             var log = GetAllLogs.Where(x => x.Level == theLevel);
 
             return log;
         }
-
-
-
-      
 
         public IEnumerable<LogEntry> GetLogbyId(int id)
         {

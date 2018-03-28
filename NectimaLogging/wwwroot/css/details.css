@@ -2,11 +2,10 @@
     font-size: 1.2em;
     width: 95%;
     display: grid;
-    grid-gap: 1em;
     margin-top: 2em;
     grid-auto-columns: 1fr;
     padding: 1em;
-    grid-template-areas: "back-btn none ""id date" "level exception" "thread stackTrace" "message machineName" "logger logger";
+    grid-template-areas: "back-btn none" "detail-heading detail-heading""id date" "level exception" "thread stackTrace" "message machineName" "logger logger";
     background: #ebebea;
 }
 
@@ -17,6 +16,7 @@
     padding: 1em;
     word-break: break-word;
     border-top: 0.4em solid rgba(236, 236, 236, 0.93);
+    text-align: center;
 }
 
 .detail-items h3 {
@@ -25,10 +25,10 @@
     border-bottom: 0.1em solid rgba(236, 236, 236, 0.93);
 }
 
-.detail-items p {
-    color: rgba(177, 177, 177, 0.93);
-   
-}
+    .detail-items p {
+        color: rgba(177, 177, 177, 0.93);
+        text-align: center;
+    }
 
 .line {
     border-right: 0.1em solid rgba(236, 236, 236, 0.93);
@@ -51,47 +51,48 @@
         color: #ff6a00;
     }
 
+#detail-heading {
+    grid-area: detail-heading;
+    text-align: center;
+    margin-bottom: 1em;
+    background: white;
+    color: rgba(177, 177, 177, 0.93);
+}
+
 #id-container {
     grid-area: id;
-    border-color: #FF7A73;
 }
 
 #Date-container {
     grid-area: date;
-    border-color: #97C7A6;
+    
 }
 
 #Level-container {
     grid-area: level;
-    border-color: #3D677D;
+    
 }
 
 #Exception-container {
     grid-area: exception;
-    border-color: #FF9273;
 }
 
 #Thread-container {
     grid-area: thread;
-    border-color: #FFD432;
 }
 
 #StackTrace-container {
     grid-area: stackTrace;
-    border-color: #FF5A4A;
 }
 
 #Message-container {
     grid-area: message;
-    border-color: #FF5A4A;
 }
 
 #MachineName-container {
     grid-area: machineName;
-    border-color: #FF5A4A;
 }
 
 #Logger-container {
     grid-area: logger;
-    border-color: #FF7A73;
 }

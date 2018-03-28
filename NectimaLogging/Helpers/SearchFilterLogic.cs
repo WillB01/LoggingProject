@@ -47,11 +47,11 @@ namespace NectimaLogging.Helpers
                string.IsNullOrWhiteSpace(_searchBarInput) && string.IsNullOrWhiteSpace(_id) ? _logEntryRepository.GetAllLogs : null;
 
             _id = !string.IsNullOrWhiteSpace(_searchBarInput) ? _searchBarInput : _id;
+            _parsedId = _myServices.ParseInputToInt(_id);
 
             if (_filteredLogs == null)
                 _filteredLogs = string.IsNullOrWhiteSpace(_id) ? _logEntryRepository.AdvancedSearchFilter(_levelInput, _dateInput, _thread, _message) : null;
 
-            _parsedId = _myServices.ParseInputToInt(_id);
           
             if(_filteredLogs == null)
                 _filteredLogs = _logEntryRepository.IsBiggerThenMaxId(_parsedId) || _parsedId == 0 ||
