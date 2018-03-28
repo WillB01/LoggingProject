@@ -20,6 +20,8 @@ namespace NectimaLogging.Helpers
         private string _message;
         private string _searchBarInput;
 
+        private int _amountExcetions;
+
 
         public SearchFilterLogic(ILogEntryRepository logEntryRepository, IMyServices myServices, Level levelInput, string id, string dateInput, string thread, string message, string searchBarInput)
         {
@@ -31,6 +33,12 @@ namespace NectimaLogging.Helpers
             _thread = thread;
             _message = message;
             _searchBarInput = searchBarInput;
+        }
+
+        public SearchFilterLogic(string dateInput, int amountExcetions)
+        {
+            _dateInput = dateInput;
+            _amountExcetions = amountExcetions;
         }
 
         public IEnumerable<LogEntry> FilteredLogs()
@@ -66,6 +74,11 @@ namespace NectimaLogging.Helpers
 
             return true;
         }
+
+        
+      
+
+        
 
 
     }

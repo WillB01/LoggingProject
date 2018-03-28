@@ -10,14 +10,16 @@
         <canvas id="line-chart" width="400" height="400"></canvas>
     </div>
 </div>
+    
 
 <script>
+    
     new Chart(document.getElementById("line-chart"), {
         type: 'line',
         data: {
-            labels: [0, 10, 20, @ViewData["excetionsTotal"] ],
+            labels: ['@ViewData["Monday"]', '@ViewData["Today"]'],
             datasets: [{
-                data: [0, 10, 20,@ViewData["excetionsTotal"]],
+                data: [@ViewData["excetionsTotalMonday"], @ViewData["test"]],
                 label: "Exceptions",
                 borderColor: "#3e95cd",
                 fill: false
@@ -27,7 +29,7 @@
         options: {
             title: {
                 display: true,
-                text: 'World population per region (in millions)'
+                text: 'Amount of Exceptions'
             }
         }
     });

@@ -39,6 +39,7 @@ namespace NectimaLogging
             services.AddTransient<ILogEntryRepository, EntryLogRepository>();
             services.AddTransient<IMyServices, MyServices>();
             services.AddTransient<IChartService, ChartService>();
+            services.AddTransient<IWeek, ExceptionAndDateChart>();
 
 
             services.AddDbContext<AppDbContext>(options =>

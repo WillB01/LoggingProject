@@ -8,6 +8,7 @@ namespace NectimaLogging.Interface
 {
     public interface IChartService
     {
-        int AmountOfExceptions(); 
+        int AmountOfExceptions();
+        IEnumerable<LogEntry> ExcetionsPerDay();
     }
 }
