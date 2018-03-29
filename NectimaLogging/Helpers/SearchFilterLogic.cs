@@ -56,7 +56,7 @@ namespace NectimaLogging.Helpers
 
             _id = !string.IsNullOrWhiteSpace(_searchBarInput) ? _searchBarInput : _id;
             _parsedId = _myServices.ParseInputToInt(_id);
-
+           
             if (_filteredLogs == null)
                 _filteredLogs = string.IsNullOrWhiteSpace(_id) ? _logEntryRepository.AdvancedSearchFilter(_levelInput, _dateInput, _thread, _message) : null;
 
@@ -65,7 +65,7 @@ namespace NectimaLogging.Helpers
                 _filteredLogs = _logEntryRepository.IsBiggerThenMaxId(_parsedId) || _parsedId == 0 ||
                 _logEntryRepository.GetLogbyId(_parsedId) == null ? _filteredLogs : _filteredLogs = _logEntryRepository.GetLogbyId(_parsedId);
 
-            if (_filteredLogs == null)
+            if (_filteredLogs == null && !string.IsNullOrWhiteSpace(_searchBarInput))
                 _filteredLogs = _myServices.IsNumber(_searchBarInput) || !_myServices.IsLetters(_searchBarInput) 
                     ? null : _logEntryRepository.GetLogByLevel(_myServices.FirstCharToUpper(_searchBarInput));
 

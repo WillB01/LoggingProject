@@ -3,11 +3,13 @@
         ViewData["Title"] = "Index";
     }
 
-    <h2>Index</h2>
-
     <div id="dashboard-grid-container">
         <div id="line-container">
             <canvas id="line-chart" width="400" height="400"></canvas>
+            <form method="post" asp-action="Index" role="form">
+                
+                <input type="submit" name="prevWeek" value="prev" />
+            </form>
         </div>
     </div>
 
