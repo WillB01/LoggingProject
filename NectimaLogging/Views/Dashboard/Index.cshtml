@@ -1,25 +1,29 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
-}
+﻿@model List<NectimaLogging.Repository.DateAndExcetionsRepository>
+    @{
+        ViewData["Title"] = "Index";
+    }
 
-<h2>Index</h2>
+    <h2>Index</h2>
 
-<div id="dashboard-grid-container">
-    <div id="line-container">
-        <canvas id="line-chart" width="400" height="400"></canvas>
+    <div id="dashboard-grid-container">
+        <div id="line-container">
+            <canvas id="line-chart" width="400" height="400"></canvas>
+        </div>
     </div>
-</div>
-    
 
-<script>
-    
+
+    <script>
+        var oneWeekAgoString = @Model.ElementAt(6).Date
+        var oneWeekAgoExceptions = @Model.ElementAt(6).AmountOfExceptions
+
     new Chart(document.getElementById("line-chart"), {
         type: 'line',
         data: {
-            labels: ['@ViewData["Monday"]', '@ViewData["Today"]'],
+            labels: ['@Model.ElementAt(0).Date', '@Model.ElementAt(1).Date', '@Model.ElementAt(2).Date', '@Model.ElementAt(3).Date', '@Model.ElementAt(4).Date',
+                '@Model.ElementAt(5).Date', '@Model.ElementAt(6).Date', '@Model.ElementAt(7).Date'],
             datasets: [{
-                data: [@ViewData["excetionsTotalMonday"], @ViewData["test"]],
+                data: [@Model.ElementAt(0).AmountOfExceptions, @Model.ElementAt(1).AmountOfExceptions, @Model.ElementAt(2).AmountOfExceptions, @Model.ElementAt(3).AmountOfExceptions,
+                    @Model.ElementAt(4).AmountOfExceptions, @Model.ElementAt(5).AmountOfExceptions, @Model.ElementAt(6).AmountOfExceptions, @Model.ElementAt(7).AmountOfExceptions],
                 label: "Exceptions",
                 borderColor: "#3e95cd",
                 fill: false
@@ -33,4 +37,4 @@
             }
         }
     });
-</script>
+    </script>
