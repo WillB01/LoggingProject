@@ -26,7 +26,7 @@ namespace NectimaLogging.Controllers
 
         public List<string> Days { get; set; }
 
-        public int PrevWeek { get; set; }
+        public int PrevWeek { get; set; } = 0;
 
 
 

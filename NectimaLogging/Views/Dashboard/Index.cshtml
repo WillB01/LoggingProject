@@ -1,4 +1,4 @@
-﻿@model List<NectimaLogging.Repository.DateAndExcetionsRepository>
+﻿@model NectimaLogging.Services.Chart.ExceptionChartStart
     @{
         ViewData["Title"] = "Index";
     }
@@ -7,25 +7,52 @@
         <div id="line-container">
             <canvas id="line-chart" width="400" height="400"></canvas>
             <form method="post" asp-action="Index" role="form">
-                
-                <input type="submit" name="prevWeek" value="prev" />
+
+                <input id="week" type="submit" value="prev" />
+                <input name="isPrev" type="hidden" value="true" checked />
+                <input id="prev-week" name="prevWeek"  type="hidden"value="@Model.MyCounter" />
+              
+              
+
             </form>
+            <form method="post" asp-action="Index" role="form">
+
+                <input type="submit" name="prevWeek" value="next" />
+                <input name="isPrev" type="hidden" value="false" checked />
+
+            </form>
+
+
         </div>
     </div>
-
+    <div id="test">0</div>
 
     <script>
-        var oneWeekAgoString = @Model.ElementAt(6).Date
-        var oneWeekAgoExceptions = @Model.ElementAt(6).AmountOfExceptions
+        //var counter = 0;
+        //document.getElementById('week').addEventListener('click', function (e) {
+        //    counter += 7;
+           
+        //    window.onload = function () {
+        //        document.getElementById('prev-week').value = "hej";
+        //        e.preventDefault();
+
+        //    };
+           
+           
+           
+           
+        //});
+       
 
     new Chart(document.getElementById("line-chart"), {
         type: 'line',
         data: {
-            labels: ['@Model.ElementAt(0).Date', '@Model.ElementAt(1).Date', '@Model.ElementAt(2).Date', '@Model.ElementAt(3).Date', '@Model.ElementAt(4).Date',
-                '@Model.ElementAt(5).Date', '@Model.ElementAt(6).Date', '@Model.ElementAt(7).Date'],
+            labels: ['@Model.Start().ElementAt(0).Date', '@Model.Start().ElementAt(1).Date', '@Model.Start().ElementAt(2).Date', '@Model.Start().ElementAt(3).Date',
+                    '@Model.Start().ElementAt(4).Date','@Model.Start().ElementAt(5).Date','@Model.Start().ElementAt(6).Date','@Model.Start().ElementAt(7).Date',],
             datasets: [{
-                data: [@Model.ElementAt(0).AmountOfExceptions, @Model.ElementAt(1).AmountOfExceptions, @Model.ElementAt(2).AmountOfExceptions, @Model.ElementAt(3).AmountOfExceptions,
-                    @Model.ElementAt(4).AmountOfExceptions, @Model.ElementAt(5).AmountOfExceptions, @Model.ElementAt(6).AmountOfExceptions, @Model.ElementAt(7).AmountOfExceptions],
+                data: ['@Model.Start().ElementAt(0).AmountOfExceptions','@Model.Start().ElementAt(1).AmountOfExceptions','@Model.Start().ElementAt(2).AmountOfExceptions',
+                        '@Model.Start().ElementAt(3).AmountOfExceptions','@Model.Start().ElementAt(4).AmountOfExceptions','@Model.Start().ElementAt(5).AmountOfExceptions',
+                   '@Model.Start().ElementAt(6).AmountOfExceptions','@Model.Start().ElementAt(7).AmountOfExceptions',],
                 label: "Exceptions",
                 borderColor: "#3e95cd",
                 fill: false
