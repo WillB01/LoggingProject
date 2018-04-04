@@ -17,15 +17,16 @@
             </form>
             <form method="post" asp-action="Index" role="form">
 
-                <input type="submit" name="prevWeek" value="next" />
-                <input name="isPrev" type="hidden" value="false" checked />
+                <input type="submit" value="next" />
+                <input name="isNext" type="hidden" value="true" checked />
+                <input id="prev-week" name="prevWeek" type="hidden" value="@Model.MyCounter" />
 
             </form>
 
 
         </div>
     </div>
-    <div id="test">0</div>
+   
 
     <script>
         //var counter = 0;

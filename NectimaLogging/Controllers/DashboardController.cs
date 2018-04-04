@@ -29,22 +29,19 @@ namespace NectimaLogging.Controllers
 
         public IActionResult Index()
         {
-            var start = new ExceptionChartStart(_chartService, _week, 0, false);
-                start.Start();
+            var start = new ExceptionChartStart(_chartService, _week, 0, false, false);
+          
 
             return View(start);
                       
          
         }
         [HttpPost]
-        public IActionResult Index(bool isPrev, int prevWeek)
+        public IActionResult Index(bool isPrev, bool isNext, int prevWeek)
         {
 
-
-            //var start = new ExceptionChartStart(_chartService, _week, 0, isPrev);
+            var start = new ExceptionChartStart(_chartService, _week, prevWeek, isPrev, isNext);
            
-            var start = new ExceptionChartStart(_chartService, _week, prevWeek, isPrev);
-            start.Start();
 
             return View(start);
 
