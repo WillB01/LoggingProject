@@ -26,6 +26,15 @@ namespace NectimaLogging.Services.Chart
         public DateTime Two { get; set; }
         public DateTime Yesterday { get; set; }
         public DateTime Today { get; set; }
+        //public string SevenString { get; set; }
+        //public string SixString { get; set; }
+        //public string FiveString { get; set; }
+        //public string FourString { get; set; }
+        //public string ThreeString { get; set; }
+        //public string TwoString { get; set; }
+        //public string YesterdayString { get; set; }
+        //public string TodayString { get; set; }
+
 
 
         public ExceptionChartStart(IChartService chartService, IWeek week, int prevWeek, bool isPrev, bool isNext)
@@ -36,17 +45,20 @@ namespace NectimaLogging.Services.Chart
             _isPrev = isPrev;
             _isNext = isNext;
 
+        }
+
+        public void Run()
+        {
             WeekEntry();
-            Start();
-
-
-
+            CheckIfPrevOrNext();
+            DateTimeToString();
+            Create();
         }
 
         public void WeekEntry()
         {
           
-            Seven = _week.SevenDaysFromToday = DateTime.Now.AddDays(-7);
+            _week.SevenDaysFromToday = DateTime.Now.AddDays(-7);
             Six = _week.SixDaysFromToday = DateTime.Now.AddDays(-6);
             Five = _week.SixDaysFromToday = DateTime.Now.AddDays(-5);
             Four = _week.FourDaysFromToday = DateTime.Now.AddDays(-4);
@@ -54,38 +66,37 @@ namespace NectimaLogging.Services.Chart
             Two = _week.TwoDaysFromToday = DateTime.Now.AddDays(-2);
             Yesterday = _week.Yesterday = DateTime.Now.AddDays(-1);
             Today = _week.Today = DateTime.Now;
+        }
 
+        public void CheckIfPrevOrNext()
+        {
             if (_isPrev)
             {
-                Seven = Seven.AddDays(_prevWeek);
-                Six = Six.AddDays(_prevWeek);
-                Five = Five.AddDays(_prevWeek);
-                Four = Four.AddDays(_prevWeek);
-                Three = Three.AddDays(_prevWeek);
-                Two = Two.AddDays(_prevWeek);
-                Yesterday = Yesterday.AddDays(_prevWeek);
-                Today = Today.AddDays(_prevWeek);
-
                 _prevWeek -= 7;
-                MyCounter = _prevWeek;
+                MyCounter = _prevWeek;      
             }
             if (_isNext)
             {
-                Seven = Seven.AddDays(_prevWeek);
-                Six = Six.AddDays(_prevWeek);
-                Five = Five.AddDays(_prevWeek);
-                Four = Four.AddDays(_prevWeek);
-                Three = Three.AddDays(_prevWeek);
-                Two = Two.AddDays(_prevWeek);
-                Yesterday = Yesterday.AddDays(_prevWeek);
-                Today = Today.AddDays(_prevWeek);
-
                 _prevWeek += 7;
                 MyCounter = _prevWeek;
             }
 
+            _week.SevenDaysFromToday = _week.SevenDaysFromToday.AddDays(_prevWeek);
+            Six = Six.AddDays(_prevWeek);
+            Five = Five.AddDays(_prevWeek);
+            Four = Four.AddDays(_prevWeek);
+            Three = Three.AddDays(_prevWeek);
+            Two = Two.AddDays(_prevWeek);
+            Yesterday = Yesterday.AddDays(_prevWeek);
+            Today = Today.AddDays(_prevWeek);
 
-            _week.SevenDaysFromTodayString = Seven.RemoveTime();
+        }
+
+
+
+        public void DateTimeToString()
+        {
+            _week.SevenDaysFromTodayString = _week.SevenDaysFromToday.RemoveTime();
             _week.SixDaysFromTodayString = Six.RemoveTime();
             _week.FiveDaysFromTodayString = Five.RemoveTime();
             _week.FourDaysFromTodayString = Four.RemoveTime();
@@ -93,10 +104,9 @@ namespace NectimaLogging.Services.Chart
             _week.TwoDaysFromTodayString = Two.RemoveTime();
             _week.YesterdayString = Yesterday.RemoveTime();
             _week.TodayString = Today.RemoveTime();
-
         }
 
-        public List<DateAndExcetionsRepository> Start()
+        public List<DateAndExcetionsRepository> Create()
         {
 
 

@@ -48,12 +48,12 @@
     new Chart(document.getElementById("line-chart"), {
         type: 'line',
         data: {
-            labels: ['@Model.Start().ElementAt(0).Date', '@Model.Start().ElementAt(1).Date', '@Model.Start().ElementAt(2).Date', '@Model.Start().ElementAt(3).Date',
-                    '@Model.Start().ElementAt(4).Date','@Model.Start().ElementAt(5).Date','@Model.Start().ElementAt(6).Date','@Model.Start().ElementAt(7).Date',],
+            labels: ['@Model.Create().ElementAt(0).Date', '@Model.Create().ElementAt(1).Date', '@Model.Create().ElementAt(2).Date', '@Model.Create().ElementAt(3).Date',
+                    '@Model.Create().ElementAt(4).Date','@Model.Create().ElementAt(5).Date','@Model.Create().ElementAt(6).Date','@Model.Create().ElementAt(7).Date',],
             datasets: [{
-                data: ['@Model.Start().ElementAt(0).AmountOfExceptions','@Model.Start().ElementAt(1).AmountOfExceptions','@Model.Start().ElementAt(2).AmountOfExceptions',
-                        '@Model.Start().ElementAt(3).AmountOfExceptions','@Model.Start().ElementAt(4).AmountOfExceptions','@Model.Start().ElementAt(5).AmountOfExceptions',
-                   '@Model.Start().ElementAt(6).AmountOfExceptions','@Model.Start().ElementAt(7).AmountOfExceptions',],
+                data: ['@Model.Create().ElementAt(0).AmountOfExceptions','@Model.Create().ElementAt(1).AmountOfExceptions','@Model.Create().ElementAt(2).AmountOfExceptions',
+                        '@Model.Create().ElementAt(3).AmountOfExceptions','@Model.Create().ElementAt(4).AmountOfExceptions','@Model.Create().ElementAt(5).AmountOfExceptions',
+                   '@Model.Create().ElementAt(6).AmountOfExceptions','@Model.Create().ElementAt(7).AmountOfExceptions',],
                 label: "Exceptions",
                 borderColor: "#3e95cd",
                 fill: false

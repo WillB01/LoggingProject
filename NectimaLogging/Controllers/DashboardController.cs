@@ -30,7 +30,7 @@ namespace NectimaLogging.Controllers
         public IActionResult Index()
         {
             var start = new ExceptionChartStart(_chartService, _week, 0, false, false);
-          
+            start.Run();
 
             return View(start);
                       
@@ -41,7 +41,7 @@ namespace NectimaLogging.Controllers
         {
 
             var start = new ExceptionChartStart(_chartService, _week, prevWeek, isPrev, isNext);
-           
+            start.Run();
 
             return View(start);
 
