@@ -18,24 +18,6 @@ namespace NectimaLogging.Services.Chart
         private bool _isPrev;
         private bool _isNext;
         public int MyCounter { get; set; }
-        public DateTime Seven { get; set; }
-        public DateTime Six { get; set; }
-        public DateTime Five { get; set; }
-        public DateTime Four { get; set; }
-        public DateTime Three { get; set; }
-        public DateTime Two { get; set; }
-        public DateTime Yesterday { get; set; }
-        public DateTime Today { get; set; }
-        //public string SevenString { get; set; }
-        //public string SixString { get; set; }
-        //public string FiveString { get; set; }
-        //public string FourString { get; set; }
-        //public string ThreeString { get; set; }
-        //public string TwoString { get; set; }
-        //public string YesterdayString { get; set; }
-        //public string TodayString { get; set; }
-
-
 
         public ExceptionChartStart(IChartService chartService, IWeek week, int prevWeek, bool isPrev, bool isNext)
         {
@@ -59,13 +41,13 @@ namespace NectimaLogging.Services.Chart
         {
           
             _week.SevenDaysFromToday = DateTime.Now.AddDays(-7);
-            Six = _week.SixDaysFromToday = DateTime.Now.AddDays(-6);
-            Five = _week.SixDaysFromToday = DateTime.Now.AddDays(-5);
-            Four = _week.FourDaysFromToday = DateTime.Now.AddDays(-4);
-            Three = _week.ThreeDaysFromToday = DateTime.Now.AddDays(-3);
-            Two = _week.TwoDaysFromToday = DateTime.Now.AddDays(-2);
-            Yesterday = _week.Yesterday = DateTime.Now.AddDays(-1);
-            Today = _week.Today = DateTime.Now;
+            _week.SixDaysFromToday = DateTime.Now.AddDays(-6);
+            _week.FiveDaysFromToday = DateTime.Now.AddDays(-5);
+            _week.FourDaysFromToday = DateTime.Now.AddDays(-4);
+            _week.ThreeDaysFromToday = DateTime.Now.AddDays(-3);
+            _week.TwoDaysFromToday = DateTime.Now.AddDays(-2);
+            _week.Yesterday = DateTime.Now.AddDays(-1);
+            _week.Today = DateTime.Now;
         }
 
         public void CheckIfPrevOrNext()
@@ -82,28 +64,26 @@ namespace NectimaLogging.Services.Chart
             }
 
             _week.SevenDaysFromToday = _week.SevenDaysFromToday.AddDays(_prevWeek);
-            Six = Six.AddDays(_prevWeek);
-            Five = Five.AddDays(_prevWeek);
-            Four = Four.AddDays(_prevWeek);
-            Three = Three.AddDays(_prevWeek);
-            Two = Two.AddDays(_prevWeek);
-            Yesterday = Yesterday.AddDays(_prevWeek);
-            Today = Today.AddDays(_prevWeek);
+            _week.SixDaysFromToday = _week.SixDaysFromToday.AddDays(_prevWeek);
+            _week.FiveDaysFromToday = _week.FiveDaysFromToday.AddDays(_prevWeek);
+            _week.FourDaysFromToday = _week.FourDaysFromToday.AddDays(_prevWeek);
+            _week.ThreeDaysFromToday = _week.ThreeDaysFromToday.AddDays(_prevWeek);
+            _week.TwoDaysFromToday = _week.TwoDaysFromToday.AddDays(_prevWeek);
+            _week.Yesterday = _week.Yesterday.AddDays(_prevWeek);
+            _week.Today = _week.Today.AddDays(_prevWeek);
 
         }
-
-
 
         public void DateTimeToString()
         {
             _week.SevenDaysFromTodayString = _week.SevenDaysFromToday.RemoveTime();
-            _week.SixDaysFromTodayString = Six.RemoveTime();
-            _week.FiveDaysFromTodayString = Five.RemoveTime();
-            _week.FourDaysFromTodayString = Four.RemoveTime();
-            _week.ThreeDaysFromTodayString = Three.RemoveTime();
-            _week.TwoDaysFromTodayString = Two.RemoveTime();
-            _week.YesterdayString = Yesterday.RemoveTime();
-            _week.TodayString = Today.RemoveTime();
+            _week.SixDaysFromTodayString = _week.SixDaysFromToday.RemoveTime();
+            _week.FiveDaysFromTodayString = _week.FiveDaysFromToday.RemoveTime();
+            _week.FourDaysFromTodayString = _week.FourDaysFromToday.RemoveTime();
+            _week.ThreeDaysFromTodayString = _week.ThreeDaysFromToday.RemoveTime();
+            _week.TwoDaysFromTodayString = _week.TwoDaysFromToday.RemoveTime();
+            _week.YesterdayString = _week.Yesterday.RemoveTime();
+            _week.TodayString = _week.Today.RemoveTime();
         }
 
         public List<DateAndExcetionsRepository> Create()

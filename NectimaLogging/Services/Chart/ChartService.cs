@@ -25,8 +25,7 @@ namespace NectimaLogging.Services
         public int AmountOfExceptions()
         {
            _test = _logEntryRepository.GetAllLogs.Where(x => x.Date != null && x.Exception != "");
-            //_test = _logEntryRepository.GetLogByDate("2018-03-13");
-
+      
             return _test.Count(p => p.Exception != "");          
         }
 
@@ -37,16 +36,35 @@ namespace NectimaLogging.Services
             return _test;  
         }
 
-        //public IEnumerable<LogEntry> GetThem()
-        //{
-            
-            
-            
-            
-        //}
+      
 
-        
-       
+        public int DebugLevelCounter()
+        {
+            return _logEntryRepository.GetAllLogs.Where(x => x.Level == "Info").Count();
+        }
+
+        public int ErrorLevelCounter()
+        {
+            return _logEntryRepository.GetAllLogs.Where(x => x.Level == "Error").Count();
+        }
+        public int FatalLevelCounter()
+        {
+            return _logEntryRepository.GetAllLogs.Where(x => x.Level == "Fatal").Count();
+        }
+        public int InfoLevelCounter()
+        {
+            return _logEntryRepository.GetAllLogs.Where(x => x.Level == "Info").Count();
+        }
+        public int OffLevelCounter()
+        {
+            return _logEntryRepository.GetAllLogs.Where(x => x.Level == "Off").Count();
+        }
+        public int WarnLevelCounter()
+        {
+            return _logEntryRepository.GetAllLogs.Where(x => x.Level == "Warn").Count();
+        }
+
+
 
     }
 

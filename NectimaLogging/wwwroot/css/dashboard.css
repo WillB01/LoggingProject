@@ -5,10 +5,13 @@
     margin-top: 2em;
     grid-auto-columns: 1fr;
     padding: 1em;
-    grid-template-areas: "line-chart none"; 
-   
+    grid-template-areas: "line-chart doughnut-chart";
 }
 
 #line-container {
     grid-area: line-chart;
+}
+
+#doughnut-container {
+    grid-area: doughnut-chart;
 }

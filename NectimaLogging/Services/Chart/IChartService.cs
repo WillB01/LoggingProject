@@ -10,5 +10,12 @@ namespace NectimaLogging.Interface
     {
         int AmountOfExceptions();
         IEnumerable<LogEntry> ExcetionsPerDay();
+        int DebugLevelCounter();
+        int ErrorLevelCounter();
+        int FatalLevelCounter();
+        int InfoLevelCounter();
+        int OffLevelCounter();
+        int WarnLevelCounter();
+
     }
 }

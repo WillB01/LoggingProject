@@ -3,46 +3,67 @@
         ViewData["Title"] = "Index";
     }
 
-    <div id="dashboard-grid-container">
-        <div id="line-container">
-            <canvas id="line-chart" width="400" height="400"></canvas>
-            <form method="post" asp-action="Index" role="form">
+<div id="dashboard-grid-container">
+    <div id="line-container">
+        <canvas id="line-chart" width="400" height="400"></canvas>
+        <form method="post" asp-action="Index" role="form">
 
-                <input id="week" type="submit" value="prev" />
-                <input name="isPrev" type="hidden" value="true" checked />
-                <input id="prev-week" name="prevWeek"  type="hidden"value="@Model.MyCounter" />
-              
-              
-
-            </form>
-            <form method="post" asp-action="Index" role="form">
-
-                <input type="submit" value="next" />
-                <input name="isNext" type="hidden" value="true" checked />
-                <input id="prev-week" name="prevWeek" type="hidden" value="@Model.MyCounter" />
-
-            </form>
+            <input id="week" type="submit" value="prev" />
+            <input name="isPrev" type="hidden" value="true" checked />
+            <input id="prev-week" name="prevWeek" type="hidden" value="@Model.MyCounter" />
 
 
-        </div>
+
+        </form>
+        <form method="post" asp-action="Index" role="form">
+
+            <input type="submit" value="next" />
+            <input name="isNext" type="hidden" value="true" checked />
+            <input id="prev-week" name="prevWeek" type="hidden" value="@Model.MyCounter" />
+
+        </form>
+
+
     </div>
-   
+    <div id="doughnut-container">
+        <canvas id="doughnut-chart" width="400" height="400"></canvas>
+    </div>
+</div>
+    
+    
 
     <script>
-        //var counter = 0;
-        //document.getElementById('week').addEventListener('click', function (e) {
-        //    counter += 7;
-           
-        //    window.onload = function () {
-        //        document.getElementById('prev-week').value = "hej";
-        //        e.preventDefault();
+        var oilCanvas = document.getElementById("doughnut-chart");
 
-        //    };
-           
-           
-           
-           
-        //});
+  
+
+        var oilData = {
+            labels: [
+                "Debug",
+                "Error",
+                "Fatal",
+                "Info",
+                "Off",
+                "Warn"
+            ],
+            datasets: [
+                {
+                    data: ['@ViewData["Debug"]', '@ViewData["Error"]', '@ViewData["Fatal"]',
+                        '@ViewData["Info"]', '@ViewData["Off"]','@ViewData["Warn"]'],
+                    backgroundColor: [
+                        "#F3525C",
+                        "#00674C",
+                        "#95B23A",
+                        "#FCCE44",
+                        "#F57F4F"
+                    ]
+                }]
+        };
+
+        var pieChart = new Chart(oilCanvas, {
+            type: 'doughnut',
+            data: oilData
+        });
        
 
     new Chart(document.getElementById("line-chart"), {

@@ -32,6 +32,13 @@ namespace NectimaLogging.Controllers
             var start = new ExceptionChartStart(_chartService, _week, 0, false, false);
             start.Run();
 
+            ViewData["Debug"] = _chartService.DebugLevelCounter();
+            ViewData["Error"] = _chartService.ErrorLevelCounter();
+            ViewData["Fatal"] = _chartService.FatalLevelCounter();
+            ViewData["Info"] = _chartService.InfoLevelCounter();
+            ViewData["Off"] = _chartService.OffLevelCounter();
+            ViewData["Warn"] = _chartService.WarnLevelCounter();
+
             return View(start);
                       
          
@@ -47,6 +54,10 @@ namespace NectimaLogging.Controllers
 
 
         }
+
+
+
+        
     }
 
 
