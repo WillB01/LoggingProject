@@ -1,17 +1,48 @@
-﻿#dashboard-grid-container {
+﻿input[type=submit] {
+    padding: 0.5em;
+    background: #f4f3f3;
+    border: 0 none;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 0.7em;
+}
+
+#dashboard-grid-container {
     font-size: 1.2em;
-    width: 95%;
+
     display: grid;
     margin-top: 2em;
     grid-auto-columns: 1fr;
     padding: 1em;
     grid-template-areas: "line-chart doughnut-chart";
+    background: #f4f3f3;
+   
 }
 
 #line-container {
     grid-area: line-chart;
+    border: #ffffff solid 0.5em;
+    padding: 1em;
+   
 }
 
 #doughnut-container {
     grid-area: doughnut-chart;
+    border: #ffffff solid 0.5em;
+    padding: 1em;
+}
+
+
+
+#prev-btn {
+    grid-area: prev;
+}
+
+#next-btn {
+    grid-area: next;
+}
+
+#line-chart {
+    grid-area: line;
 }

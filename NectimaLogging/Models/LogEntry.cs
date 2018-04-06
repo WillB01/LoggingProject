@@ -37,8 +37,6 @@ namespace NectimaLogging.Models
 
 
         IEnumerable<LogEntry> GetLogbyId(int id);
-
-
     }
 
     

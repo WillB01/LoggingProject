@@ -147,5 +147,37 @@ namespace NectimaLogging.Services.Chart
 
             return dateAndExcetionsRepository;
         }
+
+
+
+
+        public List<ThreadNameAndThreadCount> ThreadCounter()
+        {
+            return _chartService.ThreadCounter();
+        }
+
+        public string[] ThreadName()
+        {
+            List<string> ta = new List<string>();
+            foreach (var item in _chartService.ThreadCounter())
+            {
+                ta.Add(item.Thread);
+            }
+
+            return ta.ToArray();
+        }
+        public int[] ThreadCount()
+        {
+            List<int> ta = new List<int>();
+            foreach (var item in _chartService.ThreadCounter())
+            {
+                ta.Add(item.Amount);
+            }
+
+            return ta.ToArray();
+        }
     }
 }
+
+   
+

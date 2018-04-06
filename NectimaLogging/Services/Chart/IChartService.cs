@@ -1,4 +1,5 @@
 ﻿using NectimaLogging.Models;
+using NectimaLogging.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,6 @@ namespace NectimaLogging.Interface
         int InfoLevelCounter();
         int OffLevelCounter();
         int WarnLevelCounter();
-
+        List<ThreadNameAndThreadCount> ThreadCounter();
     }
 }

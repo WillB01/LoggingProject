@@ -12,9 +12,9 @@ namespace NectimaLogging.Services
     public class ChartService : IChartService
     {
         private ILogEntryRepository _logEntryRepository;
-        private IWeek _week; 
+        private IWeek _week;
         private IEnumerable<LogEntry> _test;
-        
+
 
         public ChartService(ILogEntryRepository logEntryRepository, IWeek week)
         {
@@ -24,19 +24,19 @@ namespace NectimaLogging.Services
 
         public int AmountOfExceptions()
         {
-           _test = _logEntryRepository.GetAllLogs.Where(x => x.Date != null && x.Exception != "");
-      
-            return _test.Count(p => p.Exception != "");          
+            _test = _logEntryRepository.GetAllLogs.Where(x => x.Date != null && x.Exception != "");
+
+            return _test.Count(p => p.Exception != "");
         }
 
         public IEnumerable<LogEntry> ExcetionsPerDay()
         {
-            
+
             _test = _logEntryRepository.GetAllLogs.Where(x => x.Date != null && x.Exception != "");
-            return _test;  
+            return _test;
         }
 
-      
+
 
         public int DebugLevelCounter()
         {
@@ -64,8 +64,34 @@ namespace NectimaLogging.Services
             return _logEntryRepository.GetAllLogs.Where(x => x.Level == "Warn").Count();
         }
 
+        public List<ThreadNameAndThreadCount> ThreadCounter()
+        {
+            var results = _logEntryRepository.GetAllLogs
+              .OrderByDescending(item => item.Thread)
+            .GroupBy(item => item.Thread)
+            .Select(x => new ThreadNameAndThreadCount() { Thread = x.Key, Amount = x.Count()})
+            .ToList();
+            
+            //foreach (var item in results)
+            //{
+               
+            //    System.Diagnostics.Debug.WriteLine(("{0} {1} {2}",
+            //        item.Thread, item.Amount, "***first"));
+               
+
+            //}
+            
+            return results;
+        }
 
 
+
+    }
+
+    public class ThreadNameAndThreadCount
+    {
+        public string Thread { get; set; }
+        public int Amount { get; set; }
     }
 
     public class ExceptionAndDate

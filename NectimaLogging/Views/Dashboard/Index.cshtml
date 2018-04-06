@@ -1,12 +1,16 @@
 ﻿@model NectimaLogging.Services.Chart.ExceptionChartStart
-    @{
-        ViewData["Title"] = "Index";
-    }
+@{
+    ViewData["Title"] = "Index";
+}
 
 <div id="dashboard-grid-container">
+
+
     <div id="line-container">
-        <canvas id="line-chart" width="400" height="400"></canvas>
-        <form method="post" asp-action="Index" role="form">
+
+        <canvas id="line-chart"></canvas>
+
+        <form id="prev-btn" method="post" asp-action="Index" role="form">
 
             <input id="week" type="submit" value="prev" />
             <input name="isPrev" type="hidden" value="true" checked />
@@ -15,27 +19,55 @@
 
 
         </form>
-        <form method="post" asp-action="Index" role="form">
+        <form id="next-btn" method="post" asp-action="Index" role="form">
 
             <input type="submit" value="next" />
             <input name="isNext" type="hidden" value="true" checked />
             <input id="prev-week" name="prevWeek" type="hidden" value="@Model.MyCounter" />
-
         </form>
-
-
     </div>
+
+
     <div id="doughnut-container">
-        <canvas id="doughnut-chart" width="400" height="400"></canvas>
+        <canvas id="doughnut-chart"></canvas>
     </div>
-</div>
-    
-    
+
+    <div id="bar-container">
+        <canvas id="bar-chart"></canvas>
+    </div>
+
 
     <script>
-        var oilCanvas = document.getElementById("doughnut-chart");
+     
+        var myLabel = @Html.Raw(Json.Serialize(@Model.ThreadName()));
+         var myData = @Html.Raw(Json.Serialize(@Model.ThreadCount()));
+    new Chart(document.getElementById("bar-chart"), {
+        type: 'bar',
+        data: {
+            labels: myLabel,
+            datasets: [
+                {
+                    label: "(df)",
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                    data: myData,
+                }
+            ]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'kewl'
+            }
+        }
+    });
 
-  
+
+
+
+
+
+        var oilCanvas = document.getElementById("doughnut-chart");
 
         var oilData = {
             labels: [
@@ -64,7 +96,7 @@
             type: 'doughnut',
             data: oilData
         });
-       
+
 
     new Chart(document.getElementById("line-chart"), {
         type: 'line',

@@ -29,15 +29,13 @@ namespace NectimaLogging.Controllers
 
         public IActionResult Index()
         {
+
+
+           
             var start = new ExceptionChartStart(_chartService, _week, 0, false, false);
             start.Run();
 
-            ViewData["Debug"] = _chartService.DebugLevelCounter();
-            ViewData["Error"] = _chartService.ErrorLevelCounter();
-            ViewData["Fatal"] = _chartService.FatalLevelCounter();
-            ViewData["Info"] = _chartService.InfoLevelCounter();
-            ViewData["Off"] = _chartService.OffLevelCounter();
-            ViewData["Warn"] = _chartService.WarnLevelCounter();
+            Doughnut();
 
             return View(start);
                       
@@ -46,13 +44,23 @@ namespace NectimaLogging.Controllers
         [HttpPost]
         public IActionResult Index(bool isPrev, bool isNext, int prevWeek)
         {
-
+           
             var start = new ExceptionChartStart(_chartService, _week, prevWeek, isPrev, isNext);
             start.Run();
-
+            Doughnut();
             return View(start);
 
 
+        }
+
+        public void Doughnut()
+        {
+            ViewData["Debug"] = _chartService.DebugLevelCounter();
+            ViewData["Error"] = _chartService.ErrorLevelCounter();
+            ViewData["Fatal"] = _chartService.FatalLevelCounter();
+            ViewData["Info"] = _chartService.InfoLevelCounter();
+            ViewData["Off"] = _chartService.OffLevelCounter();
+            ViewData["Warn"] = _chartService.WarnLevelCounter();
         }
 
 
