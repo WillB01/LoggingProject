@@ -36,20 +36,89 @@
         <canvas id="bar-chart"></canvas>
     </div>
 
+    <div id="bubble-container">
+        <canvas id="bubble-chart"></canvas>
+    </div>
 
-    <script>
-     
-        var myLabel = @Html.Raw(Json.Serialize(@Model.ThreadName()));
-         var myData = @Html.Raw(Json.Serialize(@Model.ThreadCount()));
+
+
+    </div>
+    <script >
+
+        let myLabelLogger = @Html.Raw(Json.Serialize(@Model.LoggerName()));
+        let myDataLogger = @Html.Raw(Json.Serialize(@Model.LoggerCount()));
+
+        new Chart(document.getElementById("bubble-chart"), {
+            type: 'radar',
+            data: {
+                labels: myLabelLogger,
+                datasets: [
+                    {
+                        label: myLabelLogger,
+                        fill: true,
+                        backgroundColor: "rgba(179,181,198,0.2)",
+                        borderColor: "rgba(179,181,198,1)",
+                        pointBorderColor: "#fff",
+                        pointBackgroundColor: "rgba(179,181,198,1)",
+                        data: [8.77, 55.61, 21.69, 6.62, 6.82]
+                    }, {
+                        label: "2050",
+                        fill: true,
+                        backgroundColor: "rgba(255,99,132,0.2)",
+                        borderColor: "rgba(255,99,132,1)",
+                        pointBorderColor: "#fff",
+                        pointBackgroundColor: "rgba(255,99,132,1)",
+                        pointBorderColor: "#fff",
+                        data: [25.48, 54.16, 7.61, 8.06, 4.45]
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'heading'
+                }
+            }
+        });
+
+        let myLabel = @Html.Raw(Json.Serialize(@Model.ThreadName()));
+        let myData = @Html.Raw(Json.Serialize(@Model.ThreadCount()));
+
+        function getRandomColor() {
+            let letters = '0123456789ABCDEF'.split('');
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        };
+
+        function randomrgba() {
+            var o = Math.round, r = Math.random, s = 255;
+            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+        };
+
+        function test() {
+            var k = [];
+            for (var i = 0; i < myData.length; i++) {
+                k.push(getRandomColor());
+            }
+            return k;
+
+        }
+
+
     new Chart(document.getElementById("bar-chart"), {
         type: 'bar',
         data: {
+
             labels: myLabel,
             datasets: [
                 {
-                    label: "(df)",
-                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                    label: "amount",
                     data: myData,
+                    backgroundColor: test(),
+                    
                 }
             ]
         },
@@ -57,19 +126,28 @@
             legend: { display: false },
             title: {
                 display: true,
-                text: 'kewl'
+                text: 'Amount of logs on threads'
+            }, scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Logs"
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: "THREADS"
+                    }
+                }]
             }
         }
     });
 
 
+        var levelCanvas = document.getElementById("doughnut-chart");
 
-
-
-
-        var oilCanvas = document.getElementById("doughnut-chart");
-
-        var oilData = {
+        var levelData = {
             labels: [
                 "Debug",
                 "Error",
@@ -92,9 +170,9 @@
                 }]
         };
 
-        var pieChart = new Chart(oilCanvas, {
+        var pieChart = new Chart(levelCanvas, {
             type: 'doughnut',
-            data: oilData
+            data: levelData
         });
 
 

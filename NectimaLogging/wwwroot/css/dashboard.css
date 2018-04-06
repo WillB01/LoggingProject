@@ -10,14 +10,12 @@
 
 #dashboard-grid-container {
     font-size: 1.2em;
-
     display: grid;
     margin-top: 2em;
     grid-auto-columns: 1fr;
     padding: 1em;
-    grid-template-areas: "line-chart doughnut-chart";
+    grid-template-areas: "line-chart doughnut-chart" "bar-chart bubble-chart";
     background: #f4f3f3;
-   
 }
 
 #line-container {
@@ -29,6 +27,17 @@
 
 #doughnut-container {
     grid-area: doughnut-chart;
+    border: #ffffff solid 0.5em;
+    padding: 1em;
+}
+
+#bar-container {
+    grid-area: bar-chart;
+    border: #ffffff solid 0.5em;
+    padding: 1em;
+}
+#bubble-container {
+    grid-area: bubble-chart;
     border: #ffffff solid 0.5em;
     padding: 1em;
 }
@@ -46,3 +55,4 @@
 #line-chart {
     grid-area: line;
 }
+

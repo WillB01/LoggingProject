@@ -72,20 +72,28 @@ namespace NectimaLogging.Services
             .Select(x => new ThreadNameAndThreadCount() { Thread = x.Key, Amount = x.Count()})
             .ToList();
             
-            //foreach (var item in results)
-            //{
-               
-            //    System.Diagnostics.Debug.WriteLine(("{0} {1} {2}",
-            //        item.Thread, item.Amount, "***first"));
-               
-
-            //}
             
             return results;
         }
 
+        public List<LoggerKindCounter> LoggerKindCounters()
+        {
+            var results = _logEntryRepository.GetAllLogs
+            .OrderByDescending(item => item.Logger)
+          .GroupBy(item => item.Thread)
+          .Select(x => new LoggerKindCounter() { Logger = x.First()  , Amount = x.Count() })
+          .ToList();
 
 
+            return results;
+        }
+
+    }
+
+    public class LoggerKindCounter
+    {
+        public LogEntry Logger { get; set; }
+        public int Amount { get; set; }
     }
 
     public class ThreadNameAndThreadCount

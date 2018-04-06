@@ -18,5 +18,6 @@ namespace NectimaLogging.Interface
         int OffLevelCounter();
         int WarnLevelCounter();
         List<ThreadNameAndThreadCount> ThreadCounter();
+        List<LoggerKindCounter> LoggerKindCounters();
     }
 }

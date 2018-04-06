@@ -1,5 +1,6 @@
 ﻿using NectimaLogging.Controllers;
 using NectimaLogging.Interface;
+using NectimaLogging.Models;
 using NectimaLogging.Repository;
 using NectimaLogging.Services.Chart.ExceptionChart;
 using NectimaLogging.ViewModels;
@@ -161,7 +162,7 @@ namespace NectimaLogging.Services.Chart
             List<string> ta = new List<string>();
             foreach (var item in _chartService.ThreadCounter())
             {
-                ta.Add(item.Thread);
+                ta.Add($"{item.Thread}");
             }
 
             return ta.ToArray();
@@ -170,6 +171,27 @@ namespace NectimaLogging.Services.Chart
         {
             List<int> ta = new List<int>();
             foreach (var item in _chartService.ThreadCounter())
+            {
+                ta.Add(item.Amount);
+            }
+
+            return ta.ToArray();
+        }
+
+        public string[] LoggerName()
+        {
+            List<string> ta = new List<string>();
+            foreach (var item in _chartService.LoggerKindCounters())
+            {
+                ta.Add(item.Logger.Logger);
+            }
+
+            return ta.ToArray();
+        }
+        public int[] LoggerCount()
+        {
+            List<int> ta = new List<int>();
+            foreach (var item in _chartService.LoggerKindCounters())
             {
                 ta.Add(item.Amount);
             }
