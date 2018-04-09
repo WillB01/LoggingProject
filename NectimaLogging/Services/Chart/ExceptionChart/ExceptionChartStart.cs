@@ -14,14 +14,16 @@ namespace NectimaLogging.Services.Chart
     public class ExceptionChartStart
     {
         private IChartService _chartService;
+        private ILogEntryRepository _logEntryRepository;
         private IWeek _week;
         private int _prevWeek;
         private bool _isPrev;
         private bool _isNext;
         public int MyCounter { get; set; }
 
-        public ExceptionChartStart(IChartService chartService, IWeek week, int prevWeek, bool isPrev, bool isNext)
+        public ExceptionChartStart(IChartService chartService, IWeek week, ILogEntryRepository logEntryRepository,  int prevWeek, bool isPrev, bool isNext)
         {
+            _logEntryRepository = logEntryRepository;
             _chartService = chartService;
             _week = week;
             _prevWeek = prevWeek;
@@ -36,6 +38,7 @@ namespace NectimaLogging.Services.Chart
             CheckIfPrevOrNext();
             DateTimeToString();
             Create();
+            ExSum();
         }
 
         public void WeekEntry()
@@ -198,6 +201,98 @@ namespace NectimaLogging.Services.Chart
 
             return ta.ToArray();
         }
+
+
+        //TESTIGN TESTING
+        public List<AverageExceptions> ExSum()
+        {
+            var avList = new List<AverageExceptions>()
+            {
+                new AverageExceptions()
+                {
+                    PerMonth = _logEntryRepository.GetAllLogs.Where(x =>
+                    x.Exception != ""
+                    && x.Date.KeepOnlyMonth() == DateTime.Now.Month.ToString("d2")).Count(),
+
+                    DaysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month),
+
+                    
+
+                },
+                new AverageExceptions()
+                {
+                    PerMonth = 200,
+
+                    DaysInMonth = 28,
+
+
+
+                }
+            };
+
+            //var today = DateTime.Today;
+            //var month = new DateTime(today.Year, today.Month, 1);
+            //var first = month.AddMonths(-1);
+            //var second = month.AddMonths(+1);
+
+
+
+            //System.Diagnostics.Debug.WriteLine(first.ToString());
+
+            //var exPerMonth = _logEntryRepository.GetAllLogs.Where(x => 
+            //    x.Exception != "" 
+            //    && x.Date.KeepOnlyMonth() == DateTime.Now.Month.ToString("d2")).Count();
+
+            //var exLastMonth = _logEntryRepository.GetAllLogs.Where(x =>
+            //   x.Exception != ""
+            //   && x.Date.KeepOnlyMonth() == first.ToString("d2")).Count();
+
+
+
+            //var daysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+            //var lastMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+            //var week = daysInMonth - daysInMonth + 7;
+
+
+            //var averagePerWeek = exLastMonth / daysInMonth;
+
+            return avList;
+
+
+
+
+
+            //foreach (var item in exPerMont)
+            //{
+            //    System.Diagnostics.Debug.WriteLine(item.Date);
+            //}
+
+
+            //int d1 = Create().ElementAt(0).AmountOfExceptions;
+            //int d2 = Create().ElementAt(1).AmountOfExceptions;
+            //int d3 = Create().ElementAt(2).AmountOfExceptions;
+            //int d4 = Create().ElementAt(3).AmountOfExceptions;
+            //int d5 = Create().ElementAt(4).AmountOfExceptions;
+            //int d6 = Create().ElementAt(5).AmountOfExceptions;
+            //int d7 = Create().ElementAt(6).AmountOfExceptions;
+            //int d8 = Create().ElementAt(7).AmountOfExceptions;
+
+            //int sum = (d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8) / 7;
+
+
+
+        }
+    }
+
+    public class AverageExceptions
+    {
+        public int DaysInMonth { get; set; }
+        public int Week { get; set; }
+        public int AverageMonth => PerMonth / DaysInMonth; 
+        public int PerMonth { get; set; }
+
+       
+
     }
 }
 

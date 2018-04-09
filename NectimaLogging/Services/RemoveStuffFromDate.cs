@@ -14,5 +14,12 @@ namespace NectimaLogging.Controllers
             return str.ToString().Split(" ").First().Substring(0);
         }
 
+        public static string KeepOnlyMonth(this string str)
+        {
+            string[] mySplitString = str.Split('-');
+
+            return mySplitString[1];
+        }
+
     }
 }
