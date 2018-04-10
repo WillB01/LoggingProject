@@ -45,15 +45,15 @@
     </div>
     <script >
 
-        let myLabelLogger = @Html.Raw(Json.Serialize(@Model.LoggerName()));
-        let myDataAverage = @Html.Raw(Json.Serialize(@Model.ExSum()));
+        @*let myData1 = @Html.Raw(Json.Serialize(@Model.ExSum().ElementAt(1).AverageMonthPrint));*@
 
+       
       new Chart(document.getElementById("bubble-chart"), {
           type: 'horizontalBar',
         data: {
-            labels: ['kewl','wow'],
+            labels: ['hello','wow'],
             datasets: [{
-                data: ['@Model.ExSum().ElementAt(0).AverageMonth','@Model.ExSum().ElementAt(1).AverageMonth'],
+                data: ['@Model.ExSum().ElementAt(1).AverageMonthPrint'],
                 label: "Exceptions",
                 borderColor: "#3e95cd",
                 fill: false

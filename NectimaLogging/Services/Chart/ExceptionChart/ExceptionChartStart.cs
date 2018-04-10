@@ -21,7 +21,7 @@ namespace NectimaLogging.Services.Chart
         private bool _isNext;
         public int MyCounter { get; set; }
 
-        public ExceptionChartStart(IChartService chartService, IWeek week, ILogEntryRepository logEntryRepository,  int prevWeek, bool isPrev, bool isNext)
+        public ExceptionChartStart(IChartService chartService, IWeek week, ILogEntryRepository logEntryRepository, int prevWeek, bool isPrev, bool isNext)
         {
             _logEntryRepository = logEntryRepository;
             _chartService = chartService;
@@ -43,7 +43,7 @@ namespace NectimaLogging.Services.Chart
 
         public void WeekEntry()
         {
-          
+
             _week.SevenDaysFromToday = DateTime.Now.AddDays(-7);
             _week.SixDaysFromToday = DateTime.Now.AddDays(-6);
             _week.FiveDaysFromToday = DateTime.Now.AddDays(-5);
@@ -59,7 +59,7 @@ namespace NectimaLogging.Services.Chart
             if (_isPrev)
             {
                 _prevWeek -= 7;
-                MyCounter = _prevWeek;      
+                MyCounter = _prevWeek;
             }
             if (_isNext)
             {
@@ -206,27 +206,25 @@ namespace NectimaLogging.Services.Chart
         //TESTIGN TESTING
         public List<AverageExceptions> ExSum()
         {
-            var avList = new List<AverageExceptions>()
+            
+            List<AverageExceptions> avList = new List<AverageExceptions>()
             {
                 new AverageExceptions()
                 {
-                    PerMonth = _logEntryRepository.GetAllLogs.Where(x =>
+                    PerMonth =  _logEntryRepository.GetAllLogs.Where(x =>
                     x.Exception != ""
                     && x.Date.KeepOnlyMonth() == DateTime.Now.Month.ToString("d2")).Count(),
 
-                    DaysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month),
+                    DaysInMonth =   DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month),
 
-                    
+
 
                 },
                 new AverageExceptions()
                 {
-                    PerMonth = 200,
+                    PerMonth = 500,
 
                     DaysInMonth = 28,
-
-
-
                 }
             };
 
@@ -286,15 +284,22 @@ namespace NectimaLogging.Services.Chart
 
     public class AverageExceptions
     {
-        public int DaysInMonth { get; set; }
+        public double DaysInMonth { get; set; }
         public int Week { get; set; }
-        public int AverageMonth => PerMonth / DaysInMonth; 
-        public int PerMonth { get; set; }
+        public double AverageMonth => PerMonth / DaysInMonth;
+        public double PerMonth { get; set; }
+        public string AverageMonthPrint { get; set; }
 
-       
+        public AverageExceptions()
+        {
+            AverageMonthPrint = 200.2.ToString();
+            AverageMonthPrint = AverageMonthPrint.Replace(',', '.');
+        }
+
+
 
     }
 }
 
-   
+
 
