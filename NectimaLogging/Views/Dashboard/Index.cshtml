@@ -51,9 +51,9 @@
       new Chart(document.getElementById("bubble-chart"), {
           type: 'horizontalBar',
         data: {
-            labels: ['hello','wow'],
+            labels: ['one','two'],
             datasets: [{
-                data: ['@Model.ExSum().ElementAt(1).AverageMonthPrint'],
+                data: ['@Model.ExSum().ElementAt(0).GetNewFormatMonth()','@Model.ExSum().ElementAt(1).GetNewFormatMonth()'],
                 label: "Exceptions",
                 borderColor: "#3e95cd",
                 fill: false

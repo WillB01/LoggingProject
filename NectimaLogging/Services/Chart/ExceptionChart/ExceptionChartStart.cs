@@ -206,14 +206,22 @@ namespace NectimaLogging.Services.Chart
         //TESTIGN TESTING
         public List<AverageExceptions> ExSum()
         {
-            
+            var firstMonthLog = _logEntryRepository.GetAllLogs.First(x => x.Id == 1);
+            var firstMonthDate = int.Parse(firstMonthLog.Date.KeepOnlyMonth());
+            string firstMonthDateString = firstMonthDate.ToString();
+
+            if (firstMonthDate < 10)
+                firstMonthDateString = $"0{firstMonthDateString}";
+
+
+
             List<AverageExceptions> avList = new List<AverageExceptions>()
             {
                 new AverageExceptions()
                 {
                     PerMonth =  _logEntryRepository.GetAllLogs.Where(x =>
                     x.Exception != ""
-                    && x.Date.KeepOnlyMonth() == DateTime.Now.Month.ToString("d2")).Count(),
+                    && x.Date.KeepOnlyMonth() == firstMonthDateString).Count(),
 
                     DaysInMonth =   DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month),
 
@@ -222,61 +230,16 @@ namespace NectimaLogging.Services.Chart
                 },
                 new AverageExceptions()
                 {
-                    PerMonth = 500,
+                    PerMonth =  _logEntryRepository.GetAllLogs.Where(x =>
+                    x.Exception != ""
+                    && x.Date.KeepOnlyMonth() == DateTime.Now.Month.ToString("d2")).Count(),
 
-                    DaysInMonth = 28,
+                    DaysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month),
                 }
             };
-
-            //var today = DateTime.Today;
-            //var month = new DateTime(today.Year, today.Month, 1);
-            //var first = month.AddMonths(-1);
-            //var second = month.AddMonths(+1);
-
-
-
-            //System.Diagnostics.Debug.WriteLine(first.ToString());
-
-            //var exPerMonth = _logEntryRepository.GetAllLogs.Where(x => 
-            //    x.Exception != "" 
-            //    && x.Date.KeepOnlyMonth() == DateTime.Now.Month.ToString("d2")).Count();
-
-            //var exLastMonth = _logEntryRepository.GetAllLogs.Where(x =>
-            //   x.Exception != ""
-            //   && x.Date.KeepOnlyMonth() == first.ToString("d2")).Count();
-
-
-
-            //var daysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
-            //var lastMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
-            //var week = daysInMonth - daysInMonth + 7;
-
-
-            //var averagePerWeek = exLastMonth / daysInMonth;
+    
 
             return avList;
-
-
-
-
-
-            //foreach (var item in exPerMont)
-            //{
-            //    System.Diagnostics.Debug.WriteLine(item.Date);
-            //}
-
-
-            //int d1 = Create().ElementAt(0).AmountOfExceptions;
-            //int d2 = Create().ElementAt(1).AmountOfExceptions;
-            //int d3 = Create().ElementAt(2).AmountOfExceptions;
-            //int d4 = Create().ElementAt(3).AmountOfExceptions;
-            //int d5 = Create().ElementAt(4).AmountOfExceptions;
-            //int d6 = Create().ElementAt(5).AmountOfExceptions;
-            //int d7 = Create().ElementAt(6).AmountOfExceptions;
-            //int d8 = Create().ElementAt(7).AmountOfExceptions;
-
-            //int sum = (d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8) / 7;
-
 
 
         }
@@ -286,14 +249,18 @@ namespace NectimaLogging.Services.Chart
     {
         public double DaysInMonth { get; set; }
         public int Week { get; set; }
-        public double AverageMonth => PerMonth / DaysInMonth;
+        public double AverageMonth  =>  PerMonth / DaysInMonth;
         public double PerMonth { get; set; }
         public string AverageMonthPrint { get; set; }
 
-        public AverageExceptions()
+      
+
+        public string GetNewFormatMonth()
         {
-            AverageMonthPrint = 200.2.ToString();
+            AverageMonthPrint = AverageMonth.ToString();
             AverageMonthPrint = AverageMonthPrint.Replace(',', '.');
+
+            return AverageMonthPrint;
         }
 
 
