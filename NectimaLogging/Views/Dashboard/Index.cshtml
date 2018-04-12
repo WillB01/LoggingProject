@@ -51,11 +51,12 @@
       new Chart(document.getElementById("bubble-chart"), {
           type: 'horizontalBar',
         data: {
-            labels: ['one','two'],
+            labels: ['Exceptions'],
             datasets: [{
-                data: ['@Model.ExSum().ElementAt(0).GetNewFormatMonth()','@Model.ExSum().ElementAt(1).GetNewFormatMonth()'],
+                data: ['@Model.ExSum().ElementAt(0).GetNewFormatMonth()'],
                 label: "Exceptions",
                 borderColor: "#3e95cd",
+                backgroundColor: ['#5DB5A4','#F57A62'], 
                 fill: false
             }
             ]
@@ -63,7 +64,7 @@
         options: {
             title: {
                 display: true,
-                text: 'Amount of Exceptions'
+                text: 'Average exceptions per week'
             }
         }
     });

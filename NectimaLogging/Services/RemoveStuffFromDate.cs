@@ -20,6 +20,13 @@ namespace NectimaLogging.Controllers
 
             return mySplitString[1];
         }
+        public static string KeepOnlyDay(this string str)
+        {
+            string[] mySplitString = str.RemoveTime().Split('-');
+            
+
+            return mySplitString[2];
+        }
 
     }
 }

@@ -207,64 +207,40 @@ namespace NectimaLogging.Services.Chart
         public List<AverageExceptions> ExSum()
         {
             var firstMonthLog = _logEntryRepository.GetAllLogs.First(x => x.Id == 1);
-            var firstMonthDate = int.Parse(firstMonthLog.Date.KeepOnlyMonth());
+            int firstMonthDate = int.Parse(firstMonthLog.Date.KeepOnlyMonth());
             string firstMonthDateString = firstMonthDate.ToString();
+
 
             if (firstMonthDate < 10)
                 firstMonthDateString = $"0{firstMonthDateString}";
 
 
 
+            //  System.Diagnostics.Debug.WriteLine(daysInWeek.ElementAt(0) + "  **********");
+
+
+            var list = new List<AverageExceptions>();
+
+
+
             List<AverageExceptions> avList = new List<AverageExceptions>()
             {
-                new AverageExceptions()
+                new AverageExceptions(_logEntryRepository)
                 {
-                    PerMonth =  _logEntryRepository.GetAllLogs.Where(x =>
+                    Exceptions =  _logEntryRepository.GetAllLogs.Where(x =>
                     x.Exception != ""
-                    && x.Date.KeepOnlyMonth() == firstMonthDateString).Count(),
+                    && x.Date.KeepOnlyMonth() != null).Count(),
 
-                    DaysInMonth =   DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month),
+                    DaysInMonth =   DateTime.DaysInMonth(DateTime.Now.Year, firstMonthDate),
 
-
-
-                },
-                new AverageExceptions()
-                {
-                    PerMonth =  _logEntryRepository.GetAllLogs.Where(x =>
-                    x.Exception != ""
-                    && x.Date.KeepOnlyMonth() == DateTime.Now.Month.ToString("d2")).Count(),
-
-                    DaysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month),
-                }
+                },      
             };
-    
+
 
             return avList;
 
 
         }
-    }
-
-    public class AverageExceptions
-    {
-        public double DaysInMonth { get; set; }
-        public int Week { get; set; }
-        public double AverageMonth  =>  PerMonth / DaysInMonth;
-        public double PerMonth { get; set; }
-        public string AverageMonthPrint { get; set; }
-
-      
-
-        public string GetNewFormatMonth()
-        {
-            AverageMonthPrint = AverageMonth.ToString();
-            AverageMonthPrint = AverageMonthPrint.Replace(',', '.');
-
-            return AverageMonthPrint;
-        }
-
-
-
     }
 }
 
