@@ -21,6 +21,10 @@ namespace NectimaLogging.Interface
         List<LoggerKindCounter> LoggerKindCounters();
         List<ExceptionAndDate> ExceptionsOnDay();
         string[] GetDays();
+        double[] GetExProcentDay();
+        void CheckAndDayExToCorrectDay();
+        string GetStartDate();
+        string GetEndDate();
 
 
     }

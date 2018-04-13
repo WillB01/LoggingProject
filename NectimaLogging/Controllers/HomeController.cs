@@ -87,6 +87,7 @@ namespace NectimaLogging.Controllers
         }
 
         [HttpPost]
+        [Route("all-logs")]
         [ValidateAntiForgeryToken]
         public IActionResult ResultAllLogs(int next, int previous, bool isNext, bool isPrevious, int addP)
         {

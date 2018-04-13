@@ -2,6 +2,7 @@
 using NectimaLogging.Helpers;
 using NectimaLogging.Interface;
 using NectimaLogging.Models;
+using NectimaLogging.Services.Chart;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,27 @@ namespace NectimaLogging.Services
         private IWeek _week;
         private IEnumerable<LogEntry> _test;
 
+        private double[] _procentOfExceptions = { 0, 0, 0, 0, 0, 0, 0 };
+        private double[] _sumPerDay = { 0, 0, 0, 0, 0, 0, 0 };
+
+        private LogEntry _firstMonthLog;
+        private int _firstMonthDate;
+        private string _firstMonthDateString;
+        private AverageExceptions _time;
+        private DateTime _dayOfWeekDate;
+        private string _dayOfWeek;
+
+       
 
         public ChartService(ILogEntryRepository logEntryRepository, IWeek week)
         {
             _logEntryRepository = logEntryRepository;
             _week = week;
+
+            _time = new AverageExceptions(_logEntryRepository);
+            _firstMonthLog = _logEntryRepository.GetAllLogs.First(x => x.Id == 1);
+            _firstMonthDate = int.Parse(_firstMonthLog.Date.KeepOnlyMonth());
+            _firstMonthDateString = _firstMonthDate.ToString();
         }
 
         public int AmountOfExceptions()
@@ -95,10 +112,6 @@ namespace NectimaLogging.Services
           .GroupBy(item => item.Exception.Count())
           .Select(x => new ExceptionAndDate() { Date = x.First().Date, NumberOfExetions = x.Count().ToString() })
           .ToList();
-
-
-         
-
             return results;
         }
 
@@ -109,8 +122,75 @@ namespace NectimaLogging.Services
 
         }
 
+        public void CheckAndDayExToCorrectDay()
+        {
+            
+            if (_firstMonthDate < 10)
+                _firstMonthDateString = $"0{_firstMonthDateString}";
+
+            foreach (var item in _logEntryRepository.GetAllLogs.Where(x => x.Date != null && x.Exception != ""))
+            {
+
+                _dayOfWeekDate = new DateTime(DateTime.Now.Year, int.Parse(item.Date.KeepOnlyMonth()), int.Parse(item.Date.KeepOnlyDay()));
+                _dayOfWeek = _dayOfWeekDate.DayOfWeek.ToString();
+
+                switch (_dayOfWeek)
+                {
+                    case "Monday":
+                        _sumPerDay[0] += 1;
+                        break;
+                    case "Tuesday":
+                        _sumPerDay[1] += 1;
+                        break;
+                    case "Wednesday":
+                        _sumPerDay[2] += 1;
+                        break;
+                    case "Thursday":
+                        _sumPerDay[3] += 1;
+                        break;
+                    case "Friday":
+                        _sumPerDay[4] += 1;
+                        break;
+                    case "Saturday":
+                        _sumPerDay[5] += 1;
+                        break;
+                    case "Sunday":
+                        _sumPerDay[6] += 1;
+                        break;
+                    default:
+                        break;
+                }
+                
+            };
+
+            for (int i = 0; i < _sumPerDay.Length; i++)
+            {
+                _sumPerDay[i] = (_sumPerDay[i] / _logEntryRepository.GetAllLogs.Where(x => x.Date != null && x.Exception != "").Count()) * 100;
+            }
+        }
 
 
+        public double[] GetExProcentDay()
+        {
+            double[] convertToString = new double[7];
+
+            for (int i = 0; i < _sumPerDay.Length; i++)
+            {
+                convertToString[i] = Math.Round(_sumPerDay[i], 2);
+            }
+
+            return convertToString;
+        }
+
+        public string GetStartDate()
+        {
+            return _time.WeekStart.Date.ToString();
+        }
+
+        public string GetEndDate()
+        {
+            return _time.WeekEnd.Date.ToString();
+        }
 
     }
 

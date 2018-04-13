@@ -10,7 +10,6 @@
 }
 
 
-
 <div class="all-log-container">
     <div id="log-container">
         <table class="table table-sm">
@@ -141,60 +140,6 @@
                 </form>
             </div>
         </div>
-        @*@if (Model.PagingInfo.CurrentPage % 10 == 0)
-            {
-
-                @for (int i = Model.PagingInfo.CurrentPage - 5; i < Model.PagingInfo.AddMorePages + 5; i++)
-                {
-                    <div class="btn active">
-                        <a asp-action="ResultAllLogs"
-                           asp-route-logPage="@i">@i</a>
-                        @if (Model.PagingInfo.CurrentPage == i)
-                        {
-                            <p class="current">@Model.PagingInfo.CurrentPage</p>
-
-                        }
-                    </div>
-
-                }
-
-            }*@
-        @*@for (int i = 1; i <= Model.PagingInfo.AddMorePages; i++)
-            {
-                if (Model.PagingInfo.AddMorePages < 10 && i > 1)
-                {
-
-                    for (int k = Model.PagingInfo.CurrentPage; k < Model.PagingInfo.AddMorePages + 10; k++)
-                    {
-                        @k
-                    }
-
-                }
-
-                <div class="btn active">
-                    <a asp-action="ResultAllLogs"
-                       asp-route-logPage="@i">@i</a>
-
-
-                    @if (Model.PagingInfo.CurrentPage == i)
-                    {
-                        <p class="current">@Model.PagingInfo.CurrentPage</p>
-
-                    }
-
-                </div>
-
-            }
-            @if (Model.PagingInfo.CurrentPage % 10 == 0)
-            {
-
-                for (int j = Model.PagingInfo.CurrentPage + 1; j < Model.PagingInfo.AddMorePages + 10; j++)
-                {
-                    <a asp-action="ResultAllLogs"
-                       asp-route-logPage="@j">@j</a>
-                }
-            }*@
-
     </div>
 </div>
 

@@ -21,11 +21,11 @@ namespace NectimaLogging.Services.Chart
         private bool _isNext;
         public int MyCounter { get; set; }
 
-        private double[] _procentOfExceptions = { 0, 0, 0, 0, 0, 0, 0 };
-        private double[] _sumPerDay = { 0, 0, 0, 0, 0, 0, 0 };
-
+        public double[] GetExProcentDay => _chartService.GetExProcentDay();
         public string[] GetDays => _chartService.GetDays();
 
+        public string StartDate => _logEntryRepository.GetAllLogs.First().Date.RemoveTime();
+        public string EndDate => _logEntryRepository.GetAllLogs.Last().Date.RemoveTime();
 
         public ExceptionChartStart(IChartService chartService, IWeek week, ILogEntryRepository logEntryRepository, int prevWeek, bool isPrev, bool isNext)
         {
@@ -44,7 +44,7 @@ namespace NectimaLogging.Services.Chart
             CheckIfPrevOrNext();
             DateTimeToString();
             Create();
-            ExSum();
+            _chartService.CheckAndDayExToCorrectDay();
         }
 
         public void WeekEntry()
@@ -159,8 +159,6 @@ namespace NectimaLogging.Services.Chart
         }
 
 
-
-
         public List<ThreadNameAndThreadCount> ThreadCounter()
         {
             return _chartService.ThreadCounter();
@@ -208,92 +206,11 @@ namespace NectimaLogging.Services.Chart
             return ta.ToArray();
         }
 
-        public double[] GetExProcentDay()
-        {
-            double[] convertToString = new double[7];
-
-            for (int i = 0; i < _sumPerDay.Length; i++)
-            {
-                convertToString[i] = Math.Round(_sumPerDay[i], 2);
-            }
-
-            return convertToString;
-        }
+       
+       
 
         
-
-
-        //TESTIGN TESTING
-        public List<AverageExceptions> ExSum()
-        {
-            var time = new AverageExceptions(_logEntryRepository);
-            var firstMonthLog = _logEntryRepository.GetAllLogs.First(x => x.Id == 1);
-            int firstMonthDate = int.Parse(firstMonthLog.Date.KeepOnlyMonth());
-            string firstMonthDateString = firstMonthDate.ToString();
-
-
-            if (firstMonthDate < 10)
-                firstMonthDateString = $"0{firstMonthDateString}";
-
-            foreach (var item in _logEntryRepository.GetAllLogs.Where(x => x.Date != null && x.Exception != ""))
-            {
-
-                var b = new DateTime(DateTime.Now.Year, int.Parse(item.Date.KeepOnlyMonth()), int.Parse(item.Date.KeepOnlyDay()));
-                var dayof = b.DayOfWeek.ToString();
-
-                switch (dayof)
-                {
-                    case "Monday":
-                        _sumPerDay[0] += 1;
-                        break;
-                    case "Tuesday":
-                        _sumPerDay[1] += 1;
-                        break;
-                    case "Wednesday":
-                        _sumPerDay[2] += 1;
-                        break;
-                    case "Thursday":
-                        _sumPerDay[3] += 1;
-                        break;
-                    case "Friday":
-                        _sumPerDay[4] += 1;
-                        break;
-                    case "Saturday":
-                        _sumPerDay[5] += 1;
-                        break;
-                    case "Sunday":
-                        _sumPerDay[6] += 1;
-                        break;
-                    default:
-                        break;
-                }
-             
-            };
-
-            for (int i = 0; i < _sumPerDay.Length; i++)
-            {
-                _sumPerDay[i] = (_sumPerDay[i] / _logEntryRepository.GetAllLogs.Where(x => x.Date != null && x.Exception != "").Count()) * 100;
-            }
-
-            List<AverageExceptions> avList = new List<AverageExceptions>()
-            {
-                new AverageExceptions(_logEntryRepository)
-                {
-                    Exceptions =  _logEntryRepository.GetAllLogs.Where(x =>
-                    x.Exception != ""
-                    && x.Date.KeepOnlyMonth() != null).Count(),
-
-                    DaysInMonth =   DateTime.DaysInMonth(DateTime.Now.Year, firstMonthDate),
-
-                },      
-            };
-
-
-            return avList;
-
-
-        }
-
+       
 
     }
 }

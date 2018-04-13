@@ -21,7 +21,12 @@ namespace NectimaLogging.Services.Chart
         public DateTime FirstLog => new DateTime(DateTime.Today.Year, FirstMonthDate, First);
         public DateTime StartOfFirstWeek => FirstLog.AddDays(First - (int)(FirstLog.DayOfWeek));
         public List<string> DaysInWeekWithException { get; set; }
-        
+
+        public DateTime WeekStart { get; private set; }
+        public DateTime WeekEnd { get; private set; }
+
+
+
 
         private ILogEntryRepository _logEntryRepository;
 
@@ -68,6 +73,8 @@ namespace NectimaLogging.Services.Chart
             foreach (var item in weeks)
             {
                 WeekSumNum = item.weekNum;
+                WeekStart = item.weekStart;
+                WeekEnd = item.weekFinish;
             }
 
             return WeekSumNum;
