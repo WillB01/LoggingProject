@@ -46,14 +46,15 @@
     <script >
 
         @*let myData1 = @Html.Raw(Json.Serialize(@Model.ExSum().ElementAt(1).AverageMonthPrint));*@
-
-       
+  
+        let myProcentData = @Html.Raw(Json.Serialize(@Model.GetExProcentDay()))
+        let myProcentDays = @Html.Raw(Json.Serialize(Model.GetDays));
       new Chart(document.getElementById("bubble-chart"), {
           type: 'horizontalBar',
         data: {
-            labels: ['Exceptions'],
+            labels: myProcentDays,
             datasets: [{
-                data: ['@Model.ExSum().ElementAt(0).GetNewFormatMonth()'],
+                data: myProcentData,
                 label: "Exceptions",
                 borderColor: "#3e95cd",
                 backgroundColor: ['#5DB5A4','#F57A62'], 
@@ -64,7 +65,7 @@
         options: {
             title: {
                 display: true,
-                text: 'Average exceptions per week'
+                text: 'Procent exceptions per days'
             }
         }
     });

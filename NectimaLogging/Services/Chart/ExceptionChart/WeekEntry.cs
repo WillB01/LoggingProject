@@ -24,28 +24,11 @@ namespace NectimaLogging.Controllers
         public string YesterdayString { get; set; }
         public string TodayString { get; set; }
 
-        public List<string> Days { get; set; }
+        
 
         public int PrevWeek { get; set; } = 0;
 
-        public List<string> GetDays()
-        {
-            Days = new List<string>
-            {
-
-                SevenDaysFromTodayString,
-                SixDaysFromTodayString,
-                FiveDaysFromTodayString,
-                FourDaysFromTodayString,
-                ThreeDaysFromTodayString,
-                TwoDaysFromTodayString,
-                YesterdayString,
-                TodayString
-
-            };
-
-            return Days;
-        }
+        
 
     }
 

@@ -88,12 +88,28 @@ namespace NectimaLogging.Services
             return results;
         }
 
-        public List<DateTime> GetDates(int year, int month)
+        public List<ExceptionAndDate> ExceptionsOnDay()
         {
-            return Enumerable.Range(1, DateTime.DaysInMonth(year, month))  // Days: 1, 2 ... 31 etc.
-                             .Select(day => new DateTime(year, month, day)) // Map each day to a date
-                             .ToList(); // Load dates into a list
+            var results = _logEntryRepository.GetAllLogs
+            .OrderByDescending(item => item.Date)
+          .GroupBy(item => item.Exception.Count())
+          .Select(x => new ExceptionAndDate() { Date = x.First().Date, NumberOfExetions = x.Count().ToString() })
+          .ToList();
+
+
+         
+
+            return results;
         }
+
+        public string[] GetDays()
+        {
+            string[] dayName = { "Mondays", "Tuesdays", "Wednesdays", "Thursdays", "Fridays", "Saturdays", "Sundays" };
+            return dayName;
+
+        }
+
+
 
 
     }
@@ -112,7 +128,7 @@ namespace NectimaLogging.Services
 
     public class ExceptionAndDate
     {
-        public int NumberOfExetions { get; set; }
+        public string NumberOfExetions { get; set; }
         public string Date { get; set; }
     }
 }

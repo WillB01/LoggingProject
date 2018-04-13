@@ -28,9 +28,10 @@ namespace NectimaLogging.Services.Chart
         public AverageExceptions(ILogEntryRepository logEntryRepository)
         {
             _logEntryRepository = logEntryRepository;
-          
-        }
+            WeeksInLogLifeTime();
 
+
+        }
 
         public string GetNewFormatMonth()
         {
@@ -42,8 +43,7 @@ namespace NectimaLogging.Services.Chart
         }
 
         public int WeeksInLogLifeTime()
-        {
-      
+        {     
             var weeks =
                 Enumerable
                     .Range(0, 54)

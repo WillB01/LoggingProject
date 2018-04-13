@@ -19,6 +19,9 @@ namespace NectimaLogging.Interface
         int WarnLevelCounter();
         List<ThreadNameAndThreadCount> ThreadCounter();
         List<LoggerKindCounter> LoggerKindCounters();
-        List<DateTime> GetDates(int year, int month);
+        List<ExceptionAndDate> ExceptionsOnDay();
+        string[] GetDays();
+
+
     }
 }
