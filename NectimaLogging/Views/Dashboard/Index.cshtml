@@ -44,8 +44,6 @@
 
     </div>
     <script >
-
-        @*let myData1 = @Html.Raw(Json.Serialize(@Model.ExSum().ElementAt(1).AverageMonthPrint));*@
   
         let myProcentData = @Html.Raw(Json.Serialize(@Model.GetExProcentDay))
         let myProcentDays = @Html.Raw(Json.Serialize(Model.GetDays));
@@ -138,7 +136,6 @@
             }
         }
     });
-
 
         var levelCanvas = document.getElementById("doughnut-chart");
 

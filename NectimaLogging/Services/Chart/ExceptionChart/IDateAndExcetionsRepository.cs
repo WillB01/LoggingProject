@@ -8,18 +8,6 @@ namespace NectimaLogging.Controllers
        
         string Date { get; set; }
 
-       
-
-
-
     }
-
-
-
-
-
-
-
-
 
 }

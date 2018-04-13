@@ -49,7 +49,6 @@ namespace NectimaLogging.Services.Chart
 
         public void WeekEntry()
         {
-
             _week.SevenDaysFromToday = DateTime.Now.AddDays(-7);
             _week.SixDaysFromToday = DateTime.Now.AddDays(-6);
             _week.FiveDaysFromToday = DateTime.Now.AddDays(-5);
@@ -98,8 +97,6 @@ namespace NectimaLogging.Services.Chart
 
         public List<DateAndExcetionsRepository> Create()
         {
-
-
             List<DateAndExcetionsRepository> dateAndExcetionsRepository = new List<DateAndExcetionsRepository>()
             {
                 new DateAndExcetionsRepository()
@@ -202,16 +199,8 @@ namespace NectimaLogging.Services.Chart
             {
                 ta.Add(item.Amount);
             }
-
             return ta.ToArray();
         }
-
-       
-       
-
-        
-       
-
     }
 }
 

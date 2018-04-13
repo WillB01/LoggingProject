@@ -12,13 +12,4 @@ namespace NectimaLogging.Repository
         
         public IEnumerable<WeekEntry> AddPrevWeek { get; set ; }
     }
-
-
-
-
-
-
-
-
-
 }
